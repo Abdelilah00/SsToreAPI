@@ -3,20 +3,9 @@
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.SsTore.domains.Account;
+package com.SsTore.Dtos.Products;
 
-import java.util.*;
+import com.springBootLibrary.models.BaseDto;
 
-/**
- * 
- */
-public class CreditCard {
-
-    /**
-     * Default constructor
-     */
-    public CreditCard() {
-    }
-
-
+public class ProductDto extends BaseDto {
 }

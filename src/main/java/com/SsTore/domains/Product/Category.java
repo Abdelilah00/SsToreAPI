@@ -6,12 +6,15 @@
 package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
+import lombok.Data;
 
-import java.util.*;
+import javax.persistence.Entity;
 
 /**
  * 
  */
+@Entity
+@Data
 public class Category extends BaseEntity {
 
     /**

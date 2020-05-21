@@ -5,11 +5,15 @@
 
 package com.SsTore.domains.Product;
 
-import java.util.*;
+import lombok.Data;
+
+import javax.persistence.Entity;
 
 /**
  * 
  */
+@Entity
+@Data
 public class Overview {
 
     /**

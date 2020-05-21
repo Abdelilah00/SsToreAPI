@@ -3,27 +3,9 @@
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.SsTore.domains.Order;
+package com.SsTore.Dtos.Products;
 
-import java.util.*;
+import com.springBootLibrary.models.BaseDto;
 
-/**
- * we need system for this
- */
-public class ShoppingCard {
-
-    /**
-     * Default constructor
-     */
-    public ShoppingCard() {
-    }
-
-    /**
-     * 
-     */
-    public Long qte;
-
-
-
-
+public class ProductCreateDto extends BaseDto {
 }

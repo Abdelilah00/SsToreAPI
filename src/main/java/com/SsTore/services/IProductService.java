@@ -5,11 +5,12 @@
 
 package com.SsTore.services;
 
-import com.SsTore.Dtos.Customers.CustomerCreateDto;
-import com.SsTore.Dtos.Customers.CustomerDto;
-import com.SsTore.Dtos.Customers.CustomerUpdateDto;
+import com.SsTore.Dtos.Products.ProductCreateDto;
+import com.SsTore.Dtos.Products.ProductDto;
+import com.SsTore.Dtos.Products.ProductUpdateDto;
+import com.SsTore.domains.Product.Product;
 import com.springBootLibrary.services.IBaseCrudService;
 
-public interface ICustomerService extends IBaseCrudService<Customer, CustomerDto, CustomerCreateDto, CustomerUpdateDto> {
+public interface IProductService extends IBaseCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto> {
 
 }

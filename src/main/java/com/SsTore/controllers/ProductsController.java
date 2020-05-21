@@ -10,19 +10,15 @@ import com.SsTore.Dtos.Products.ProductDto;
 import com.SsTore.Dtos.Products.ProductUpdateDto;
 import com.SsTore.domains.Product.Product;
 import com.springBootLibrary.controllers.BaseCrudController;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-
 @RestController
-@RequestMapping("api/admin/owners")
+@RequestMapping("api/admin/products")
 public class ProductsController extends BaseCrudController<Product, ProductDto, ProductCreateDto, ProductUpdateDto> {
 
-    @RequestMapping(method = RequestMethod.POST, path = "/withStore")
+    /*@RequestMapping(method = RequestMethod.POST, path = "/withStore")
     public ProductCreateDto withStore(@Valid @RequestBody ProductCreateDto dto) {
         return ((IProductService) service).withStore(dto);
-    }
+    }*/
 }

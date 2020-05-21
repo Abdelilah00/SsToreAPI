@@ -3,26 +3,9 @@
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.SsTore.domains.Order;
+package com.SsTore.Dtos.Products;
 
-import java.util.*;
+import com.springBootLibrary.models.BaseDto;
 
-/**
- * 
- */
-public class Order {
-
-    /**
-     * Default constructor
-     */
-    public Order() {
-    }
-
-    /**
-     * 
-     */
-    public String shippingAdresse;
-
-
-
+public class ProductUpdateDto extends BaseDto {
 }
