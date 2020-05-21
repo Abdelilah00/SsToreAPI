@@ -3,16 +3,14 @@
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.SsTore.domains.Product;
+package com.SsTore.repositorys.Product;
 
-import com.springBootLibrary.models.BaseEntity;
+import com.SsTore.domains.Product.*;
+import com.springBootLibrary.repositorys.IBaseJpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.*;
-
-/**
- * 
- */
-public class Characteristic extends BaseEntity {
-
+@Repository
+public interface IProductRepository extends IBaseJpaRepository<Product> {
 
 }
+

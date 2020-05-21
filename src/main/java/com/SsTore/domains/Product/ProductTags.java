@@ -5,12 +5,14 @@
 
 package com.SsTore.domains.Product;
 
+import com.springBootLibrary.models.BaseEntity;
+
 import java.util.*;
 
 /**
  * 
  */
-public class ProductTags {
+public class ProductTags extends BaseEntity {
 
     /**
      * Default constructor

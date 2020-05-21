@@ -3,24 +3,13 @@
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.SsTore.domains.Order;
+package com.SsTore.repositorys.Product;
 
-import java.util.*;
+import com.SsTore.domains.Product.ProductCharacteristic;
+import com.springBootLibrary.repositorys.IBaseJpaRepository;
+import org.springframework.stereotype.Repository;
 
-/**
- * 
- */
-public class Dispute {
-
-    /**
-     * Default constructor
-     */
-    public Dispute() {
-    }
-
-    /**
-     * 
-     */
-    public void Id;
+@Repository
+public interface IProductCharacteristicRepository extends IBaseJpaRepository<ProductCharacteristic> {
 
 }

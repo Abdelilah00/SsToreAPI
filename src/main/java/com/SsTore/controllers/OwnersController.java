@@ -5,10 +5,10 @@
 
 package com.SsTore.controllers;
 
-import com.SsTore.Dtos.Owners.OwnerCreateDto;
-import com.SsTore.Dtos.Owners.OwnerDto;
-import com.SsTore.Dtos.Owners.OwnerUpdateDto;
-import com.SsTore.services.IOwnerService;
+import com.SsTore.Dtos.Products.ProductCreateDto;
+import com.SsTore.Dtos.Products.ProductDto;
+import com.SsTore.Dtos.Products.ProductUpdateDto;
+import com.SsTore.domains.Product.Product;
 import com.springBootLibrary.controllers.BaseCrudController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +19,10 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/admin/owners")
-public class OwnersController extends BaseCrudController<Owner, OwnerDto, OwnerCreateDto, OwnerUpdateDto> {
+public class ProductsController extends BaseCrudController<Product, ProductDto, ProductCreateDto, ProductUpdateDto> {
+
     @RequestMapping(method = RequestMethod.POST, path = "/withStore")
-    public OwnerCreateDto withStore(@Valid @RequestBody OwnerCreateDto dto) {
-        return ((IOwnerService) service).withStore(dto);
+    public ProductCreateDto withStore(@Valid @RequestBody ProductCreateDto dto) {
+        return ((IProductService) service).withStore(dto);
     }
 }
