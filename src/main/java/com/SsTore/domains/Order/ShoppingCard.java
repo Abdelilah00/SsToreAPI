@@ -21,12 +21,7 @@ public class ShoppingCard {
     /**
      * 
      */
-    public void Qte;
-
-    /**
-     * 
-     */
-    public void Id;
+    public Long qte;
 
 
 

@@ -21,12 +21,7 @@ public class WareHouse {
     /**
      * 
      */
-    public void Id;
-
-    /**
-     * 
-     */
-    public void Country;
+    public String country;
 
 
 }

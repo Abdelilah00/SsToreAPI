@@ -8,7 +8,6 @@ package com.SsTore.services;
 import com.SsTore.Dtos.Products.ProductCreateDto;
 import com.SsTore.Dtos.Products.ProductDto;
 import com.SsTore.Dtos.Products.ProductUpdateDto;
-import com.SsTore.domains.Product;
 import com.springBootLibrary.services.BaseCrudServiceImpl;
 import org.springframework.stereotype.Service;
 

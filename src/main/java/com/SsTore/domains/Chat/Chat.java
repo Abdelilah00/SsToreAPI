@@ -21,17 +21,12 @@ public class Chat {
     /**
      * 
      */
-    public void Id;
+    public String message;
 
     /**
      * 
      */
-    public void Message;
-
-    /**
-     * 
-     */
-    public void Read;
+    public Boolean read;
 
 
 }

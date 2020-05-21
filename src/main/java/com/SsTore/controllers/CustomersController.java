@@ -8,7 +8,6 @@ package com.SsTore.controllers;
 import com.SsTore.Dtos.Customers.CustomerCreateDto;
 import com.SsTore.Dtos.Customers.CustomerDto;
 import com.SsTore.Dtos.Customers.CustomerUpdateDto;
-import com.SsTore.domains.Customer;
 import com.springBootLibrary.controllers.BaseCrudController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

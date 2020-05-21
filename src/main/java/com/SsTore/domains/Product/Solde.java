@@ -21,12 +21,7 @@ public class Solde {
     /**
      * 
      */
-    public void Id;
-
-    /**
-     * 
-     */
-    public void Percent;
+    public Float percent;
 
 
 }

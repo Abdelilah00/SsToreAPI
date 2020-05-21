@@ -18,9 +18,4 @@ public class ProductTags {
     public ProductTags() {
     }
 
-    /**
-     * 
-     */
-    public void Id;
-
 }

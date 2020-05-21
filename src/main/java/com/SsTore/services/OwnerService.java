@@ -8,8 +8,6 @@ package com.SsTore.services;
 import com.SsTore.Dtos.Owners.OwnerCreateDto;
 import com.SsTore.Dtos.Owners.OwnerDto;
 import com.SsTore.Dtos.Owners.OwnerUpdateDto;
-import com.SsTore.domains.Owner;
-import com.SsTore.domains.Store;
 import com.springBootLibrary.services.BaseCrudServiceImpl;
 import org.springframework.stereotype.Service;
 

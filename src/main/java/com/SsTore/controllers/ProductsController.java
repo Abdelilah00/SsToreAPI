@@ -8,7 +8,6 @@ package com.SsTore.controllers;
 import com.SsTore.Dtos.Products.ProductCreateDto;
 import com.SsTore.Dtos.Products.ProductDto;
 import com.SsTore.Dtos.Products.ProductUpdateDto;
-import com.SsTore.domains.Product;
 import com.springBootLibrary.controllers.BaseCrudController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

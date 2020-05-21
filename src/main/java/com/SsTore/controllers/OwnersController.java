@@ -8,7 +8,6 @@ package com.SsTore.controllers;
 import com.SsTore.Dtos.Owners.OwnerCreateDto;
 import com.SsTore.Dtos.Owners.OwnerDto;
 import com.SsTore.Dtos.Owners.OwnerUpdateDto;
-import com.SsTore.domains.Owner;
 import com.SsTore.services.IOwnerService;
 import com.springBootLibrary.controllers.BaseCrudController;
 import org.springframework.web.bind.annotation.RequestBody;

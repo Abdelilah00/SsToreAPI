@@ -18,9 +18,4 @@ public class ProductCategorys {
     public ProductCategorys() {
     }
 
-    /**
-     * 
-     */
-    public void Id;
-
 }

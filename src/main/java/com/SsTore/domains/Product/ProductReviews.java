@@ -21,21 +21,16 @@ public class ProductReviews {
     /**
      * 
      */
-    public void Id;
+    public Long stars;
 
     /**
      * 
      */
-    public void Stars;
+    public String review;
 
     /**
      * 
      */
-    public void Review;
-
-    /**
-     * 
-     */
-    public void Helpful;
+    public Boolean helpful;
 
 }

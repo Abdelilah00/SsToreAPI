@@ -21,27 +21,22 @@ public class Product {
     /**
      * 
      */
-    public void Id;
+    public String name;
 
     /**
      * 
      */
-    public void Name;
+    public String description;
 
     /**
      * 
      */
-    public void Description;
+    public Float price;
 
     /**
      * 
      */
-    public void Price;
-
-    /**
-     * 
-     */
-    public void Qte;
+    public Long qte;
 
 
 

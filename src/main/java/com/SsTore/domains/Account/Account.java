@@ -21,12 +21,7 @@ public class Account {
     /**
      * 
      */
-    public void Id;
-
-    /**
-     * 
-     */
-    public void Password;
+    public String password;
 
 
 

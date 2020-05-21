@@ -21,27 +21,22 @@ public class Customer {
     /**
      * 
      */
-    public void Id;
+    public String email;
 
     /**
      * 
      */
-    public void Email;
+    public String phoneNumber;
 
     /**
      * 
      */
-    public void PhoneNumber;
+    public String name;
 
     /**
      * 
      */
-    public void Name;
-
-    /**
-     * 
-     */
-    public void Adresse;
+    public String adresse;
 
 
 

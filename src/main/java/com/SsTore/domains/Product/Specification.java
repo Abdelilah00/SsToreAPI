@@ -18,10 +18,5 @@ public class Specification {
     public Specification() {
     }
 
-    /**
-     * 
-     */
-    public void Id;
-
 
 }

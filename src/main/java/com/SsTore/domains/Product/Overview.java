@@ -21,12 +21,7 @@ public class Overview {
     /**
      * 
      */
-    public void Id;
-
-    /**
-     * 
-     */
-    public void Discription;
+    public String discription;
 
 
 }

@@ -5,7 +5,6 @@
 
 package com.SsTore.repositorys;
 
-import com.SsTore.domains.Owner;
 import com.springBootLibrary.repositorys.IBaseJpaRepository;
 import org.springframework.stereotype.Repository;
 

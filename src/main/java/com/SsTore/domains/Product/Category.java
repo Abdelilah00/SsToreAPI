@@ -21,12 +21,7 @@ public class Category {
     /**
      * 
      */
-    public void Id;
-
-    /**
-     * 
-     */
-    public void Name;
+    public String name;
 
 
 }

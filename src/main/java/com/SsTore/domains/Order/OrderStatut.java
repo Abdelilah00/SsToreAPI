@@ -8,19 +8,9 @@ package com.SsTore.domains.Order;
 import java.util.*;
 
 /**
- * describe order is shipped or wait-payment or diputs
+ * LoockUps
  */
-public class OrderStatut {
+public interface OrderStatut {
 
-    /**
-     * Default constructor
-     */
-    public OrderStatut() {
-    }
-
-    /**
-     * 
-     */
-    public void Id;
 
 }

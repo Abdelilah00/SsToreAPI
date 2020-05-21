@@ -21,12 +21,7 @@ public class Order {
     /**
      * 
      */
-    public void Id;
-
-    /**
-     * 
-     */
-    public void ShippingAdresse;
+    public String shippingAdresse;
 
 
 

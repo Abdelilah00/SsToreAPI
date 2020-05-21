@@ -21,17 +21,12 @@ public class OrderDetails {
     /**
      * 
      */
-    public void Id;
+    public Long qte;
 
     /**
      * 
      */
-    public void Qte;
-
-    /**
-     * 
-     */
-    public void Price;
+    public Float price;
 
 
 

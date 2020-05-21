@@ -18,11 +18,6 @@ public class WishList {
     public WishList() {
     }
 
-    /**
-     * 
-     */
-    public void Id;
-
 
 
 }

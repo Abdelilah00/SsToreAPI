@@ -21,12 +21,7 @@ public class Images {
     /**
      * 
      */
-    public void Id;
-
-    /**
-     * 
-     */
-    public void URL;
+    public String url;
 
 
 }

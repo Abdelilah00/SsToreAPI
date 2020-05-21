@@ -18,9 +18,4 @@ public class ProductCharacteristic {
     public ProductCharacteristic() {
     }
 
-    /**
-     * 
-     */
-    public void Id;
-
 }

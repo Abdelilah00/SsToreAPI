@@ -18,10 +18,5 @@ public class CreditCard {
     public CreditCard() {
     }
 
-    /**
-     * 
-     */
-    public void Id;
-
 
 }
