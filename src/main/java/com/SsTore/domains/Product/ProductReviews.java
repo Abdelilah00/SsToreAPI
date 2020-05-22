@@ -6,36 +6,30 @@
 package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
  * 
  */
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 public class ProductReviews extends BaseEntity {
 
-    /**
-     * Default constructor
-     */
-    public ProductReviews() {
-    }
 
-    /**
-     * 
-     */
     public Long stars;
 
-    /**
-     * 
-     */
     public String review;
 
-    /**
-     * 
-     */
     public Boolean helpful;
+
+    @OneToOne
+    private Product product;
 
 }

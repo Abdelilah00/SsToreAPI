@@ -6,21 +6,20 @@
 package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Entity;
 
 /**
- * 
+ *
  */
 @Entity
-@Data
+@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductCharacteristic extends BaseEntity {
 
-    /**
-     * Default constructor
-     */
-    public ProductCharacteristic() {
-    }
-
+    private String value;
 }

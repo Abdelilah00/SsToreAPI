@@ -11,11 +11,12 @@ import lombok.Data;
 import javax.persistence.Entity;
 
 /**
- * 
+ *
  */
 @Entity
 @Data
 public class Characteristic extends BaseEntity {
+    private String name;
 
 
 }

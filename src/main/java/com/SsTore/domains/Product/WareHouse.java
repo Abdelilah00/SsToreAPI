@@ -6,27 +6,27 @@
 package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
- * 
+ *
  */
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class WareHouse extends BaseEntity {
 
-    /**
-     * Default constructor
-     */
-    public WareHouse() {
-    }
-
-    /**
-     * 
-     */
     public String country;
 
-
+    //TODO:Upgrade this to ManyToMany
+    @OneToOne
+    private Product product;
 }

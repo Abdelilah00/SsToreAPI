@@ -6,22 +6,28 @@
 package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
  * 
  */
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Specification extends BaseEntity {
 
-    /**
-     * Default constructor
-     */
-    public Specification() {
-    }
+    private String name;
+    private String value;
 
+    @OneToOne
+    private Product product;
 
 }

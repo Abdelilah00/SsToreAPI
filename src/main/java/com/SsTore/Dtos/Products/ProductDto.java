@@ -12,11 +12,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductDto extends BaseDto {
-    public String name;
+    private String name;
 
-    public String description;
+    private String description;
 
-    public Float price;
+    private Float price;
 
-    public Long qte;
+    private Long qte;
 }

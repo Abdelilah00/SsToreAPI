@@ -6,7 +6,10 @@
 package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 
@@ -14,19 +17,18 @@ import javax.persistence.Entity;
  * 
  */
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Tags extends BaseEntity {
-
-    /**
-     * Default constructor
-     */
-    public Tags() {
-    }
 
     /**
      * 
      */
     public String name;
 
+/*    @ManyToMany(mappedBy = "tags")
+    private List<Product> product = new ArrayList<>();*/
 
 }
