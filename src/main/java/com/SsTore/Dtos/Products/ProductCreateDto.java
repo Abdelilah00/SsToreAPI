@@ -44,7 +44,7 @@ public class ProductCreateDto extends BaseDto {
     private Float price;
     private Long qte;
 
-    private List<MultipartFile> imagesData;
+    private List<MultipartFile> images;
 
     private String overviewDiscription;
 
@@ -52,7 +52,7 @@ public class ProductCreateDto extends BaseDto {
 
     private List<String> tagsName = new ArrayList<>();
 
-    private Long categoryId;
+    private List<String> categoriesName;
 
     private List<CharacteristicDto> characteristic = new ArrayList<>();
 

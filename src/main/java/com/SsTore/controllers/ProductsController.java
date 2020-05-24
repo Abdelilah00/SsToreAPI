@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/admin/products")
 public class ProductsController extends BaseCrudController<Product, ProductDto, ProductCreateDto, ProductUpdateDto> {
 
+    private final static String UPLOADED_FOLDER = "uploads";
+
     /*@RequestMapping(method = RequestMethod.POST, path = "/withStore")
     public ProductCreateDto withStore(@Valid @RequestBody ProductCreateDto dto) {
         return ((IProductService) service).withStore(dto);
     }*/
+
 }
+

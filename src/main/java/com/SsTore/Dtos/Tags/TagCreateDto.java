@@ -3,13 +3,14 @@
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.SsTore.repositorys.Product;
+package com.SsTore.Dtos.Tags;
 
-import com.SsTore.domains.Product.Tags;
-import com.springBootLibrary.repositorys.IBaseJpaRepository;
-import org.springframework.stereotype.Repository;
+import com.springBootLibrary.models.BaseDto;
+import lombok.Getter;
+import lombok.Setter;
 
-@Repository
-public interface ITagsRepository extends IBaseJpaRepository<Tags> {
-
+@Getter
+@Setter
+public class TagCreateDto extends BaseDto {
+    private String name;
 }

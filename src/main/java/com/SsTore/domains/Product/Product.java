@@ -43,7 +43,7 @@ public class Product extends BaseEntity {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "ProductTags")
-    private List<Tags> tags = new ArrayList<>();
+    private List<Tag> tags = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "ProductCategorys")

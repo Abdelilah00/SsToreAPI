@@ -21,7 +21,7 @@ import javax.persistence.Entity;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Tags extends BaseEntity {
+public class Tag extends BaseEntity {
 
     /**
      * 

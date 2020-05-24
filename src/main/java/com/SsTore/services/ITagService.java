@@ -5,13 +5,12 @@
 
 package com.SsTore.services;
 
-import com.SsTore.Dtos.Products.ProductCreateDto;
-import com.SsTore.Dtos.Products.ProductDto;
-import com.SsTore.Dtos.Products.ProductUpdateDto;
-import com.SsTore.domains.Product.Product;
+import com.SsTore.Dtos.Tags.TagCreateDto;
+import com.SsTore.Dtos.Tags.TagDto;
+import com.SsTore.Dtos.Tags.TagUpdateDto;
+import com.SsTore.domains.Product.Tag;
 import com.springBootLibrary.services.IBaseCrudService;
 
-public interface IProductService extends IBaseCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto> {
+public interface ITagService extends IBaseCrudService<Tag, TagDto, TagCreateDto, TagUpdateDto> {
 
 }
-

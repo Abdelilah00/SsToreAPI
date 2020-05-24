@@ -5,16 +5,17 @@
 
 package com.SsTore.services;
 
-import com.SsTore.Dtos.Products.ProductCreateDto;
-import com.SsTore.Dtos.Products.ProductDto;
-import com.SsTore.Dtos.Products.ProductUpdateDto;
-import com.SsTore.domains.Product.Product;
+import com.SsTore.Dtos.Categories.CategoryCreateDto;
+import com.SsTore.Dtos.Categories.CategoryDto;
+import com.SsTore.Dtos.Categories.CategoryUpdateDto;
+import com.SsTore.domains.Product.Category;
 import com.springBootLibrary.services.BaseCrudServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, ProductCreateDto, ProductUpdateDto> implements IProductService {
-    public ProductService() {
-        super(Product.class, ProductDto.class, ProductCreateDto.class, ProductUpdateDto.class);
+public class CategoryService extends BaseCrudServiceImpl<Category, CategoryDto, CategoryCreateDto, CategoryUpdateDto> implements ICategoryService {
+    public CategoryService() {
+        super(Category.class, CategoryDto.class, CategoryCreateDto.class, CategoryUpdateDto.class);
     }
+
 }
