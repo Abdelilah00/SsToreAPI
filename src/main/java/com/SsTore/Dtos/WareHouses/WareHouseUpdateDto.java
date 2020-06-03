@@ -3,14 +3,15 @@
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.SsTore.repositorys.Product;
+package com.SsTore.Dtos.WareHouses;
 
-import com.SsTore.domains.Product.Product;
-import com.springBootLibrary.repositorys.IBaseJpaRepository;
-import org.springframework.stereotype.Repository;
+import com.springBootLibrary.models.BaseDto;
+import lombok.Getter;
+import lombok.Setter;
 
-@Repository
-public interface IProductRepository extends IBaseJpaRepository<Product> {
-
+@Getter
+@Setter
+public class WareHouseUpdateDto extends BaseDto {
+    private Long id;
+    private String country;
 }
-

@@ -14,7 +14,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 
 /**
- * 
+ *
  */
 @Entity
 @Getter
@@ -25,7 +25,7 @@ public class Category extends BaseEntity {
 
 
     /**
-     * 
+     *
      */
     public String name;
 

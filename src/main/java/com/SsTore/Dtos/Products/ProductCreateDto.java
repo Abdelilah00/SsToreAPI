@@ -8,7 +8,6 @@ package com.SsTore.Dtos.Products;
 import com.springBootLibrary.models.BaseDto;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,17 +43,26 @@ public class ProductCreateDto extends BaseDto {
     private Float price;
     private Long qte;
 
-    private List<MultipartFile> images;
+    /*
+        private List<MultipartFile> images;
+    */
+    private String images;
 
     private String overviewDiscription;
 
-    private List<SpecificationDto> specifications;
+    /*
+        private List<SpecificationDto> specifications;
+    */
+    private String specifications;
 
     private List<String> tagsName = new ArrayList<>();
 
     private List<String> categoriesName;
 
-    private List<CharacteristicDto> characteristic = new ArrayList<>();
+    /*
+        private List<CharacteristicDto> characteristic = new ArrayList<>();
+    */
+    private String characteristic;
 
     private List<String> wareHouse = new ArrayList<>();
 }

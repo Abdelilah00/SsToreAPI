@@ -5,12 +5,10 @@
 
 package com.SsTore.repositorys.Product;
 
-import com.SsTore.domains.Product.Product;
+import com.SsTore.domains.Product.Overview;
 import com.springBootLibrary.repositorys.IBaseJpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IProductRepository extends IBaseJpaRepository<Product> {
-
+public interface IOverviewRepository extends IBaseJpaRepository<Overview> {
 }
-

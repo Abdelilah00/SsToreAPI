@@ -5,15 +5,16 @@
 
 package com.SsTore.controllers;
 
-import com.SsTore.Dtos.Tags.TagCreateDto;
-import com.SsTore.Dtos.Tags.TagDto;
-import com.SsTore.Dtos.Tags.TagUpdateDto;
-import com.SsTore.domains.Product.Tag;
+
+import com.SsTore.Dtos.WareHouses.WareHouseCreateDto;
+import com.SsTore.Dtos.WareHouses.WareHouseDto;
+import com.SsTore.Dtos.WareHouses.WareHouseUpdateDto;
+import com.SsTore.domains.Product.WareHouse;
 import com.springBootLibrary.controllers.BaseCrudController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/admin/tags")
-public class TagsController extends BaseCrudController<Tag, TagDto, TagCreateDto, TagUpdateDto> {
+@RequestMapping("api/admin/wareHouses")
+public class WareHouseController extends BaseCrudController<WareHouse, WareHouseDto, WareHouseCreateDto, WareHouseUpdateDto> {
 }

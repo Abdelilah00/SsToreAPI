@@ -14,7 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
 /**
- * 
+ *
  */
 @Entity
 @Getter

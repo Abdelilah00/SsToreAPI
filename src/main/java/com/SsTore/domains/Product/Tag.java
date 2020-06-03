@@ -14,7 +14,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 
 /**
- * 
+ *
  */
 @Entity
 @Getter
@@ -24,7 +24,7 @@ import javax.persistence.Entity;
 public class Tag extends BaseEntity {
 
     /**
-     * 
+     *
      */
     public String name;
 
