@@ -36,7 +36,7 @@ class ProductReviewsDto {
 
 @Getter
 @Setter
-public class ProductCreateDto extends BaseDto {
+public class /**/ProductCreateDto extends BaseDto {
 
     private String name;
     private String description;

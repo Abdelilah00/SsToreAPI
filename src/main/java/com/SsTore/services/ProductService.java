@@ -23,6 +23,8 @@ import java.util.concurrent.CompletableFuture;
 public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, ProductCreateDto, ProductUpdateDto> implements IProductService {
     private static Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
     @Autowired
+    private IProductRepository productRepository;
+    @Autowired
     private IImagesRepository imagesRepository;
     @Autowired
     private IOverviewRepository overviewRepository;
@@ -37,13 +39,15 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
     @Autowired
     private IWareHouseRepository wareHouseRepository;
 
+
     public ProductService() {
         super(Product.class, ProductDto.class, ProductCreateDto.class, ProductUpdateDto.class);
     }
 
     @Override
-    public CompletableFuture<ProductDto> create(ProductCreateDto entity) {
-        logger.info(entity.toString());
-        return super.create(entity);
+    public CompletableFuture<ProductDto> create(ProductCreateDto productCreateDto) {
+        var product = objectMapper.convertToEntity(productCreateDto);
+        productRepository.save(product);
+        return super.create(productCreateDto);
     }
 }
