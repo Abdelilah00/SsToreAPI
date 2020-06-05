@@ -6,27 +6,19 @@
 package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 
 /**
  *
  */
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
-@Data
-public class ShppingMethodes extends BaseEntity {
-
-    /**
-     *
-     */
-    public String name;
-
-    /**
-     * Default constructor
-     */
-    public ShppingMethodes() {
-    }
-
-
+//TODO : override joinTable
+public class ProductCategories extends BaseEntity {
 }

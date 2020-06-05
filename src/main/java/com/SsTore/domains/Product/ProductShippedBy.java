@@ -3,12 +3,16 @@
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.SsTore.repositorys.Product;
+package com.SsTore.domains.Product;
 
-import com.SsTore.domains.Product.Overview;
-import com.springBootLibrary.repositorys.IBaseJpaRepository;
-import org.springframework.stereotype.Repository;
+import com.springBootLibrary.models.BaseEntity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Repository
-public interface IOverviewRepository extends IBaseJpaRepository<Overview> {
+import javax.persistence.Entity;
+
+@EqualsAndHashCode(callSuper = false)
+@Data
+@Entity
+public class ProductShippedBy extends BaseEntity {
 }

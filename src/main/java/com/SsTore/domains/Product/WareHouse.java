@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -23,10 +22,5 @@ import javax.persistence.OneToOne;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WareHouse extends BaseEntity {
-
     public String country;
-
-    //TODO:Upgrade this to ManyToMany
-    @OneToOne
-    private Product product;
 }

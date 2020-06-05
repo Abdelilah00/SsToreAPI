@@ -17,6 +17,4 @@ import javax.persistence.Entity;
 @Data
 public class Characteristic extends BaseEntity {
     private String name;
-
-
 }

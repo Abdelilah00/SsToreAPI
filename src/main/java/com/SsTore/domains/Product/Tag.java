@@ -6,16 +6,14 @@
 package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 
 /**
  *
  */
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Getter
 @Setter
@@ -23,10 +21,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class Tag extends BaseEntity {
 
-    /**
-     *
-     */
-    public String name;
+    private String name;
 
 /*    @ManyToMany(mappedBy = "tags")
     private List<Product> product = new ArrayList<>();*/

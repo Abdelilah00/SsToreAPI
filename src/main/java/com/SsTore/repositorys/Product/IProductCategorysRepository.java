@@ -5,11 +5,11 @@
 
 package com.SsTore.repositorys.Product;
 
-import com.SsTore.domains.Product.ProductCategorys;
+import com.SsTore.domains.Product.ProductCategories;
 import com.springBootLibrary.repositorys.IBaseJpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IProductCategorysRepository extends IBaseJpaRepository<ProductCategorys> {
+public interface IProductCategorysRepository extends IBaseJpaRepository<ProductCategories> {
 
 }

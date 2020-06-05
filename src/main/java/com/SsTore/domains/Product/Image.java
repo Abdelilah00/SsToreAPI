@@ -6,21 +6,26 @@
 package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
  */
 @Entity
-@Data
-public class ProductCategorys extends BaseEntity {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
+public class Image extends BaseEntity {
+    @NonNull
+    public String url;
 
-    /**
-     * Default constructor
-     */
-    public ProductCategorys() {
-    }
+    @ManyToOne
+    private Product product;
+
 
 }

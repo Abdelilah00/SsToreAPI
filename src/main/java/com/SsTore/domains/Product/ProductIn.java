@@ -6,26 +6,16 @@
 package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 /**
  *
  */
+@EqualsAndHashCode(callSuper = false)
+@Data
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class Images extends BaseEntity {
-
-    public String url;
-
-    @ManyToOne
-    private Product product;
+public class ProductIn extends BaseEntity {
 }

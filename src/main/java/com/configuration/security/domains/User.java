@@ -28,11 +28,15 @@ import java.util.List;
 public class User extends IdEntity {
     @NotBlank
     private String userName;
+
     @NotBlank
     private String password;
+
     @NotBlank
     private String email;
+
     private boolean active;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
     private List<Role> roles;

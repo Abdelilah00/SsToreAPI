@@ -36,33 +36,27 @@ class ProductReviewsDto {
 
 @Getter
 @Setter
-public class /**/ProductCreateDto extends BaseDto {
+class Name {
+    private String name;
+}
+@Getter
+@Setter
+public class ProductCreateDto extends BaseDto {
 
     private String name;
-    private String description;
+    private String overview;
+    private String comment;
     private Float price;
     private Long qte;
 
-    /*
-        private List<MultipartFile> images;
-    */
-    private String images;
+    // private List<MultipartFile> images;
 
-    private String overviewDiscription;
-
-    /*
-        private List<SpecificationDto> specifications;
-    */
-    private String specifications;
-
+    private List<String> images = new ArrayList<>();
     private List<String> tagsName = new ArrayList<>();
+    private List<String> categoriesName = new ArrayList<>();
+    private List<String> wareHouseCountry = new ArrayList<>();
+    private List<String> shippingMethodsName = new ArrayList<>();
 
-    private List<String> categoriesName;
-
-    /*
-        private List<CharacteristicDto> characteristic = new ArrayList<>();
-    */
-    private String characteristic;
-
-    private List<String> wareHouse = new ArrayList<>();
+    private List<CharacteristicDto> characteristics = new ArrayList<>();
+    private List<SpecificationDto> specifications = new ArrayList<>();
 }

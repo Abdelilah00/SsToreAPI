@@ -12,6 +12,7 @@ import com.SsTore.services.ICategoryService;
 import com.SsTore.services.ITagService;
 import com.SsTore.services.IWareHouseService;
 import com.configuration.TenantContext;
+import com.configuration.security.repositorys.IUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,23 @@ public class BootStrapData implements CommandLineRunner {
     @Autowired
     private ITagService iTagService;
     @Autowired
-    private IWareHouseService iwareHouseService;
+    private IWareHouseService iWareHouseService;
+    @Autowired
+    private IUserRepository iUserRepository;
 
     @Override
     public void run(String... args) throws Exception {
+    /*    var user1 = new User();
+        var admin = new Role();
+        admin.setName(RoleName.ROLE_ADMIN);
+        user1.setUserName("Abdelilah");
+        user1.setPassword("123456");
+        user1.setActive(true);
+        user1.setEmail("abdelilah@gmail.com");
+        user1.setRoles(Collections.singletonList(admin));
+        iUserRepository.save(user1);*/
+
+        //////////////////////////////////////////
         var cat1 = new CategoryCreateDto();
         cat1.setName("Category A");
         iCategoryService.create(cat1);
@@ -59,15 +73,15 @@ public class BootStrapData implements CommandLineRunner {
         //////////////////////////////////////////
         var wHouse1 = new WareHouseCreateDto();
         wHouse1.setCountry("wHouse 1");
-        iwareHouseService.create(wHouse1);
+        iWareHouseService.create(wHouse1);
 
         var wHouse2 = new WareHouseCreateDto();
         wHouse2.setCountry("wHouse 2");
-        iwareHouseService.create(wHouse2);
+        iWareHouseService.create(wHouse2);
 
         var wHouse3 = new WareHouseCreateDto();
         wHouse3.setCountry("wHouse 3");
-        iwareHouseService.create(wHouse3);
+        iWareHouseService.create(wHouse3);
 
     }
 }

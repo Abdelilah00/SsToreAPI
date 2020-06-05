@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -22,11 +21,12 @@ import javax.persistence.OneToOne;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Overview extends BaseEntity {
+public class ShippingMethods extends BaseEntity {
+
+    /**
+     *
+     */
+    public String name;
 
 
-    public String discription;
-
-    @OneToOne
-    private Product product;
 }

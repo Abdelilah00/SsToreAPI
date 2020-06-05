@@ -44,6 +44,7 @@ public class MyInterceptor extends EmptyInterceptor {
         return false;
     }
 
+
     private boolean auditSave(Object[] currentState, String[] propertyNames) {
         boolean changed = false;
         for (int i = 0; i < propertyNames.length; i++) {
