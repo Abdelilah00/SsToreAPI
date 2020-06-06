@@ -8,6 +8,8 @@ package com.configuration.bootstrap;
 import com.SsTore.Dtos.Categories.CategoryCreateDto;
 import com.SsTore.Dtos.Tags.TagCreateDto;
 import com.SsTore.Dtos.WareHouses.WareHouseCreateDto;
+import com.SsTore.domains.Product.ShippingMethod;
+import com.SsTore.repositorys.Product.IShppingMethodesRepository;
 import com.SsTore.services.ICategoryService;
 import com.SsTore.services.ITagService;
 import com.SsTore.services.IWareHouseService;
@@ -29,6 +31,8 @@ public class BootStrapData implements CommandLineRunner {
     private ITagService iTagService;
     @Autowired
     private IWareHouseService iWareHouseService;
+    @Autowired
+    private IShppingMethodesRepository iShppingMethodesRepository;
     @Autowired
     private IUserRepository iUserRepository;
 
@@ -82,6 +86,12 @@ public class BootStrapData implements CommandLineRunner {
         var wHouse3 = new WareHouseCreateDto();
         wHouse3.setCountry("wHouse 3");
         iWareHouseService.create(wHouse3);
+
+        //////////////////////////////////////////
+        var shippingMethod1 = new ShippingMethod();
+        shippingMethod1.setName("DHL");
+        iShppingMethodesRepository.save(shippingMethod1);
+
 
     }
 }

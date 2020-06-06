@@ -27,5 +27,5 @@ public class ProductIn extends BaseEntity {
     private Product product;
 
     @ManyToOne
-    private WareHouse wareHouse;
+    private WareHouse wareHouse = new WareHouse();
 }

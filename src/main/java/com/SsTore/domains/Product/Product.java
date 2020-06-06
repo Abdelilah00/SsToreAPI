@@ -22,7 +22,7 @@ public class Product extends BaseEntity {
 
     private String name;
 
-    private String description;
+    private String comment;
 
     private Float price;
 

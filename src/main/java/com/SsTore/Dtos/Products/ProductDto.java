@@ -14,7 +14,7 @@ import lombok.Setter;
 public class ProductDto extends BaseDto {
     private String name;
 
-    private String description;
+    private String comment;
 
     private Float price;
 

@@ -24,5 +24,5 @@ public class ProductShippedBy extends BaseEntity {
     private Product product;
 
     @ManyToOne
-    private ShippingMethod shippingMethod;
+    private ShippingMethod shippingMethod = new ShippingMethod();
 }
