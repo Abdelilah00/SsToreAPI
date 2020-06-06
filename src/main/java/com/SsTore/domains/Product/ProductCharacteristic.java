@@ -8,7 +8,9 @@ package com.SsTore.domains.Product;
 import com.springBootLibrary.models.BaseEntity;
 import lombok.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,4 +24,10 @@ import javax.persistence.Entity;
 public class ProductCharacteristic extends BaseEntity {
 
     private String value;
+
+    @ManyToOne
+    private Product product;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Characteristic characteristic;
 }

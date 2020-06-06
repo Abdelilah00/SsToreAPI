@@ -20,47 +20,45 @@ import java.util.List;
 @NoArgsConstructor
 public class Product extends BaseEntity {
 
-    public String name;
+    private String name;
 
-    public String description;
+    private String description;
 
-    public Float price;
+    private Float price;
 
-    public Long qte;
+    private Long qte;
 
     private String overview;
 
+    //One To Many
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<Specification> specifications = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<Image> images = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "ProductTags")
-    private List<Tag> tags = new ArrayList<>();
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "ProductCategories")
-    private List<Category> categories;
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "ProductCharacteristic")
-    private List<Characteristic> characteristic = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<ProductReviews> productReviews = new ArrayList<>();
-
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "product")
     private Solde solde;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "ProductIn")
-    private List<WareHouse> wareHouses = new ArrayList<>();
+    //Many to Many
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
+    private List<ProductCategories> productCategories = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "ProductShippedBy")
-    private List<ShippingMethods> shippingMethods = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "shippingMethod")
+    private List<ProductShippedBy> productShippedByList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "tag")
+    private List<ProductTags> productTags = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "characteristic")
+    private List<ProductCharacteristic> productCharacteristics = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "wareHouse")
+    private List<ProductIn> productInList = new ArrayList<>();
+
+    //TODO : Link this with Accounts
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<ProductReviews> productReviews = new ArrayList<>();
 
     //TODO : Qte disponible
 }

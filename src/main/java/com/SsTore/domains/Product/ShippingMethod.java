@@ -21,7 +21,7 @@ import javax.persistence.Entity;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ShippingMethods extends BaseEntity {
+public class ShippingMethod extends BaseEntity {
 
     /**
      *

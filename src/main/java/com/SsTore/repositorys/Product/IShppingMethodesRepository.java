@@ -5,11 +5,11 @@
 
 package com.SsTore.repositorys.Product;
 
-import com.SsTore.domains.Product.ShippingMethods;
+import com.SsTore.domains.Product.ShippingMethod;
 import com.springBootLibrary.repositorys.IBaseJpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IShppingMethodesRepository extends IBaseJpaRepository<ShippingMethods> {
+public interface IShppingMethodesRepository extends IBaseJpaRepository<ShippingMethod> {
 
 }

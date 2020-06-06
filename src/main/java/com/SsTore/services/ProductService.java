@@ -46,15 +46,30 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
     @Override
     public CompletableFuture<ProductDto> create(ProductCreateDto productCreateDto) {
+        //TODO : Create new Category and link it or link it only if already exist
+        //TODO : Create new WareHouse and link it or link it only if already exist
+        //TODO : Create new Tag and link it or link it only if already exist
+
         var product = objectMapper.convertToEntity(productCreateDto);
 
-        product.setTags(productCreateDto.getTagsName().stream().map(Tag::new).collect(Collectors.toList()));
-        product.setCategories(productCreateDto.getCategoriesName().stream().map(Category::new).collect(Collectors.toList()));
-        product.setWareHouses(productCreateDto.getWareHouseCountry().stream().map(WareHouse::new).collect(Collectors.toList()));
-        product.setShippingMethods(productCreateDto.getShippingMethodsName().stream().map(ShippingMethods::new).collect(Collectors.toList()));
-        product.setImages(productCreateDto.getImages().stream().map(Image::new).collect(Collectors.toList()));
 
+        product.setProductCategories(productCreateDto.getCategoriesName().stream()
+                .map(catName -> new ProductCategories(product, new Category(catName))).collect(Collectors.toList()));
+        product.setProductTags(productCreateDto.getTagsName().stream()
+                .map(name -> new ProductTags(product, new Tag(name))).collect(Collectors.toList()));
+        product.setProductInList(productCreateDto.getWareHouseCountry().stream()
+                .map(country -> new ProductIn(product, new WareHouse(country))).collect(Collectors.toList()));
+        product.setProductShippedByList(productCreateDto.getShippingMethodsName().stream()
+                .map(name -> new ProductShippedBy(product, new ShippingMethod(name))).collect(Collectors.toList()));
+
+        //TODO: stream also each value
+/*
+        product.setProductCharacteristics();
+*/
+
+        product.setImages(productCreateDto.getImages().stream().map(Image::new).collect(Collectors.toList()));
         productRepository.save(product);
-        return super.create(productCreateDto);
+
+        return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
 }

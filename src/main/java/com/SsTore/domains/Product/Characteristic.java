@@ -6,7 +6,7 @@
 package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Entity;
 
@@ -14,7 +14,11 @@ import javax.persistence.Entity;
  *
  */
 @Entity
-@Data
+@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Characteristic extends BaseEntity {
     private String name;
 }

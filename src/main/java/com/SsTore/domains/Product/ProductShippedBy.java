@@ -6,13 +6,24 @@
 package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
-@EqualsAndHashCode(callSuper = false)
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class ProductShippedBy extends BaseEntity {
+    @ManyToOne
+    private Product product;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private ShippingMethod shippingMethod;
 }
