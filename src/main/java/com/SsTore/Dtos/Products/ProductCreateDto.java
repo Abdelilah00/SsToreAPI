@@ -52,10 +52,10 @@ public class ProductCreateDto extends BaseDto {
     // private List<MultipartFile> images;
 
     private List<String> images = new ArrayList<>();
-    private List<String> tagsName = new ArrayList<>();
-    private List<String> categoriesName = new ArrayList<>();
-    private List<String> wareHouseCountry = new ArrayList<>();
-    private List<String> shippingMethodsName = new ArrayList<>();
+    private List<Long> tagsId = new ArrayList<>();
+    private List<Long> categoriesId = new ArrayList<>();
+    private List<Long> wareHouseId = new ArrayList<>();
+    private List<Long> shippingMethodsId = new ArrayList<>();
 
     private List<CharacteristicDto> characteristics = new ArrayList<>();
     private List<SpecificationDto> specifications = new ArrayList<>();

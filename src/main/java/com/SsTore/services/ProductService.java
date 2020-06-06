@@ -47,21 +47,43 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
     @Override
     public CompletableFuture<ProductDto> create(ProductCreateDto productCreateDto) {
-        //TODO : Create new Category and link it or link it only if already exist
-        //TODO : Create new WareHouse and link it or link it only if already exist
-        //TODO : Create new Tag and link it or link it only if already exist
+        //TODO : link existing categories
+        //TODO : link existing wareHouses
+        //TODO : link existing tags
 
         var product = objectMapper.convertToEntity(productCreateDto);
 
+        product.setProductCategories(productCreateDto.getCategoriesId().stream()
+                .map(catId -> {
+                    var productCategories = new ProductCategories();
+                    productCategories.getCategory().setId(catId);
+                    productCategories.setProduct(product);
+                    return productCategories;
+                }).collect(Collectors.toList()));
 
-        product.setProductCategories(productCreateDto.getCategoriesName().stream()
-                .map(catName -> new ProductCategories(product, new Category(catName))).collect(Collectors.toList()));
-        product.setProductTags(productCreateDto.getTagsName().stream()
-                .map(name -> new ProductTags(product, new Tag(name))).collect(Collectors.toList()));
-        product.setProductInList(productCreateDto.getWareHouseCountry().stream()
-                .map(country -> new ProductIn(product, new WareHouse(country))).collect(Collectors.toList()));
-        product.setProductShippedByList(productCreateDto.getShippingMethodsName().stream()
-                .map(name -> new ProductShippedBy(product, new ShippingMethod(name))).collect(Collectors.toList()));
+        product.setProductTags(productCreateDto.getTagsId().stream()
+                .map(tagId -> {
+                    var productTags = new ProductTags();
+                    productTags.getTag().setId(tagId);
+                    productTags.setProduct(product);
+                    return productTags;
+                }).collect(Collectors.toList()));
+
+        product.setProductInList(productCreateDto.getWareHouseId().stream()
+                .map(wHouseId -> {
+                    var productIn = new ProductIn();
+                    productIn.getWareHouse().setId(wHouseId);
+                    productIn.setProduct(product);
+                    return productIn;
+                }).collect(Collectors.toList()));
+
+        product.setProductShippedByList(productCreateDto.getShippingMethodsId().stream()
+                .map(shipId -> {
+                    var productShippedBy = new ProductShippedBy();
+                    productShippedBy.getShippingMethod().setId(shipId);
+                    productShippedBy.setProduct(product);
+                    return productShippedBy;
+                }).collect(Collectors.toList()));
 
         //TODO: stream also each value
 /*
@@ -74,17 +96,7 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
 
-    //Categories
-    private void SetNewCategories(ArrayList<Category> categories) {
-
-    }
-
     private void UpdateProductCategories(long productId, ArrayList<Category> categories) {
-
-    }
-
-    //Tags
-    private void SetNewTags(ArrayList<Tag> tags) {
 
     }
 
@@ -92,13 +104,7 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
     }
 
-    //WareHouses
-    private void SetNewWareHouses(ArrayList<WareHouse> wareHouses) {
-
-    }
-
     private void UpdateProductWareHouses(long wareHouseId, ArrayList<WareHouse> wareHouses) {
 
     }
-
 }

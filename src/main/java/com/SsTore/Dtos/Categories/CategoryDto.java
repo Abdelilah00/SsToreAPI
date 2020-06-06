@@ -12,7 +12,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CategoryDto extends BaseDto {
-    private Long id;
     private String name;
 }
 
