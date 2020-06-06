@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -72,4 +73,32 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
+
+    //Categories
+    private void SetNewCategories(ArrayList<Category> categories) {
+
+    }
+
+    private void UpdateProductCategories(long productId, ArrayList<Category> categories) {
+
+    }
+
+    //Tags
+    private void SetNewTags(ArrayList<Tag> tags) {
+
+    }
+
+    private void UpdateProductTags(long tagId, ArrayList<Tag> tags) {
+
+    }
+
+    //WareHouses
+    private void SetNewWareHouses(ArrayList<WareHouse> wareHouses) {
+
+    }
+
+    private void UpdateProductWareHouses(long wareHouseId, ArrayList<WareHouse> wareHouses) {
+
+    }
+
 }

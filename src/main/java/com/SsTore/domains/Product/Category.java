@@ -22,12 +22,5 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Category extends BaseEntity {
-
-
-    /**
-     *
-     */
-    public String name;
-
-
+    private String name;
 }
