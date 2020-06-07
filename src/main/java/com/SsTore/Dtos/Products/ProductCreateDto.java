@@ -28,19 +28,6 @@ class CharacteristicDto {
 
 @Getter
 @Setter
-class ProductReviewsDto {
-    private Long stars;
-    private String review;
-    private Boolean helpful;
-}
-
-@Getter
-@Setter
-class Name {
-    private String name;
-}
-@Getter
-@Setter
 public class ProductCreateDto extends BaseDto {
 
     private String name;

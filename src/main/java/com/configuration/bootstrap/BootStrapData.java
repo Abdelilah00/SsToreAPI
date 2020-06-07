@@ -91,7 +91,5 @@ public class BootStrapData implements CommandLineRunner {
         var shippingMethod1 = new ShippingMethod();
         shippingMethod1.setName("DHL");
         iShppingMethodesRepository.save(shippingMethod1);
-
-
     }
 }

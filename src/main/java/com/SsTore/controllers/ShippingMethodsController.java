@@ -3,19 +3,17 @@
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.SsTore.services;
+package com.SsTore.controllers;
 
 import com.SsTore.Dtos.ShippingMethods.ShippingMethodCreateDto;
 import com.SsTore.Dtos.ShippingMethods.ShippingMethodDto;
 import com.SsTore.Dtos.ShippingMethods.ShippingMethodUpdateDto;
 import com.SsTore.domains.Product.ShippingMethod;
-import com.springBootLibrary.services.BaseCrudServiceImpl;
-import org.springframework.stereotype.Service;
+import com.springBootLibrary.controllers.BaseCrudController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Service
-public class ShippingMethodService extends BaseCrudServiceImpl<ShippingMethod, ShippingMethodDto, ShippingMethodCreateDto, ShippingMethodUpdateDto> implements IShippingMethodService {
-    public ShippingMethodService() {
-        super(ShippingMethod.class, ShippingMethodDto.class, ShippingMethodCreateDto.class, ShippingMethodUpdateDto.class);
-    }
-
+@RestController
+@RequestMapping("api/admin/shippingMethods")
+public class ShippingMethodsController extends BaseCrudController<ShippingMethod, ShippingMethodDto, ShippingMethodCreateDto, ShippingMethodUpdateDto> {
 }

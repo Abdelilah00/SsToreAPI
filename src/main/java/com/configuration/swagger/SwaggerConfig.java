@@ -39,8 +39,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
-        apiInfoBuilder.title("Generic REST API");
-        apiInfoBuilder.description("Simple REST API Generation");
+        apiInfoBuilder.title("SsTore API");
+        apiInfoBuilder.description("SsTore E-commerce REST API");
         apiInfoBuilder.version("0.0.1-SNAPSHOT");
         apiInfoBuilder.contact(new Contact("Abdelilah Dehaoui", "https://www.linkedin.com/in/abdelilah-dehaoui-4a1a29190", "abdelilah0dehaoui@gmail.com"));
         return apiInfoBuilder.build();
