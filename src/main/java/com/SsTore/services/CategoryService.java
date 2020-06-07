@@ -17,5 +17,5 @@ public class CategoryService extends BaseCrudServiceImpl<Category, CategoryDto, 
     public CategoryService() {
         super(Category.class, CategoryDto.class, CategoryCreateDto.class, CategoryUpdateDto.class);
     }
-
 }
+

@@ -19,6 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 
 
 @Configuration
@@ -33,6 +34,7 @@ public class SwaggerConfig {
                 .build()
                 .apiInfo(apiInfo())
                 .useDefaultResponseMessages(false)
+                .consumes(Set.of("multipart/form-data"))
                 .securitySchemes(new ArrayList<>(Arrays.asList(new ApiKey("Bearer %token", "Authorization", "Header"))));
 
     }
@@ -45,6 +47,4 @@ public class SwaggerConfig {
         apiInfoBuilder.contact(new Contact("Abdelilah Dehaoui", "https://www.linkedin.com/in/abdelilah-dehaoui-4a1a29190", "abdelilah0dehaoui@gmail.com"));
         return apiInfoBuilder.build();
     }
-
-
 }

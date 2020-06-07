@@ -2,4 +2,7 @@ security:
   jwt:
     token:
       secret-key: secret-key
-      expire-length: 300000 # 5 minutes duration by default: 5 minutes * 60 seconds * 1000 miliseconds
+      expire-length: 300000
+src:
+  uploads:
+    images: "C:/Users/Abdelilah Dehaoui/IdeaProjects/SsToreAPI/src/main/java/com/SsTore/uploads/images"

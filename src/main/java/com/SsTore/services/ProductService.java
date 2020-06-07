@@ -9,7 +9,7 @@ import com.SsTore.Dtos.Products.ProductCreateDto;
 import com.SsTore.Dtos.Products.ProductDto;
 import com.SsTore.Dtos.Products.ProductUpdateDto;
 import com.SsTore.domains.Product.*;
-import com.SsTore.repositorys.Product.*;
+import com.SsTore.repositorys.Product.IProductRepository;
 import com.configuration.TenantContext;
 import com.springBootLibrary.services.BaseCrudServiceImpl;
 import org.slf4j.Logger;
@@ -26,20 +26,6 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
     private static Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
     @Autowired
     private IProductRepository productRepository;
-    @Autowired
-    private IImagesRepository imagesRepository;
-
-    @Autowired
-    private ISpecificationRepository specificationRepository;
-    @Autowired
-    private ITagRepository tagRepository;
-    @Autowired
-    private ICategoryRepository categoryRepository;
-    @Autowired
-    private ICharacteristicRepository characteristicRepository;
-    @Autowired
-    private IWareHouseRepository wareHouseRepository;
-
 
     public ProductService() {
         super(Product.class, ProductDto.class, ProductCreateDto.class, ProductUpdateDto.class);
@@ -47,9 +33,6 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
     @Override
     public CompletableFuture<ProductDto> create(ProductCreateDto productCreateDto) {
-        //TODO : link existing categories
-        //TODO : link existing wareHouses
-        //TODO : link existing tags
 
         var product = objectMapper.convertToEntity(productCreateDto);
 
@@ -90,7 +73,8 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         product.setProductCharacteristics();
 */
 
-        product.setImages(productCreateDto.getImages().stream().map(Image::new).collect(Collectors.toList()));
+
+        //product.setImages(productCreateDto.getImages().stream().map(Image::).collect(Collectors.toList()));
         productRepository.save(product);
 
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
