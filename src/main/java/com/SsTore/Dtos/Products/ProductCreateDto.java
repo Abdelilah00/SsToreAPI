@@ -5,6 +5,8 @@
 
 package com.SsTore.Dtos.Products;
 
+import com.SsTore.Dtos.Characteristics.CharacteristicDto;
+import com.SsTore.Dtos.Specifications.SpecificationDto;
 import com.springBootLibrary.models.BaseDto;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,20 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
-
-@Getter
-@Setter
-class SpecificationDto {
-    private String name;
-    private String value;
-}
-
-@Getter
-@Setter
-class CharacteristicDto {
-    private String name;
-    private List<String> values = new ArrayList<>();
-}
 
 @Getter
 @Setter
@@ -38,6 +26,7 @@ public class ProductCreateDto extends BaseDto {
     private Long qte;
 
     private List<MultipartFile> images = new ArrayList<>();
+
     private List<Long> tagsId = new ArrayList<>();
     private List<Long> categoriesId = new ArrayList<>();
     private List<Long> wareHouseId = new ArrayList<>();

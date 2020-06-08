@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -70,25 +71,31 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
             return image;
         }).collect(Collectors.toList()));
 
+        product.setSpecifications(productCreateDto.getSpecifications().stream().map(spc -> {
+            var specification = new Specification();
+            specification.setName(spc.getName());
+            specification.setValue(spc.getValue());
+            specification.setProduct(product);
+            return specification;
+        }).collect(Collectors.toList()));
 
         //TODO: stream also each value
-/*
-        product.setProductCharacteristics();
-*/
+        var productCharacteristics = new ArrayList<ProductCharacteristic>();
+        for (var c : productCreateDto.getCharacteristics()) {
+            var ch = new Characteristic();
+            ch.setName(c.getName());
+            for (var value : c.getValues()) {
+                var productCharacteristic = new ProductCharacteristic();
+                productCharacteristic.setValue(value);
+                productCharacteristic.setCharacteristic(ch);
+                productCharacteristic.setProduct(product);
+                productCharacteristics.add(productCharacteristic);
+            }
+        }
+
+        product.setProductCharacteristics(productCharacteristics);
 
         productRepository.save(product);
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
-
- /*   private void UpdateProductCategories(long productId, ArrayList<Category> categories) {
-
-    }
-
-    private void UpdateProductTags(long tagId, ArrayList<Tag> tags) {
-
-    }
-
-    private void UpdateProductWareHouses(long wareHouseId, ArrayList<WareHouse> wareHouses) {
-
-    }*/
 }
