@@ -22,10 +22,7 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-//TODO : override joinTable
-
 public class ProductCategories extends BaseEntity {
-
 
     @ManyToOne
     private Product product;

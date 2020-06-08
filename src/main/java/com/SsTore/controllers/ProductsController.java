@@ -12,14 +12,12 @@ import com.SsTore.domains.Product.Product;
 import com.SsTore.services.IFileService;
 import com.springBootLibrary.controllers.BaseCrudController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -28,14 +26,12 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
     @Autowired
     private IFileService iFileService;
 
-    //TODO : Array of images
     @PostMapping("/createWithImages")
-    public ProductDto createWithImages(@Valid ProductCreateDto productCreateDto, @RequestParam("images") MultipartFile image) throws ExecutionException, InterruptedException {
-        var imgUrls = new ArrayList<String>();
+    public ProductDto createWithImages(@Valid @ModelAttribute ProductCreateDto productCreateDto) throws ExecutionException, InterruptedException {
+        for (var img : productCreateDto.getImages()) {
+            iFileService.UploadFile(img);
+        }
 
-        iFileService.UploadFile(image);
-
-        productCreateDto.setImagesUrl(imgUrls);
         return super.create(productCreateDto);
     }
 }

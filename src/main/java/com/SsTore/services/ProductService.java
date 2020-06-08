@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -36,51 +35,52 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
         var product = objectMapper.convertToEntity(productCreateDto);
 
-        product.setProductCategories(productCreateDto.getCategoriesId().stream()
-                .map(catId -> {
-                    var productCategories = new ProductCategories();
-                    productCategories.getCategory().setId(catId);
-                    productCategories.setProduct(product);
-                    return productCategories;
-                }).collect(Collectors.toList()));
+        product.setProductCategories(productCreateDto.getCategoriesId().stream().map(catId -> {
+            var productCategories = new ProductCategories();
+            productCategories.getCategory().setId(catId);
+            productCategories.setProduct(product);
+            return productCategories;
+        }).collect(Collectors.toList()));
 
-        product.setProductTags(productCreateDto.getTagsId().stream()
-                .map(tagId -> {
-                    var productTags = new ProductTags();
-                    productTags.getTag().setId(tagId);
-                    productTags.setProduct(product);
-                    return productTags;
-                }).collect(Collectors.toList()));
+        product.setProductTags(productCreateDto.getTagsId().stream().map(tagId -> {
+            var productTags = new ProductTags();
+            productTags.getTag().setId(tagId);
+            productTags.setProduct(product);
+            return productTags;
+        }).collect(Collectors.toList()));
 
-        product.setProductInList(productCreateDto.getWareHouseId().stream()
-                .map(wHouseId -> {
-                    var productIn = new ProductIn();
-                    productIn.getWareHouse().setId(wHouseId);
-                    productIn.setProduct(product);
-                    return productIn;
-                }).collect(Collectors.toList()));
+        product.setProductInList(productCreateDto.getWareHouseId().stream().map(wHouseId -> {
+            var productIn = new ProductIn();
+            productIn.getWareHouse().setId(wHouseId);
+            productIn.setProduct(product);
+            return productIn;
+        }).collect(Collectors.toList()));
 
-        product.setProductShippedByList(productCreateDto.getShippingMethodsId().stream()
-                .map(shipId -> {
-                    var productShippedBy = new ProductShippedBy();
-                    productShippedBy.getShippingMethod().setId(shipId);
-                    productShippedBy.setProduct(product);
-                    return productShippedBy;
-                }).collect(Collectors.toList()));
+        product.setProductShippedByList(productCreateDto.getShippingMethodsId().stream().map(shipId -> {
+            var productShippedBy = new ProductShippedBy();
+            productShippedBy.getShippingMethod().setId(shipId);
+            productShippedBy.setProduct(product);
+            return productShippedBy;
+        }).collect(Collectors.toList()));
+
+        product.setImages(productCreateDto.getImages().stream().map(img -> {
+            var image = new Image();
+            image.setUrl(img.getOriginalFilename());
+            image.setProduct(product);
+            return image;
+        }).collect(Collectors.toList()));
+
 
         //TODO: stream also each value
 /*
         product.setProductCharacteristics();
 */
 
-
-        //product.setImages(productCreateDto.getImages().stream().map(Image::).collect(Collectors.toList()));
         productRepository.save(product);
-
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
 
-    private void UpdateProductCategories(long productId, ArrayList<Category> categories) {
+ /*   private void UpdateProductCategories(long productId, ArrayList<Category> categories) {
 
     }
 
@@ -90,5 +90,5 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
     private void UpdateProductWareHouses(long wareHouseId, ArrayList<WareHouse> wareHouses) {
 
-    }
+    }*/
 }
