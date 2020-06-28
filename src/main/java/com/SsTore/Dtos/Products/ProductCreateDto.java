@@ -10,7 +10,6 @@ import com.SsTore.Dtos.Specifications.SpecificationDto;
 import com.springBootLibrary.models.BaseDto;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +24,9 @@ public class ProductCreateDto extends BaseDto {
     private Float price;
     private Long qte;
 
-    private List<MultipartFile> images = new ArrayList<>();
-
+    /*
+        private MultipartFile images;
+    */
     private List<Long> tagsId = new ArrayList<>();
     private List<Long> categoriesId = new ArrayList<>();
     private List<Long> wareHouseId = new ArrayList<>();

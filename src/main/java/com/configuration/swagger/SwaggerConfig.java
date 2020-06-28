@@ -7,6 +7,7 @@ package com.configuration.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -34,7 +35,7 @@ public class SwaggerConfig {
                 .build()
                 .apiInfo(apiInfo())
                 .useDefaultResponseMessages(false)
-                .consumes(Set.of("multipart/form-data"))
+                .consumes(Set.of(MediaType.MULTIPART_FORM_DATA_VALUE))
                 .securitySchemes(new ArrayList<>(Arrays.asList(new ApiKey("Bearer %token", "Authorization", "Header"))));
 
     }

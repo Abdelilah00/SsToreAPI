@@ -63,14 +63,17 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
             productShippedBy.setProduct(product);
             return productShippedBy;
         }).collect(Collectors.toList()));
-
-        product.setImages(productCreateDto.getImages().stream().map(img -> {
+/*        product.setImages(productCreateDto.getImages().stream().map(img -> {
             var image = new Image();
             image.setUrl(img.getOriginalFilename());
             image.setProduct(product);
             return image;
-        }).collect(Collectors.toList()));
-
+        }).collect(Collectors.toList()));*/
+/*
+       var i=new Image();
+       i.setUrl(productCreateDto.getImages().getOriginalFilename());
+       i.setProduct(product);
+       product.setImages(Arrays.asList(i));*/
         product.setSpecifications(productCreateDto.getSpecifications().stream().map(spc -> {
             var specification = new Specification();
             specification.setName(spc.getName());

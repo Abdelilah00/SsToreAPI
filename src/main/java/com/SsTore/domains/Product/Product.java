@@ -20,15 +20,15 @@ import java.util.List;
 @NoArgsConstructor
 public class Product extends BaseEntity {
 
-    private String name;
+    private String name = "";
 
-    private String comment;
+    private String comment = "";
 
-    private Float price;
+    private Float price = 0F;
 
-    private Long qte;
+    private Long qte = 0L;
 
-    private String overview;
+    private String overview = "";
 
     //One To Many
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
