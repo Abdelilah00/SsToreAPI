@@ -24,7 +24,7 @@ public class TestsController {
     @PostMapping("/uploadFile")
     public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) throws UserFriendlyException {
 
-        iFileService.UploadFile(file);
+        iFileService.uploadFile(file);
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
         return "redirect:/";

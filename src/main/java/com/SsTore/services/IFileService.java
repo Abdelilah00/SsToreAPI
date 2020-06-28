@@ -8,5 +8,5 @@ package com.SsTore.services;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface IFileService {
-    void UploadFile(MultipartFile file);
+    void uploadFile(MultipartFile file);
 }

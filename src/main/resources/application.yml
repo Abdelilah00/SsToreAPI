@@ -5,4 +5,4 @@ security:
       expire-length: 300000
 src:
   uploads:
-    images: "C:/Users/Abdelilah Dehaoui/IdeaProjects/SsToreAPI/src/main/java/com/SsTore/uploads/images"
+    images: "C:/Users/abdel/IdeaProjects/SsToreAPI/src/main/java/com/SsTore/uploads/images"

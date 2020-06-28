@@ -22,9 +22,9 @@ import java.util.concurrent.Executor;
 @EnableJpaRepositories(basePackages = {"com.SsTore.repositorys", "com.configuration.security.repositorys"})
 @EnableAsync
 @EnableAspectJAutoProxy
-public class DemoApplication {
+public class DemoSsToreApplication {
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(DemoSsToreApplication.class, args);
     }
 
     @Bean
