@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
-    private static Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
 
     @Autowired
     private ICategoryService iCategoryService;
@@ -38,7 +38,7 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-    /*    var user1 = new User();
+        /*var user1 = new User();
         var admin = new Role();
         admin.setName(RoleName.ROLE_ADMIN);
         user1.setUserName("Abdelilah");
@@ -46,8 +46,8 @@ public class BootStrapData implements CommandLineRunner {
         user1.setActive(true);
         user1.setEmail("abdelilah@gmail.com");
         user1.setRoles(Collections.singletonList(admin));
-        iUserRepository.save(user1);*/
-
+        iUserRepository.save(user1);
+*/
         //////////////////////////////////////////
         var cat1 = new CategoryCreateDto();
         cat1.setName("Category A");

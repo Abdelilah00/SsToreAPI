@@ -7,6 +7,7 @@ package com.SsTore.Dtos.Products;
 
 import com.SsTore.Dtos.Characteristics.CharacteristicDto;
 import com.SsTore.Dtos.Specifications.SpecificationDto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.springBootLibrary.models.BaseDto;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,12 +25,12 @@ public class ProductCreateDto extends BaseDto {
     private Float price;
     private Long qte;
 
-    /*
-        private MultipartFile images;
-    */
+    @JsonIgnoreProperties
+    private List<String> images = new ArrayList<>();
+
     private List<Long> tagsId = new ArrayList<>();
     private List<Long> categoriesId = new ArrayList<>();
-    private List<Long> wareHouseId = new ArrayList<>();
+    private List<Long> wareHousesId = new ArrayList<>();
     private List<Long> shippingMethodsId = new ArrayList<>();
 
     private List<CharacteristicDto> characteristics = new ArrayList<>();

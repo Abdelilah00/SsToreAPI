@@ -22,7 +22,7 @@ public class ProductDto extends BaseDto {
     private Float price;
     private Long qte;
 
-    private List<String> imagesUrl = new ArrayList<>();
+    private List<String> images = new ArrayList<>();
 
 /*    private List<Long> tagsId = new ArrayList<>();
     private List<Long> categoriesId = new ArrayList<>();

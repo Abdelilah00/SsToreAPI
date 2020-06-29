@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, ProductCreateDto, ProductUpdateDto> implements IProductService {
-    private static Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
     @Autowired
     private IProductRepository productRepository;
 
@@ -50,7 +50,7 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
             return productTags;
         }).collect(Collectors.toList()));
 
-        product.setProductInList(productCreateDto.getWareHouseId().stream().map(wHouseId -> {
+        product.setProductInList(productCreateDto.getWareHousesId().stream().map(wHouseId -> {
             var productIn = new ProductIn();
             productIn.getWareHouse().setId(wHouseId);
             productIn.setProduct(product);
@@ -63,17 +63,15 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
             productShippedBy.setProduct(product);
             return productShippedBy;
         }).collect(Collectors.toList()));
-/*        product.setImages(productCreateDto.getImages().stream().map(img -> {
+
+        product.setImages(productCreateDto.getImages().stream().map(img -> {
             var image = new Image();
-            image.setUrl(img.getOriginalFilename());
+            image.setUrl(img);
             image.setProduct(product);
             return image;
-        }).collect(Collectors.toList()));*/
-/*
-       var i=new Image();
-       i.setUrl(productCreateDto.getImages().getOriginalFilename());
-       i.setProduct(product);
-       product.setImages(Arrays.asList(i));*/
+        }).collect(Collectors.toList()));
+
+
         product.setSpecifications(productCreateDto.getSpecifications().stream().map(spc -> {
             var specification = new Specification();
             specification.setName(spc.getName());
