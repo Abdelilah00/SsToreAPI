@@ -3,7 +3,7 @@
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.SsTore.services;
+package com.SsTore.services.utils;
 
 import org.springframework.web.multipart.MultipartFile;
 

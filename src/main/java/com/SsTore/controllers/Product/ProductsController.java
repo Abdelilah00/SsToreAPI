@@ -9,7 +9,7 @@ import com.SsTore.Dtos.Product.Products.ProductCreateDto;
 import com.SsTore.Dtos.Product.Products.ProductDto;
 import com.SsTore.Dtos.Product.Products.ProductUpdateDto;
 import com.SsTore.domains.Product.Product;
-import com.SsTore.services.IFileService;
+import com.SsTore.services.utils.IFileService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springBootLibrary.controllers.BaseCrudController;
