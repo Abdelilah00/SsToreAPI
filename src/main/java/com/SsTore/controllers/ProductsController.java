@@ -16,8 +16,8 @@ import com.springBootLibrary.controllers.BaseCrudController;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,8 +35,8 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
     IFileService iFileService;
 
     @PostMapping(path = "/withImages")
-    public CompletableFuture<ProductDto> withImages(@RequestParam("images") @Valid @NotNull @NotBlank List<MultipartFile> images,
-                                                    @RequestParam("product") @Valid String productInfo) throws JsonProcessingException {
+    public CompletableFuture<ProductDto> withImages(@RequestAttribute("images") @Valid @NotNull @NotBlank List<MultipartFile> images,
+                                                    @RequestAttribute("product") @Valid String productInfo) throws JsonProcessingException {
         for (var image : images)
             iFileService.uploadFile(image);
 
