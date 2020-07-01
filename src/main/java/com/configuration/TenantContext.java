@@ -12,7 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class TenantContext {
 
-    private static Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
 
     public static long getCurrentTenant() {
         try {

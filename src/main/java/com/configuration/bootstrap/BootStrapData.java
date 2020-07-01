@@ -5,14 +5,14 @@
 
 package com.configuration.bootstrap;
 
-import com.SsTore.Dtos.Categories.CategoryCreateDto;
-import com.SsTore.Dtos.Tags.TagCreateDto;
-import com.SsTore.Dtos.WareHouses.WareHouseCreateDto;
+import com.SsTore.Dtos.Product.Categories.CategoryCreateDto;
+import com.SsTore.Dtos.Product.Tags.TagCreateDto;
+import com.SsTore.Dtos.Product.WareHouses.WareHouseCreateDto;
 import com.SsTore.domains.Product.ShippingMethod;
 import com.SsTore.repositorys.Product.IShppingMethodesRepository;
-import com.SsTore.services.ICategoryService;
-import com.SsTore.services.ITagService;
-import com.SsTore.services.IWareHouseService;
+import com.SsTore.services.Product.ICategoryService;
+import com.SsTore.services.Product.ITagService;
+import com.SsTore.services.Product.IWareHouseService;
 import com.configuration.TenantContext;
 import com.configuration.security.repositorys.IUserRepository;
 import org.slf4j.Logger;

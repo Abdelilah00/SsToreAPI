@@ -23,9 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("api/tests")
 public class TestsController {
+    private static final Logger logger = LoggerFactory.getLogger(TestsController.class.getName());
     @Autowired
     private IFileService iFileService;
-    private static final Logger logger = LoggerFactory.getLogger(TestsController.class.getName());
 
     @PostMapping(path = "/uploadFile")
     public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("model") String testModel) throws JsonProcessingException {

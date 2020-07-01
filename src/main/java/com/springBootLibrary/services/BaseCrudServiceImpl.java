@@ -30,9 +30,9 @@ public class BaseCrudServiceImpl<TEntity extends BaseEntity,
     @Autowired
     protected IBaseJpaRepository<TEntity> repository;
     protected ModelEntityMapping<TEntity> objectMapper = new ModelEntityMapping<>();
-    private Class<TDto> dtoClass;
-    private Class<TCreateDto> dtoCreateClass;
-    private Class<TUpdateDto> dtoUpdateClass;
+    private final Class<TDto> dtoClass;
+    private final Class<TCreateDto> dtoCreateClass;
+    private final Class<TUpdateDto> dtoUpdateClass;
 
     public BaseCrudServiceImpl(Class<TEntity> tEntityClass, Class<TDto> dtoClass, Class<TCreateDto> dtoCreateClass, Class<TUpdateDto> dtoUpdateClass) {
         objectMapper.setEntityClass(tEntityClass);
