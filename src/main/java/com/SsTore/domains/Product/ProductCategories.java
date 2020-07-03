@@ -29,5 +29,4 @@ public class ProductCategories extends BaseEntity {
 
     @ManyToOne
     private Category category = new Category();
-
 }
