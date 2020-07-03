@@ -9,5 +9,6 @@ import java.io.Serializable;
 @Repository
 public interface IUserRepository extends JpaRepository<User, Serializable> {
     User findByUserName(String userName);
+
     Boolean existsByUserName(String userName);
 }

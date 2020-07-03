@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Configuration
 public class MyInterceptor extends EmptyInterceptor {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
     @Override
     public void onDelete(Object entity, Serializable id, Object[] state, String[] propertyNames, org.hibernate.type.Type[] types) {
