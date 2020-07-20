@@ -8479,153 +8479,153 @@
 									},
 									"subViews": [
 										{
-											"_type": "LabelView",
-											"_id": "AAAAAAFyNB7re358J0I=",
-											"_parent": {
-												"$ref": "AAAAAAFyNB7re357efQ="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"left": -1104,
-											"top": 288,
-											"height": 13
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAFyNB7rfH594xM=",
-											"_parent": {
-												"$ref": "AAAAAAFyNB7re357efQ="
-											},
-											"font": "Arial;13;1",
-											"left": 621,
-											"top": 735,
-											"width": 122.0908203125,
-											"height": 13,
-											"text": "PayementMethodes"
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAFyNB7rfH5+kFE=",
-											"_parent": {
-												"$ref": "AAAAAAFyNB7re357efQ="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"left": -1104,
-											"top": 288,
-											"width": 89.5654296875,
-											"height": 13,
-											"text": "(from Domains)"
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAFyNB7rfH5/Mq8=",
-											"_parent": {
-												"$ref": "AAAAAAFyNB7re357efQ="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"left": -1104,
-											"top": 288,
-											"height": 13,
-											"horizontalAlignment": 1
-										}
-									],
-									"font": "Arial;13;0",
-									"left": 616,
-									"top": 728,
-									"width": 132.0908203125,
-									"height": 25,
-									"stereotypeLabel": {
-										"$ref": "AAAAAAFyNB7re358J0I="
-									},
-									"nameLabel": {
-										"$ref": "AAAAAAFyNB7rfH594xM="
-									},
-									"namespaceLabel": {
-										"$ref": "AAAAAAFyNB7rfH5+kFE="
+                                          "_type": "LabelView",
+                                          "_id": "AAAAAAFyNB7re358J0I=",
+                                          "_parent": {
+                                            "$ref": "AAAAAAFyNB7re357efQ="
+                                          },
+                                          "visible": false,
+                                          "font": "Arial;13;0",
+                                          "left": -1232,
+                                          "top": 96,
+                                          "height": 13
+                                        },
+                                      {
+                                        "_type": "LabelView",
+                                        "_id": "AAAAAAFyNB7rfH594xM=",
+                                        "_parent": {
+                                          "$ref": "AAAAAAFyNB7re357efQ="
+                                        },
+                                        "font": "Arial;13;1",
+                                        "left": 557,
+                                        "top": 639,
+                                        "width": 122.0908203125,
+                                        "height": 13,
+                                        "text": "PayementMethodes"
+                                      },
+                                      {
+                                        "_type": "LabelView",
+                                        "_id": "AAAAAAFyNB7rfH5+kFE=",
+                                        "_parent": {
+                                          "$ref": "AAAAAAFyNB7re357efQ="
+                                        },
+                                        "visible": false,
+                                        "font": "Arial;13;0",
+                                        "left": -1232,
+                                        "top": 96,
+                                        "width": 89.5654296875,
+                                        "height": 13,
+                                        "text": "(from Domains)"
+                                      },
+                                      {
+                                        "_type": "LabelView",
+                                        "_id": "AAAAAAFyNB7rfH5/Mq8=",
+                                        "_parent": {
+                                          "$ref": "AAAAAAFyNB7re357efQ="
+                                        },
+                                        "visible": false,
+                                        "font": "Arial;13;0",
+                                        "left": -1232,
+                                        "top": 96,
+                                        "height": 13,
+                                        "horizontalAlignment": 1
+                                      }
+                                    ],
+                                  "font": "Arial;13;0",
+                                  "left": 552,
+                                  "top": 632,
+                                  "width": 132.0908203125,
+                                  "height": 25,
+                                  "stereotypeLabel": {
+                                    "$ref": "AAAAAAFyNB7re358J0I="
+                                  },
+                                  "nameLabel": {
+                                    "$ref": "AAAAAAFyNB7rfH594xM="
+                                  },
+                                  "namespaceLabel": {
+                                    "$ref": "AAAAAAFyNB7rfH5+kFE="
 									},
 									"propertyLabel": {
 										"$ref": "AAAAAAFyNB7rfH5/Mq8="
 									}
 								},
+                              {
+                                "_type": "UMLAttributeCompartmentView",
+                                "_id": "AAAAAAFyNB7rfH6ADT0=",
+                                "_parent": {
+                                  "$ref": "AAAAAAFyNB7re356Wco="
+                                },
+                                "model": {
+                                  "$ref": "AAAAAAFyNB7re354e/E="
+                                },
+                                "font": "Arial;13;0",
+                                "left": 552,
+                                "top": 657,
+                                "width": 132.0908203125,
+                                "height": 10
+                              },
+                              {
+                                "_type": "UMLOperationCompartmentView",
+                                "_id": "AAAAAAFyNB7rfH6BS5I=",
+                                "_parent": {
+                                  "$ref": "AAAAAAFyNB7re356Wco="
+                                },
+                                "model": {
+                                  "$ref": "AAAAAAFyNB7re354e/E="
+                                },
+                                "font": "Arial;13;0",
+                                "left": 552,
+                                "top": 667,
+                                "width": 132.0908203125,
+                                "height": 10
+                              },
 								{
-									"_type": "UMLAttributeCompartmentView",
-									"_id": "AAAAAAFyNB7rfH6ADT0=",
-									"_parent": {
-										"$ref": "AAAAAAFyNB7re356Wco="
-									},
-									"model": {
-										"$ref": "AAAAAAFyNB7re354e/E="
-									},
-									"font": "Arial;13;0",
-									"left": 616,
-									"top": 753,
-									"width": 132.0908203125,
-									"height": 10
-								},
+                                  "_type": "UMLReceptionCompartmentView",
+                                  "_id": "AAAAAAFyNB7rfH6Cd38=",
+                                  "_parent": {
+                                    "$ref": "AAAAAAFyNB7re356Wco="
+                                  },
+                                  "model": {
+                                    "$ref": "AAAAAAFyNB7re354e/E="
+                                  },
+                                  "visible": false,
+                                  "font": "Arial;13;0",
+                                  "left": -528,
+                                  "top": 96,
+                                  "width": 10,
+                                  "height": 10
+                                },
 								{
-									"_type": "UMLOperationCompartmentView",
-									"_id": "AAAAAAFyNB7rfH6BS5I=",
-									"_parent": {
-										"$ref": "AAAAAAFyNB7re356Wco="
-									},
-									"model": {
-										"$ref": "AAAAAAFyNB7re354e/E="
-									},
-									"font": "Arial;13;0",
-									"left": 616,
-									"top": 763,
-									"width": 132.0908203125,
-									"height": 10
-								},
-								{
-									"_type": "UMLReceptionCompartmentView",
-									"_id": "AAAAAAFyNB7rfH6Cd38=",
-									"_parent": {
-										"$ref": "AAAAAAFyNB7re356Wco="
-									},
-									"model": {
-										"$ref": "AAAAAAFyNB7re354e/E="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"left": -464,
-									"top": 192,
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLTemplateParameterCompartmentView",
-									"_id": "AAAAAAFyNB7rfH6D6/E=",
-									"_parent": {
-										"$ref": "AAAAAAFyNB7re356Wco="
-									},
-									"model": {
-										"$ref": "AAAAAAFyNB7re354e/E="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"left": -464,
-									"top": 192,
-									"width": 10,
-									"height": 10
-								}
-							],
-							"font": "Arial;13;0",
-							"containerChangeable": true,
-							"left": 616,
-							"top": 728,
-							"width": 132.0908203125,
-							"height": 45,
-							"nameCompartment": {
-								"$ref": "AAAAAAFyNB7re357efQ="
-							},
-							"attributeCompartment": {
-								"$ref": "AAAAAAFyNB7rfH6ADT0="
-							},
-							"operationCompartment": {
-								"$ref": "AAAAAAFyNB7rfH6BS5I="
+                                  "_type": "UMLTemplateParameterCompartmentView",
+                                  "_id": "AAAAAAFyNB7rfH6D6/E=",
+                                  "_parent": {
+                                    "$ref": "AAAAAAFyNB7re356Wco="
+                                  },
+                                  "model": {
+                                    "$ref": "AAAAAAFyNB7re354e/E="
+                                  },
+                                  "visible": false,
+                                  "font": "Arial;13;0",
+                                  "left": -528,
+                                  "top": 96,
+                                  "width": 10,
+                                  "height": 10
+                                }
+                            ],
+                          "font": "Arial;13;0",
+                          "containerChangeable": true,
+                          "left": 552,
+                          "top": 632,
+                          "width": 132.0908203125,
+                          "height": 45,
+                          "nameCompartment": {
+                            "$ref": "AAAAAAFyNB7re357efQ="
+                          },
+                          "attributeCompartment": {
+                            "$ref": "AAAAAAFyNB7rfH6ADT0="
+                          },
+                          "operationCompartment": {
+                            "$ref": "AAAAAAFyNB7rfH6BS5I="
 							},
 							"receptionCompartment": {
 								"$ref": "AAAAAAFyNB7rfH6Cd38="
@@ -11543,26 +11543,6 @@
 									},
 									"name": "qte",
 									"type": "Long"
-								}
-							]
-						},
-						{
-							"_type": "UMLClass",
-							"_id": "AAAAAAFxh2dE+gLhpdk=",
-							"_parent": {
-								"$ref": "AAAAAAFyODvnwlYpcmo="
-							},
-							"name": "OrderStatut",
-							"documentation": "describe order is shipped or wait-payment or diputs",
-							"attributes": [
-								{
-									"_type": "UMLAttribute",
-									"_id": "AAAAAAFyODLDmNtEk/o=",
-									"_parent": {
-										"$ref": "AAAAAAFxh2dE+gLhpdk="
-									},
-									"name": "Id",
-									"type": ""
 								}
 							]
 						},
