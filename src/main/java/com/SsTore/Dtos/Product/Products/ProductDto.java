@@ -21,9 +21,8 @@ public class ProductDto extends BaseDto {
     private String comment;
     private Float price;
     private Long qte;
-
-    private List<String> images = new ArrayList<>();
-
+    private List<Image> images = new ArrayList<>();
+    private String imageCover;
 /*    private List<Long> tagsId = new ArrayList<>();
     private List<Long> categoriesId = new ArrayList<>();
     private List<Long> wareHouseId = new ArrayList<>();
@@ -32,3 +31,4 @@ public class ProductDto extends BaseDto {
     private List<CharacteristicDto> characteristics = new ArrayList<>();
     private List<SpecificationDto> specifications = new ArrayList<>();*/
 }
+

@@ -5,10 +5,6 @@
 
 package com.configuration.bootstrap;
 
-import com.SsTore.Dtos.Product.Categories.CategoryCreateDto;
-import com.SsTore.Dtos.Product.Tags.TagCreateDto;
-import com.SsTore.Dtos.Product.WareHouses.WareHouseCreateDto;
-import com.SsTore.domains.Product.ShippingMethod;
 import com.SsTore.repositorys.Product.IShppingMethodesRepository;
 import com.SsTore.services.Product.ICategoryService;
 import com.SsTore.services.Product.ITagService;
@@ -49,7 +45,7 @@ public class BootStrapData implements CommandLineRunner {
         iUserRepository.save(user1);
 */
         //////////////////////////////////////////
-        var cat1 = new CategoryCreateDto();
+        /*var cat1 = new CategoryCreateDto();
         cat1.setName("Category A");
         iCategoryService.create(cat1);
 
@@ -90,6 +86,6 @@ public class BootStrapData implements CommandLineRunner {
         //////////////////////////////////////////
         var shippingMethod1 = new ShippingMethod();
         shippingMethod1.setName("DHL");
-        iShppingMethodesRepository.save(shippingMethod1);
+        iShppingMethodesRepository.save(shippingMethod1);*/
     }
 }

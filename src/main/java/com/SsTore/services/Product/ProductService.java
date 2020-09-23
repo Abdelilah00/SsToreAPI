@@ -27,6 +27,7 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
     @Autowired
     private IProductRepository productRepository;
 
+
     public ProductService() {
         super(Product.class, ProductDto.class, ProductCreateDto.class, ProductUpdateDto.class);
     }
@@ -99,4 +100,5 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         productRepository.save(product);
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
+
 }

@@ -23,8 +23,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 @RestController
@@ -47,6 +49,21 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         return service.create(object);
     }
 
+    @Override
+    protected List<ProductDto> getAll() throws ExecutionException, InterruptedException {
+        var tmp = super.getAll();
+        tmp.forEach(prod -> {
+            try {
+                prod.setImageCover(iFileService.getFile(prod.getImages().get(0).getUrl()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return tmp;
+    }
+    //TODO:getByCategory
+    //TODO:getTopSelled-8
+    //TODO:getNew-8
 
 }
 
