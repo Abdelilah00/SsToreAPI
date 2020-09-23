@@ -21,7 +21,7 @@ public class MyInterceptor extends EmptyInterceptor {
     @Override
     public void onDelete(Object entity, Serializable id, Object[] state, String[] propertyNames, org.hibernate.type.Type[] types) {
         if (entity instanceof BaseEntity) {
-            logger.info("onDelete ### => " + TenantContext.getCurrentTenant());
+            //logger.info("onDelete ### => " + TenantContext.getCurrentTenant());
             auditDelete(state, propertyNames);
         }
     }
@@ -29,7 +29,7 @@ public class MyInterceptor extends EmptyInterceptor {
     @Override
     public boolean onFlushDirty(Object entity, Serializable id, Object[] currentState, Object[] previousState, String[] propertyNames, org.hibernate.type.Type[] types) {
         if (entity instanceof BaseEntity) {
-            logger.info("onFlushDirty ### => " + TenantContext.getCurrentTenant());
+            //logger.info("onFlushDirty ### => " + TenantContext.getCurrentTenant());
             return auditFlushDirty(currentState, propertyNames);
         }
         return false;
@@ -38,7 +38,7 @@ public class MyInterceptor extends EmptyInterceptor {
     @Override
     public boolean onSave(Object entity, Serializable id, Object[] state, String[] propertyNames, org.hibernate.type.Type[] types) {
         if (entity instanceof BaseEntity) {
-            logger.info("onSave ### => " + TenantContext.getCurrentTenant());
+            //logger.info("onSave ### => " + TenantContext.getCurrentTenant());
             return auditSave(state, propertyNames);
         }
         return false;

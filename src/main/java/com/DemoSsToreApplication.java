@@ -31,8 +31,8 @@ public class DemoSsToreApplication {
     public Executor taskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(2);
-        executor.setMaxPoolSize(4);
-        executor.setQueueCapacity(500);
+        executor.setMaxPoolSize(10);
+        executor.setQueueCapacity(10000);
         executor.setThreadNamePrefix("AsyncMethodTest-");
         executor.initialize();
         return new DelegatingSecurityContextAsyncTaskExecutor(executor);

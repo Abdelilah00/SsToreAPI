@@ -28,6 +28,7 @@ public class Product extends BaseEntity {
 
     private Long qte = 0L;
 
+    @Column(length = Integer.MAX_VALUE)
     private String overview = "";
 
     //One To Many
