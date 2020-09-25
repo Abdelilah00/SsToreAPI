@@ -14,4 +14,6 @@ import java.util.List;
 @Repository
 public interface ICategoryRepository extends IBaseJpaRepository<Category> {
     List<Category> findByName(String name);
+
+    List<Category> findByParentIdIsNull();
 }

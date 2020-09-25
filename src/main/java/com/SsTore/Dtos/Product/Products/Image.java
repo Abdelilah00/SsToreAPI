@@ -1,8 +1,10 @@
 package com.SsTore.Dtos.Product.Products;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Image {
-    private String url;
+    private String url = "";
 }

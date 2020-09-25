@@ -13,5 +13,6 @@ import lombok.Setter;
 @Setter
 public class CategoryDto extends BaseDto {
     private String name;
+    private Long parentId = null;
 }
 

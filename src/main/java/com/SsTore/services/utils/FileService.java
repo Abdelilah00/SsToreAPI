@@ -6,40 +6,37 @@
 package com.SsTore.services.utils;
 
 import org.apache.commons.io.FilenameUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletContext;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.Base64;
-import java.util.Objects;
 
 @Service
 public class FileService implements IFileService {
     @Value("${src.uploads.images}")
     private String uploadDir;
-    @Autowired
-    private ServletContext context;
 
-    public void uploadFile(MultipartFile file) {
-        try {
-            Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename())));
-            Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
-        } catch (Exception e) {
-            e.printStackTrace();
-/*
-            throw new UserFriendlyException("Could not store file " + file.getOriginalFilename()+ ". Please try again!");
-*/
-        }
+    private static BufferedImage resizeImage(BufferedImage originalImage, int type, int width, int hieght) {
+        BufferedImage resizedImage = new BufferedImage(width, hieght, type);
+        Graphics2D g = resizedImage.createGraphics();
+        g.drawImage(originalImage, 0, 0, 512, 512, null);
+        g.dispose();
+        return resizedImage;
+    }
+
+    public void saveMultipartFile(MultipartFile file) throws IOException {
+        BufferedImage originalImage = ImageIO.read(file.getInputStream());
+        int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+
+        BufferedImage resizeImageJpg = resizeImage(originalImage, type, 550, 750);
+        ImageIO.write(resizeImageJpg, "png", new File(uploadDir + file.getOriginalFilename()));
     }
 
     public String getFile(String fileName) throws IOException {
@@ -59,5 +56,14 @@ public class FileService implements IFileService {
             fileInputStream.close();
         }
         return image;
+    }
+
+    public void saveCoverMultipartFile(MultipartFile file) throws IOException {
+        BufferedImage originalImage = ImageIO.read(file.getInputStream());
+        int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+
+        BufferedImage resizeImageJpg = resizeImage(originalImage, type, 315, 420);
+        ImageIO.write(resizeImageJpg, "png", new File(uploadDir + "Cover/" + file.getOriginalFilename()));
+
     }
 }

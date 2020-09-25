@@ -49,13 +49,30 @@ public class BootStrapData implements CommandLineRunner {
         cat1.setName("Category A");
         iCategoryService.create(cat1);
 
+        var cat4 = new CategoryCreateDto();
+        cat4.setName("Category B");
+        iCategoryService.create(cat4);
+
         var cat2 = new CategoryCreateDto();
-        cat2.setName("Category B");
+        cat2.setName("Category AA");
+        cat2.setParentId(1L);
         iCategoryService.create(cat2);
 
         var cat3 = new CategoryCreateDto();
-        cat3.setName("Category C");
+        cat3.setName("Category AB");
+        cat2.setParentId(1L);
         iCategoryService.create(cat3);
+
+
+        var cat5 = new CategoryCreateDto();
+        cat5.setName("Category BA");
+        cat2.setParentId(4L);
+        iCategoryService.create(cat5);
+
+        var cat6 = new CategoryCreateDto();
+        cat6.setName("Category BB");
+        cat2.setParentId(4L);
+        iCategoryService.create(cat6);
 
         //////////////////////////////////////////
         var tag1 = new TagCreateDto();

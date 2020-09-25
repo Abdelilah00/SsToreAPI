@@ -5,4 +5,4 @@ security:
       expire-length: 300000
 src:
   uploads:
-    images: "C:/Users/Alexis/IdeaProjects/SsToreAPI/src/uploads/images"
+    images: "C:/Users/Alexis/IdeaProjects/SsToreAPI/src/uploads/images/"

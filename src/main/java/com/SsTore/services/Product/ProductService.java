@@ -15,9 +15,13 @@ import com.springBootLibrary.services.BaseCrudServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -101,4 +105,13 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
 
+    public CompletableFuture<List<ProductDto>> getBestSealed() {
+        Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").ascending());
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(productRepository.findAll(pageable).toList(), ProductDto.class));
+    }
+
+    public CompletableFuture<List<ProductDto>> getNewest() {
+        Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").descending());
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(productRepository.findAll(pageable).toList(), ProductDto.class));
+    }
 }

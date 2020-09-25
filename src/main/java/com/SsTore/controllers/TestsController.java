@@ -6,7 +6,6 @@
 package com.SsTore.controllers;
 
 import com.SsTore.services.utils.IFileService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("api/tests")
 public class TestsController {
@@ -28,13 +29,13 @@ public class TestsController {
     private IFileService iFileService;
 
     @PostMapping(path = "/uploadFile")
-    public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("model") String testModel) throws JsonProcessingException {
+    public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("model") String testModel) throws IOException {
 
         var objectMapper = new ObjectMapper();
         TestModel object = objectMapper.readValue(testModel, TestModel.class);
 
         logger.info("Upload File => " + object.toString());
-        iFileService.uploadFile(file);
+        iFileService.saveMultipartFile(file);
 
         return "You successfully uploaded";
     }

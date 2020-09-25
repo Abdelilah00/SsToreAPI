@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -30,7 +31,7 @@ public abstract class BaseCrudController<TEntity extends IdEntity, TDto extends 
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    protected TDto getById(@PathVariable(value = "id") long id) throws InterruptedException, ExecutionException {
+    protected TDto getById(@PathVariable(value = "id") long id) throws InterruptedException, ExecutionException, IOException {
         return service.findById(id).get();
     }
 

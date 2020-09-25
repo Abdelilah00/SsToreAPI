@@ -10,7 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 public interface IFileService {
-    void uploadFile(MultipartFile file);
+    void saveMultipartFile(MultipartFile file) throws IOException;
+
+    void saveCoverMultipartFile(MultipartFile image) throws IOException;
 
     String getFile(String s) throws IOException;
 }
