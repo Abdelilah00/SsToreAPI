@@ -19,14 +19,12 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "OrderGlobal")
+@Table(name = "`Order`")
 public class Order extends BaseEntity {
-
-    public String shippingAdresse;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderDetails> orderDetails = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Customer customer;
 }

@@ -5,20 +5,26 @@
 
 package com.SsTore.Dtos.Order;
 
+import com.SsTore.Dtos.Order.OrderDetails.OrderDetailsDto;
 import com.springBootLibrary.models.BaseDto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class OrderCreateDto extends BaseDto {
-    private String firstName;
-    private String lastName;
-    private String phone;
-    private String emailAddresse;
-    private String country;
-    private String state;
-    private String city;
-    private String zip;
+    private String customerFirstName;
+    private String customerLastName;
+    private String customerPhoneNumber;
+    private String customerEmail;
+    private String customerAddress;
+    private String customerCountry;
+    private String customerState;
+    private String customerCity;
+    private String customerZip;
+
+    private List<OrderDetailsDto> orderDetails;
 }
 

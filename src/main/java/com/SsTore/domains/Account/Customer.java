@@ -28,6 +28,10 @@ public class Customer extends BaseEntity {
 
     private String lastName;
 
-    private String address;
+    public String address;
+    private String country;
+    private String state;
+    private String city;
+    private String zip;
 
 }

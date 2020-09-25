@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, ProductCreateDto, ProductUpdateDto> implements IProductService {
     private static final Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
     @Autowired
-    private IProductRepository productRepository;
+    private IProductRepository iProductRepository;
 
 
     public ProductService() {
@@ -101,27 +101,27 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
         product.setProductCharacteristics(productCharacteristics);
 
-        productRepository.save(product);
+        iProductRepository.save(product);
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
 
     public CompletableFuture<List<ProductDto>> getRelated(Long id) {
         Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").ascending());
-        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(productRepository.findAll(pageable).toList(), ProductDto.class));
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
     }
 
     public CompletableFuture<List<ProductDto>> getByCategory(Long categoryId) {
         Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").ascending());
-        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(productRepository.findAll(pageable).toList(), ProductDto.class));
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
     }
 
     public CompletableFuture<List<ProductDto>> getBestSealed() {
         Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").ascending());
-        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(productRepository.findAll(pageable).toList(), ProductDto.class));
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
     }
 
     public CompletableFuture<List<ProductDto>> getNewest() {
         Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").descending());
-        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(productRepository.findAll(pageable).toList(), ProductDto.class));
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
     }
 }

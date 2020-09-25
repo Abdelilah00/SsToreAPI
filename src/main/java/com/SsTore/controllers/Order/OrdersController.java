@@ -12,11 +12,7 @@ import com.SsTore.Dtos.Order.OrderUpdateDto;
 import com.SsTore.domains.Order.Order;
 import com.springBootLibrary.controllers.BaseCrudController;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("api/admin/orders")

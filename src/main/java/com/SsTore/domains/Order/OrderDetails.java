@@ -24,7 +24,8 @@ public class OrderDetails extends BaseEntity {
     public Float price;
 
     @OneToOne
-    private Product product;
+    private Product product = new Product();
+
     @ManyToOne
-    private Order order;
+    private Order order = new Order();
 }
