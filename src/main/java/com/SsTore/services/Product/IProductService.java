@@ -11,7 +11,16 @@ import com.SsTore.Dtos.Product.Products.ProductUpdateDto;
 import com.SsTore.domains.Product.Product;
 import com.springBootLibrary.services.IBaseCrudService;
 
-public interface IProductService extends IBaseCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto> {
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
+public interface IProductService extends IBaseCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto> {
+    CompletableFuture<List<ProductDto>> getRelated(Long id);
+
+    CompletableFuture<List<ProductDto>> getByCategory(Long categoryId);
+
+    CompletableFuture<List<ProductDto>> getBestSealed();
+
+    CompletableFuture<List<ProductDto>> getNewest();
 }
 

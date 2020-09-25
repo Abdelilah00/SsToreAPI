@@ -105,6 +105,16 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
 
+    public CompletableFuture<List<ProductDto>> getRelated(Long id) {
+        Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").ascending());
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(productRepository.findAll(pageable).toList(), ProductDto.class));
+    }
+
+    public CompletableFuture<List<ProductDto>> getByCategory(Long categoryId) {
+        Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").ascending());
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(productRepository.findAll(pageable).toList(), ProductDto.class));
+    }
+
     public CompletableFuture<List<ProductDto>> getBestSealed() {
         Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").ascending());
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(productRepository.findAll(pageable).toList(), ProductDto.class));

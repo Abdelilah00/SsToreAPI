@@ -5,6 +5,7 @@
 
 package com.SsTore.domains.Product;
 
+import com.SsTore.domains.Account.WishList;
 import com.springBootLibrary.models.BaseEntity;
 import lombok.*;
 
@@ -40,6 +41,7 @@ public class Product extends BaseEntity {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "product")
     private Solde solde;
+
 
     //Many to Many
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")

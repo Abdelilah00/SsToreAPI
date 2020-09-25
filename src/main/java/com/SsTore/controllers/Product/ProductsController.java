@@ -10,7 +10,7 @@ import com.SsTore.Dtos.Product.Products.ProductCreateDto;
 import com.SsTore.Dtos.Product.Products.ProductDto;
 import com.SsTore.Dtos.Product.Products.ProductUpdateDto;
 import com.SsTore.domains.Product.Product;
-import com.SsTore.services.Product.ProductService;
+import com.SsTore.services.Product.IProductService;
 import com.SsTore.services.utils.IFileService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springBootLibrary.controllers.BaseCrudController;
@@ -87,12 +87,13 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
     }
     //TODO:getByCategory-size(6-24)
 
-    @RequestMapping(path = "/getBestSealed", method = RequestMethod.GET)
-    protected List<ProductDto> getBestSealed() throws ExecutionException, InterruptedException {
-        var tmp = ((ProductService) service).getBestSealed().get();
+    @GetMapping(path = "/getRelated/{id}")
+    protected List<ProductDto> getRelated(@PathVariable(value = "id") Long id) throws ExecutionException, InterruptedException {
+        var tmp = ((IProductService) service).getRelated(id).get();
         tmp.forEach(prod -> {
             try {
                 prod.setImageCover(iFileService.getFile("Cover/" + prod.getImages().get(0).getUrl()));
+                prod.setSale(true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -100,12 +101,41 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         return tmp;
     }
 
-    @RequestMapping(path = "/getNewest", method = RequestMethod.GET)
-    protected List<ProductDto> getNewest() throws ExecutionException, InterruptedException {
-        var tmp = ((ProductService) service).getNewest().get();
+    @GetMapping(path = "/getByCategory/{categoryId}")
+    protected List<ProductDto> getByCategory(@PathVariable(value = "categoryId") Long categoryId) throws ExecutionException, InterruptedException {
+        var tmp = ((IProductService) service).getByCategory(categoryId).get();
         tmp.forEach(prod -> {
             try {
                 prod.setImageCover(iFileService.getFile("Cover/" + prod.getImages().get(0).getUrl()));
+                prod.setSale(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return tmp;
+    }
+
+    @GetMapping(path = "/getBestSealed")
+    protected List<ProductDto> getBestSealed() throws ExecutionException, InterruptedException {
+        var tmp = ((IProductService) service).getBestSealed().get();
+        tmp.forEach(prod -> {
+            try {
+                prod.setImageCover(iFileService.getFile("Cover/" + prod.getImages().get(0).getUrl()));
+                prod.setSale(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return tmp;
+    }
+
+    @GetMapping(path = "/getNewest")
+    protected List<ProductDto> getNewest() throws ExecutionException, InterruptedException {
+        var tmp = ((IProductService) service).getNewest().get();
+        tmp.forEach(prod -> {
+            try {
+                prod.setImageCover(iFileService.getFile("Cover/" + prod.getImages().get(0).getUrl()));
+                prod.setNewest(true);
             } catch (IOException e) {
                 e.printStackTrace();
             }

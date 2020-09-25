@@ -23,7 +23,10 @@ public class ProductDto extends BaseDto {
     private Long qte;
     private List<Image> images = new ArrayList<>();
     private String imageCover;
-/*    private List<Long> tagsId = new ArrayList<>();
+    private boolean newest;
+    private boolean sale;
+
+/*  private List<Long> tagsId = new ArrayList<>();
     private List<Long> categoriesId = new ArrayList<>();
     private List<Long> wareHouseId = new ArrayList<>();
     private List<Long> shippingMethodsId = new ArrayList<>();
