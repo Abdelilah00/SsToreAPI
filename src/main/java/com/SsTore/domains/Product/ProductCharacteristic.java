@@ -26,8 +26,8 @@ public class ProductCharacteristic extends BaseEntity {
     private String value;
 
     @ManyToOne
-    private Product product;
+    private Product product = new Product();
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Characteristic characteristic;
+    private Characteristic characteristic = new Characteristic();
 }

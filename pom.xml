@@ -97,7 +97,12 @@
             <artifactId>rest-api-sdk</artifactId>
             <version>1.4.2</version>
         </dependency>
-
+        <!--image resizing-->
+        <dependency>
+            <groupId>org.imgscalr</groupId>
+            <artifactId>imgscalr-lib</artifactId>
+            <version>4.2</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

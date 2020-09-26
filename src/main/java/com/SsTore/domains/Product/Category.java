@@ -12,7 +12,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -32,4 +34,7 @@ public class Category extends BaseEntity {
 
     @OneToMany(mappedBy = "parent")
     private Set<Category> children = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "characteristic")
+    private List<ProductCharacteristic> productCharacteristics = new ArrayList<>();
 }

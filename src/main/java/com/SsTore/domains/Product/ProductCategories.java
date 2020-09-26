@@ -23,9 +23,10 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @Entity
 public class ProductCategories extends BaseEntity {
+    private String x;
 
     @ManyToOne
-    private Product product;
+    private Product product = new Product();
 
     @ManyToOne
     private Category category = new Category();

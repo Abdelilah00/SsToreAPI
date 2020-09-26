@@ -9,6 +9,7 @@ import com.SsTore.Dtos.Product.Products.ProductCreateDto;
 import com.SsTore.Dtos.Product.Products.ProductDto;
 import com.SsTore.Dtos.Product.Products.ProductUpdateDto;
 import com.SsTore.domains.Product.*;
+import com.SsTore.repositorys.Product.ICategoryRepository;
 import com.SsTore.repositorys.Product.IProductRepository;
 import com.configuration.TenantContext;
 import com.springBootLibrary.services.BaseCrudServiceImpl;
@@ -30,6 +31,9 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
     private static final Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
     @Autowired
     private IProductRepository iProductRepository;
+    private final Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").ascending());
+    @Autowired
+    private ICategoryRepository iCategoryRepository;
 
 
     public ProductService() {
@@ -105,23 +109,29 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
 
+    //TODO: By tags
+    //TODO: Make sure Parent Categories didnt have products
     public CompletableFuture<List<ProductDto>> getRelated(Long id) {
-        Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").ascending());
-        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
+        var category = iCategoryRepository.findByProductId(id).get(0);
+        List<Product> products = iProductRepository.findByCategoryParentId(category.getParent().getId());
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(products, ProductDto.class));
     }
 
     public CompletableFuture<List<ProductDto>> getByCategory(Long categoryId) {
-        Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").ascending());
-        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
+        var category = iCategoryRepository.findById(categoryId).get();
+        List<Product> products = category.getParent() == null ? iProductRepository.findByCategoryParentId(category.getId()) : iProductRepository.findByCategoryId(category.getId());
+
+
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(products, ProductDto.class));
     }
 
     public CompletableFuture<List<ProductDto>> getBestSealed() {
-        Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").ascending());
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
     }
 
     public CompletableFuture<List<ProductDto>> getNewest() {
-        Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").descending());
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
     }
+
+
 }
