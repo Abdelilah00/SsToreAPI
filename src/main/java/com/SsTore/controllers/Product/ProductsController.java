@@ -11,7 +11,7 @@ import com.SsTore.Dtos.Product.Products.ProductDto;
 import com.SsTore.Dtos.Product.Products.ProductUpdateDto;
 import com.SsTore.domains.Product.Product;
 import com.SsTore.services.Product.IProductService;
-import com.SsTore.services.utils.IFileService;
+import com.SsTore.services.utils.Files.IFileService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springBootLibrary.controllers.BaseCrudController;
 import com.sun.istack.NotNull;
