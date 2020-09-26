@@ -19,6 +19,10 @@ public interface IProductService extends IBaseCrudService<Product, ProductDto, P
 
     CompletableFuture<List<ProductDto>> getByCategory(Long categoryId);
 
+    CompletableFuture<List<ProductDto>> getByQuery(String query);
+
+    CompletableFuture<List<String>> getNamesByQuery(String query);
+
     CompletableFuture<List<ProductDto>> getBestSealed();
 
     CompletableFuture<List<ProductDto>> getNewest();

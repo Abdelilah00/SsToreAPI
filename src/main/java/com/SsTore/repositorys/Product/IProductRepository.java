@@ -20,5 +20,10 @@ public interface IProductRepository extends IBaseJpaRepository<Product> {
 
     @Query("select p from Product p inner join ProductCategories pg on p.id = pg.product.id where pg.category.parent.id=:categoryId")
     List<Product> findByCategoryParentId(@Param("categoryId") Long categoryId);
+
+    List<Product> findByNameContains(String query);
+
+    //TODO: return names only
+    List<Product> findNameByNameContains(String query);
 }
 

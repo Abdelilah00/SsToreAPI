@@ -125,6 +125,17 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(products, ProductDto.class));
     }
 
+    public CompletableFuture<List<ProductDto>> getByQuery(String query) {
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findByNameContains(query), ProductDto.class));
+    }
+
+    public CompletableFuture<List<String>> getNamesByQuery(String query) {
+        var tmp = iProductRepository.findNameByNameContains(query);
+        var list = tmp.stream().map(Product::getName).collect(Collectors.toList());
+        return CompletableFuture.completedFuture(list);
+    }
+
+
     public CompletableFuture<List<ProductDto>> getBestSealed() {
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
     }

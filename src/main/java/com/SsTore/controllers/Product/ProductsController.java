@@ -142,5 +142,25 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         });
         return tmp;
     }
+
+    @GetMapping(path = "/getByQuery/{query}")
+    protected List<ProductDto> getByQuery(@PathVariable(value = "query") String query) throws ExecutionException, InterruptedException {
+        var tmp = ((IProductService) service).getByQuery(query).get();
+        tmp.forEach(prod -> {
+            try {
+                prod.setImageCover(iFileService.getFile("Cover/" + prod.getImages().get(0).getUrl()));
+                prod.setSale(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return tmp;
+    }
+
+    @GetMapping(path = "/getNamesByQuery/{query}")
+    protected List<String> getNamesByQuery(@PathVariable(value = "query") String query) throws ExecutionException, InterruptedException {
+        return ((IProductService) service).getNamesByQuery(query).get();
+    }
+
 }
 
