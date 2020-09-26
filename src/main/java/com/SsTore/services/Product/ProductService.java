@@ -31,7 +31,7 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
     private static final Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
     @Autowired
     private IProductRepository iProductRepository;
-    private final Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").ascending());
+    private final Pageable pageable = PageRequest.of(0, 8, Sort.by("id").ascending());
     @Autowired
     private ICategoryRepository iCategoryRepository;
 
