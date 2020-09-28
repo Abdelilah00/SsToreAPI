@@ -38,16 +38,19 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
     @PostMapping(path = "/withImages")
     public CompletableFuture<ProductDto> withImages(@RequestPart("images") @Valid @NotNull @NotBlank List<MultipartFile> images,
                                                     @RequestPart("product") @Valid String productInfo) throws IOException {
-        for (var image : images)
-            iFileService.saveMultipartFile(image);
-
         //resize for Cover image
-        var image = images.get(0);
-        iFileService.saveCoverMultipartFile(image);
+        //iFileService.saveCoverMultipartFile(images.get(0));
 
         var objectMapper = new ObjectMapper();
         ProductCreateDto object = objectMapper.readValue(productInfo, ProductCreateDto.class);
-        object.setImages(images.stream().map(MultipartFile::getOriginalFilename).collect(Collectors.toList()));
+        object.setImages(images.stream().map(img -> {
+            try {
+                return iFileService.saveMultipartFile(img);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }).collect(Collectors.toList()));
 
         return service.create(object);
     }
@@ -57,7 +60,7 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         var tmp = super.getAll();
         tmp.forEach(prod -> {
             try {
-                prod.setImageCover(iFileService.getFile("Cover/" + prod.getImages().get(0).getUrl()));
+                prod.setImageCover(iFileService.getFilePath("" + prod.getImages().get(0).getUrl()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -70,11 +73,11 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         var tmp = super.getById(id);
         var images = new ArrayList<Image>();
 
-        tmp.setImageCover(iFileService.getFile("Cover/" + tmp.getImages().get(0).getUrl()));
+        tmp.setImageCover(iFileService.getFilePath("" + tmp.getImages().get(0).getUrl()));
         tmp.getImages().forEach(image -> {
             var x = new Image();
             try {
-                x.setUrl(iFileService.getFile(image.getUrl()));
+                x.setUrl(iFileService.getFilePath(image.getUrl()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -92,7 +95,7 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         var tmp = ((IProductService) service).getRelated(id).get();
         tmp.forEach(prod -> {
             try {
-                prod.setImageCover(iFileService.getFile("Cover/" + prod.getImages().get(0).getUrl()));
+                prod.setImageCover(iFileService.getFilePath("" + prod.getImages().get(0).getUrl()));
                 prod.setSale(true);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -106,7 +109,7 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         var tmp = ((IProductService) service).getByCategory(categoryId).get();
         tmp.forEach(prod -> {
             try {
-                prod.setImageCover(iFileService.getFile("Cover/" + prod.getImages().get(0).getUrl()));
+                prod.setImageCover(iFileService.getFilePath("" + prod.getImages().get(0).getUrl()));
                 prod.setSale(true);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -120,7 +123,7 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         var tmp = ((IProductService) service).getBestSealed().get();
         tmp.forEach(prod -> {
             try {
-                prod.setImageCover(iFileService.getFile("Cover/" + prod.getImages().get(0).getUrl()));
+                prod.setImageCover(iFileService.getFilePath("" + prod.getImages().get(0).getUrl()));
                 prod.setSale(true);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -134,22 +137,8 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         var tmp = ((IProductService) service).getNewest().get();
         tmp.forEach(prod -> {
             try {
-                prod.setImageCover(iFileService.getFile("Cover/" + prod.getImages().get(0).getUrl()));
+                prod.setImageCover(iFileService.getFilePath("" + prod.getImages().get(0).getUrl()));
                 prod.setNewest(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        return tmp;
-    }
-
-    @GetMapping(path = "/getByQuery/{query}")
-    protected List<ProductDto> getByQuery(@PathVariable(value = "query") String query) throws ExecutionException, InterruptedException {
-        var tmp = ((IProductService) service).getByQuery(query).get();
-        tmp.forEach(prod -> {
-            try {
-                prod.setImageCover(iFileService.getFile("Cover/" + prod.getImages().get(0).getUrl()));
-                prod.setSale(true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -162,5 +151,18 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         return ((IProductService) service).getNamesByQuery(query).get();
     }
 
+    @GetMapping(path = "/getByQuery/{query}")
+    protected List<ProductDto> getByQuery(@PathVariable(value = "query") String query) throws ExecutionException, InterruptedException {
+        var tmp = ((IProductService) service).getByQuery(query).get();
+        tmp.forEach(prod -> {
+            try {
+                prod.setImageCover(iFileService.getFilePath("" + prod.getImages().get(0).getUrl()));
+                prod.setSale(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return tmp;
+    }
 }
 

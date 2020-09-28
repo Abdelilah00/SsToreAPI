@@ -49,7 +49,7 @@ public class BootStrapData implements CommandLineRunner {
         iUserRepository.save(user1);
 */
         //////////////////////////////////////////
-        /*var cat1 = new CategoryCreateDto();
+       /* var cat1 = new CategoryCreateDto();
         cat1.setName("Category A");
         iCategoryService.create(cat1);
 

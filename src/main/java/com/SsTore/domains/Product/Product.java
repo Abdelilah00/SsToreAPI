@@ -5,7 +5,6 @@
 
 package com.SsTore.domains.Product;
 
-import com.SsTore.domains.Account.WishList;
 import com.springBootLibrary.models.BaseEntity;
 import lombok.*;
 
@@ -28,6 +27,8 @@ public class Product extends BaseEntity {
     private Float price = 0F;
 
     private Long qte = 0L;
+
+    private Boolean newest = Boolean.TRUE;
 
     @Column(length = Integer.MAX_VALUE)
     private String overview = "";

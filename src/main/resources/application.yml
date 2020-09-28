@@ -5,7 +5,8 @@ security:
       expire-length: 300000
 src:
   uploads:
-    images: C:/Users/Alexis/IdeaProjects/SsToreAPI/src/uploads/images/
+    imagesOut: http://localhost:8080/images/
+    imagesIn: C:/Users/Alexis/IdeaProjects/SsToreAPI/src/main/resources/uploads/images/
 paypal:
   mode: sandbox
   client:

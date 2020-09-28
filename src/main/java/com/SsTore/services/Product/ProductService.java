@@ -31,7 +31,7 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
     private static final Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
     @Autowired
     private IProductRepository iProductRepository;
-    private final Pageable pageable = PageRequest.of(0, 8, Sort.by("id").ascending());
+    private final Pageable pageable = PageRequest.of(0, 8, Sort.by("id").descending());
     @Autowired
     private ICategoryRepository iCategoryRepository;
 
@@ -104,8 +104,13 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         }
 
         product.setProductCharacteristics(productCharacteristics);
-
         iProductRepository.save(product);
+
+        //Update newest list
+        var x = iProductRepository.findAll(pageable).toList().get(0);
+        x.setNewest(Boolean.FALSE);
+        iProductRepository.save(x);
+
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
 
