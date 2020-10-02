@@ -9,6 +9,9 @@ import com.springBootLibrary.models.BaseEntity;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,4 +24,6 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class Characteristic extends BaseEntity {
     private String name;
+    @OneToMany(mappedBy = "characteristic")
+    private List<ProductCharacteristic> productCharacteristics = new ArrayList<>();
 }

@@ -23,9 +23,8 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @Entity
 public class ProductTags extends BaseEntity {
-
     @ManyToOne
-    private Product product;
+    private Product product = new Product();
 
     @ManyToOne
     private Tag tag = new Tag();

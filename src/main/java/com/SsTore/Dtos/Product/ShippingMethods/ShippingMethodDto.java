@@ -12,7 +12,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ShippingMethodDto extends BaseDto {
-    private Long id;
-    private String name;
+    private String ShippingMethodName;
 }
 

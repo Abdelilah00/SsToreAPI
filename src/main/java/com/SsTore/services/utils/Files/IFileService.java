@@ -12,7 +12,6 @@ import java.io.IOException;
 public interface IFileService {
     String saveMultipartFile(MultipartFile file) throws IOException;
 
-    String saveCoverMultipartFile(MultipartFile image) throws IOException;
 
     String getFilePath(String s) throws IOException;
 }

@@ -31,18 +31,8 @@ public class FileService implements IFileService {
         BufferedImage originalImage = ImageIO.read(file.getInputStream());
         BufferedImage resizeImageJpg = resizeImage(originalImage, 550, 750);
         Date date = new Date();
-        var name = date.getTime() + file.getOriginalFilename();
+        var name = date.getTime() + "_" + file.getOriginalFilename();
         var tmp = uploadDirIn + name;
-        ImageIO.write(resizeImageJpg, "png", new File(tmp));
-        return name;
-    }
-
-    public String saveCoverMultipartFile(MultipartFile file) throws IOException {
-        BufferedImage originalImage = ImageIO.read(file.getInputStream());
-        BufferedImage resizeImageJpg = resizeImage(originalImage, 315, 420);
-        Date date = new Date();
-        var name = date.getTime() + file.getOriginalFilename();
-        var tmp = uploadDirIn + "Cover/" + name;
         ImageIO.write(resizeImageJpg, "png", new File(tmp));
         return name;
     }

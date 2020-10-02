@@ -22,6 +22,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -66,20 +67,21 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
             return productIn;
         }).collect(Collectors.toList()));
 
-        product.setProductShippedByList(productCreateDto.getShippingMethodsId().stream().map(shipId -> {
+        product.setProductShippedBy(productCreateDto.getShippingMethodsId().stream().map(shipId -> {
             var productShippedBy = new ProductShippedBy();
             productShippedBy.getShippingMethod().setId(shipId);
             productShippedBy.setProduct(product);
             return productShippedBy;
         }).collect(Collectors.toList()));
 
-        product.setImages(productCreateDto.getImages().stream().map(img -> {
+        var images = productCreateDto.getImages().stream().map(img -> {
             var image = new Image();
-            image.setUrl(img);
+            image.setName(img);
             image.setProduct(product);
             return image;
-        }).collect(Collectors.toList()));
-
+        }).collect(Collectors.toList());
+        images.get(0).setCover(true);
+        product.setImages(images);
 
         product.setSpecifications(productCreateDto.getSpecifications().stream().map(spc -> {
             var specification = new Specification();
@@ -94,22 +96,21 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         for (var c : productCreateDto.getCharacteristics()) {
             var ch = new Characteristic();
             ch.setName(c.getName());
-            for (var value : c.getValues()) {
-                var productCharacteristic = new ProductCharacteristic();
-                productCharacteristic.setValue(value);
-                productCharacteristic.setCharacteristic(ch);
-                productCharacteristic.setProduct(product);
-                productCharacteristics.add(productCharacteristic);
-            }
+            var productCharacteristic = new ProductCharacteristic();
+            productCharacteristic.setValue(c.getValues());
+            productCharacteristic.setCharacteristic(ch);
+            productCharacteristic.setProduct(product);
+            productCharacteristics.add(productCharacteristic);
         }
-
         product.setProductCharacteristics(productCharacteristics);
+
+        //save Product
         iProductRepository.save(product);
 
         //Update newest list
-        var x = iProductRepository.findAll(pageable).toList().get(0);
-        x.setNewest(Boolean.FALSE);
-        iProductRepository.save(x);
+        var firstNewest = iProductRepository.findAll(pageable).toList().get(0);
+        firstNewest.setNewest(false);
+        iProductRepository.save(firstNewest);
 
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
@@ -130,8 +131,17 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(products, ProductDto.class));
     }
 
+    //search by sub string
     public CompletableFuture<List<ProductDto>> getByQuery(String query) {
-        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findByNameContains(query), ProductDto.class));
+        List<String> querys = Arrays.asList(query.split("\\s+"));
+        List<Product> result = new ArrayList<>();
+
+        querys.forEach(str -> {
+            var tmp = iProductRepository.findByNameContains(str);
+            result.addAll(tmp);
+        });
+
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(result, ProductDto.class));
     }
 
     public CompletableFuture<List<String>> getNamesByQuery(String query) {
@@ -149,5 +159,11 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
     }
 
+    @Override
+    public CompletableFuture<ProductDto> findById(Long aLong) {
+        var tmp = repository.findById(aLong).get();
+        ProductDto dto = objectMapper.convertToDto(tmp, ProductDto.class);
 
+        return CompletableFuture.completedFuture(dto);
+    }
 }

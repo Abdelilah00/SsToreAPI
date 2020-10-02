@@ -9,6 +9,9 @@ import com.springBootLibrary.models.BaseEntity;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,10 +23,8 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Tag extends BaseEntity {
-
     private String name;
 
-/*    @ManyToMany(mappedBy = "tags")
-    private List<Product> product = new ArrayList<>();*/
-
+    @OneToMany(mappedBy = "tag")
+    private List<ProductTags> productTags = new ArrayList<>();
 }

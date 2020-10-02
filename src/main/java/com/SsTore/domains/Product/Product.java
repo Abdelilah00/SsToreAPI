@@ -20,15 +20,15 @@ import java.util.List;
 @NoArgsConstructor
 public class Product extends BaseEntity {
 
-    private String name = "";
+    private String name;
 
-    private String comment = "";
+    private String comment;
 
-    private Float price = 0F;
+    private Float salePrice = 0F;
 
     private Long qte = 0L;
 
-    private Boolean newest = Boolean.TRUE;
+    private Boolean newest = true;
 
     @Column(length = Integer.MAX_VALUE)
     private String overview = "";
@@ -43,26 +43,29 @@ public class Product extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "product")
     private Solde solde;
 
-
     //Many to Many
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<ProductCategories> productCategories = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "shippingMethod")
-    private List<ProductShippedBy> productShippedByList = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "tag")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<ProductTags> productTags = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "characteristic")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<ProductCharacteristic> productCharacteristics = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "wareHouse")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+    private List<ProductShippedBy> productShippedBy = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<ProductIn> productInList = new ArrayList<>();
+
 
     //TODO : Link this with Accounts
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<ProductReviews> productReviews = new ArrayList<>();
+    private List<Reviews> reviews = new ArrayList<>();
 
-    //TODO : Qte disponible
+    //TODO : Stock Qte @Formula
+    //@Formula("select (p.qte - SUM(o.qte)) stockQte from product p inner join orderdetails o on p.id = o.product_id where p.id=1")
+    //@Transient
+    //private Long stockQte;
 }

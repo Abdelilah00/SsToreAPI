@@ -5,12 +5,13 @@
 
 package com.SsTore.Dtos.Product.Specifications;
 
+import com.springBootLibrary.models.BaseDto;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class SpecificationDto {
+public class SpecificationDto extends BaseDto {
     private String name;
     private String value;
 }

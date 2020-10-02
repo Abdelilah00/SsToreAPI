@@ -5,15 +5,15 @@
 
 package com.SsTore.Dtos.Product.Characteristics;
 
+import com.springBootLibrary.models.BaseDto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-public class CharacteristicDto {
-    private String name;
-    private List<String> values = new ArrayList<>();
+public class CharacteristicDto extends BaseDto {
+    private List<String> value;
+    private String characteristicName;
 }

@@ -15,19 +15,19 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-/**
- *
- */
+
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Image extends BaseEntity {
-    public String url;
+
+    private String name;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Product product;
 
+    private Boolean cover = false;
 
 }

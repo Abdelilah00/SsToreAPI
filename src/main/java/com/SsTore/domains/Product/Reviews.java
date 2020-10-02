@@ -8,9 +8,11 @@ package com.SsTore.domains.Product;
 import com.springBootLibrary.models.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -20,7 +22,8 @@ import javax.persistence.OneToOne;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ProductReviews extends BaseEntity {
+@NoArgsConstructor
+public class Reviews extends BaseEntity {
 
 
     public Long stars;
@@ -29,7 +32,7 @@ public class ProductReviews extends BaseEntity {
 
     public Boolean helpful;
 
-    @OneToOne
+    @ManyToOne
     private Product product;
 
 }

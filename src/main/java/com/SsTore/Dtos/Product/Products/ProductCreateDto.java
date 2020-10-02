@@ -5,7 +5,9 @@
 
 package com.SsTore.Dtos.Product.Products;
 
+import com.SsTore.Dtos.Product.Characteristics.CharacteristicCreateDto;
 import com.SsTore.Dtos.Product.Characteristics.CharacteristicDto;
+import com.SsTore.Dtos.Product.Specifications.SpecificationCreateDto;
 import com.SsTore.Dtos.Product.Specifications.SpecificationDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.springBootLibrary.models.BaseDto;
@@ -33,6 +35,6 @@ public class ProductCreateDto extends BaseDto {
     private List<Long> wareHousesId = new ArrayList<>();
     private List<Long> shippingMethodsId = new ArrayList<>();
 
-    private List<CharacteristicDto> characteristics = new ArrayList<>();
-    private List<SpecificationDto> specifications = new ArrayList<>();
+    private List<CharacteristicCreateDto> characteristics = new ArrayList<>();
+    private List<SpecificationCreateDto> specifications = new ArrayList<>();
 }

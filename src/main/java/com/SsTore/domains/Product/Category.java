@@ -37,4 +37,8 @@ public class Category extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "characteristic")
     private List<ProductCharacteristic> productCharacteristics = new ArrayList<>();
+
+    @OneToMany(mappedBy = "category")
+    private List<ProductCategories> productCategories = new ArrayList<>();
+
 }
