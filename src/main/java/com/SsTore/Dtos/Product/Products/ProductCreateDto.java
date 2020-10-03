@@ -24,7 +24,7 @@ public class ProductCreateDto extends BaseDto {
     private String name;
     private String overview;
     private String comment;
-    private Float price;
+    private Float salePrice;
     private Long qte;
 
     @JsonIgnoreProperties

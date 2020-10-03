@@ -5,11 +5,11 @@
 
 package com.SsTore.repositorys.Product;
 
-import com.SsTore.domains.Product.Solde;
+import com.SsTore.domains.Product.Discount;
 import com.springBootLibrary.repositorys.IBaseJpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ISoldeRepository extends IBaseJpaRepository<Solde> {
+public interface IDiscountRepository extends IBaseJpaRepository<Discount> {
 
 }

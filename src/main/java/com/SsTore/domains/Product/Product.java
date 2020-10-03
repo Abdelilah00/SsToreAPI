@@ -24,11 +24,11 @@ public class Product extends BaseEntity {
 
     private String comment;
 
-    private Float salePrice = 0F;
+    private Float salePrice = 0.0F;
 
     private Long qte = 0L;
 
-    private Boolean newest = true;
+    private boolean newest = true;
 
     @Column(length = Integer.MAX_VALUE)
     private String overview = "";
@@ -41,7 +41,7 @@ public class Product extends BaseEntity {
     private List<Image> images = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "product")
-    private Solde solde;
+    private Discount discount;
 
     //Many to Many
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")

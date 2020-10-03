@@ -30,9 +30,10 @@ import java.util.stream.Collectors;
 @Service
 public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, ProductCreateDto, ProductUpdateDto> implements IProductService {
     private static final Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
+    private final Pageable pageable = PageRequest.of(0, 8, Sort.by("id").descending());
+
     @Autowired
     private IProductRepository iProductRepository;
-    private final Pageable pageable = PageRequest.of(0, 8, Sort.by("id").descending());
     @Autowired
     private ICategoryRepository iCategoryRepository;
 
@@ -151,7 +152,7 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
     }
 
 
-    public CompletableFuture<List<ProductDto>> getBestSealed() {
+    public CompletableFuture<List<ProductDto>> getBestSelling() {
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
     }
 

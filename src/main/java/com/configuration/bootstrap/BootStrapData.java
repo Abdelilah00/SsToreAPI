@@ -5,12 +5,12 @@
 
 package com.configuration.bootstrap;
 
-import com.SsTore.Dtos.Product.Categories.CategoryCreateDto;
 import com.SsTore.Dtos.Product.Tags.TagCreateDto;
 import com.SsTore.Dtos.Product.WareHouses.WareHouseCreateDto;
+import com.SsTore.domains.Product.Category;
 import com.SsTore.domains.Product.ShippingMethod;
+import com.SsTore.repositorys.Product.ICategoryRepository;
 import com.SsTore.repositorys.Product.IShppingMethodesRepository;
-import com.SsTore.services.Product.ICategoryService;
 import com.SsTore.services.Product.ITagService;
 import com.SsTore.services.Product.IWareHouseService;
 import com.configuration.TenantContext;
@@ -26,7 +26,7 @@ public class BootStrapData implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
 
     @Autowired
-    private ICategoryService iCategoryService;
+    private ICategoryRepository iCategoryRepository;
     @Autowired
     private ITagService iTagService;
     @Autowired
@@ -49,30 +49,34 @@ public class BootStrapData implements CommandLineRunner {
         iUserRepository.save(user1);
 */
         //////////////////////////////////////////
-        /*var cat1 = new CategoryCreateDto();
-        cat1.setName("Category A");
-        iCategoryService.create(cat1);
+        /*var catA = new Category();
+        catA.setName("Category A");
+        iCategoryRepository.save(catA);
 
-        var cat4 = new CategoryCreateDto();
-        cat4.setName("Category B");
-        iCategoryService.create(cat4);
+        var catAA = new Category();
+        catAA.setName("Category AA");
+        catAA.setParent(catA);
+        iCategoryRepository.save(catAA);
 
-        var cat2 = new CategoryCreateDto();
-        cat2.setName("Category AA");
-        iCategoryService.create(cat2);
+        var catAB = new Category();
+        catAB.setName("Category AB");
+        catAB.setParent(catA);
+        iCategoryRepository.save(catAB);
 
-        var cat3 = new CategoryCreateDto();
-        cat3.setName("Category AB");
-        iCategoryService.create(cat3);
+        var catB = new Category();
+        catB.setName("Category B");
+        iCategoryRepository.save(catB);
 
+        var catBA = new Category();
+        catBA.setName("Category BA");
+        catBA.setParent(catB);
+        iCategoryRepository.save(catBA);
 
-        var cat5 = new CategoryCreateDto();
-        cat5.setName("Category BA");
-        iCategoryService.create(cat5);
+        var catBB = new Category();
+        catBB.setName("Category BB");
+        catBB.setParent(catB);
+        iCategoryRepository.save(catBB);
 
-        var cat6 = new CategoryCreateDto();
-        cat6.setName("Category BB");
-        iCategoryService.create(cat6);
 
         //////////////////////////////////////////
         var tag1 = new TagCreateDto();

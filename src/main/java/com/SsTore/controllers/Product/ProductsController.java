@@ -79,7 +79,7 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         var tmp = ((IProductService) service).getRelated(id).get();
         tmp.forEach(prod -> {
             prod.setImageCover(prod.getImages().get(0).getUrl());
-            prod.setSale(true);
+            //prod.setSale(true);
         });
         return tmp;
     }
@@ -89,17 +89,17 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         var tmp = ((IProductService) service).getByCategory(categoryId).get();
         tmp.forEach(prod -> {
             prod.setImageCover(prod.getImages().get(0).getUrl());
-            prod.setSale(true);
+            //prod.setSale(true);
         });
         return tmp;
     }
 
-    @GetMapping(path = "/getBestSealed")
-    protected List<ProductDto> getBestSealed() throws ExecutionException, InterruptedException {
-        var tmp = ((IProductService) service).getBestSealed().get();
+    @GetMapping(path = "/getBestSelling")
+    protected List<ProductDto> getBestSelling() throws ExecutionException, InterruptedException {
+        var tmp = ((IProductService) service).getBestSelling().get();
         tmp.forEach(prod -> {
             prod.setImageCover(prod.getImages().get(0).getUrl());
-            prod.setSale(true);
+            //prod.setSale(true);
         });
         return tmp;
     }
@@ -125,7 +125,7 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         tmp.forEach(prod -> {
 
             prod.setImageCover(prod.getImages().get(0).getUrl());
-            prod.setSale(true);
+            //prod.setSale(true);
 
         });
         return tmp;

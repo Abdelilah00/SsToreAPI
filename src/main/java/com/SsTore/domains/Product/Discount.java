@@ -13,6 +13,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import java.util.Date;
 
 /**
  *
@@ -22,8 +23,9 @@ import javax.persistence.OneToOne;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Solde extends BaseEntity {
-    public Float percent;
+public class Discount extends BaseEntity {
+    private Float percent;
+    private Date endDate = new Date();
 
     @OneToOne
     private Product product;

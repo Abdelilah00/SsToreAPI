@@ -13,9 +13,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -33,10 +31,10 @@ public class Category extends BaseEntity {
     private Category parent;
 
     @OneToMany(mappedBy = "parent")
-    private Set<Category> children = new HashSet<>();
-
+    private List<Category> children = new ArrayList<>();
+/*
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "characteristic")
-    private List<ProductCharacteristic> productCharacteristics = new ArrayList<>();
+    private List<ProductCharacteristic> productCharacteristics = new ArrayList<>();*/
 
     @OneToMany(mappedBy = "category")
     private List<ProductCategories> productCategories = new ArrayList<>();

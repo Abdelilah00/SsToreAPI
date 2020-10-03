@@ -11,6 +11,8 @@ import org.hibernate.annotations.*;
 
 import javax.persistence.MappedSuperclass;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -27,10 +29,10 @@ public abstract class BaseEntity extends IdEntity {
     private long tenantId;
 
     @CreationTimestamp
-    private Date createdAt;
+    private LocalDateTime createdAt;
     @UpdateTimestamp
-    private Date updatedAt;
-    private Date deletedAt = null;
+    private LocalDateTime updatedAt;
+    private LocalDateTime deletedAt = null;
 
     private long createdBy;
     private long updatedBy;

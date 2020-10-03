@@ -23,7 +23,7 @@ public interface IProductService extends IBaseCrudService<Product, ProductDto, P
 
     CompletableFuture<List<String>> getNamesByQuery(String query);
 
-    CompletableFuture<List<ProductDto>> getBestSealed();
+    CompletableFuture<List<ProductDto>> getBestSelling();
 
     CompletableFuture<List<ProductDto>> getNewest();
 }
