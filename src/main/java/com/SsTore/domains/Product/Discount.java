@@ -24,7 +24,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Discount extends BaseEntity {
-    private Float percent;
+    private Float percent = 0F;
     private Date endDate = new Date();
 
     @OneToOne

@@ -34,14 +34,15 @@ public class Product extends BaseEntity {
     private String overview = "";
 
     //One To Many
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product")
+    private Discount discount;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<Specification> specifications = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<Image> images = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product")
-    private Discount discount;
 
     //Many to Many
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
@@ -63,6 +64,16 @@ public class Product extends BaseEntity {
     //TODO : Link this with Accounts
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<Reviews> reviews = new ArrayList<>();
+
+
+    public boolean getOnSale() {
+        return discount != null;
+    }
+
+    public Float getPrice() {
+        if (getOnSale()) return salePrice - discount.getPercent() * salePrice;
+        return salePrice;
+    }
 
     //TODO : Stock Qte @Formula
     //@Formula("select (p.qte - SUM(o.qte)) stockQte from product p inner join orderdetails o on p.id = o.product_id where p.id=1")

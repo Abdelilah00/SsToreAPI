@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 @Service
 public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, ProductCreateDto, ProductUpdateDto> implements IProductService {
     private static final Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
-    private final Pageable pageable = PageRequest.of(0, 8, Sort.by("id").descending());
+    private final Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").descending());
 
     @Autowired
     private IProductRepository iProductRepository;
@@ -105,13 +105,16 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         }
         product.setProductCharacteristics(productCharacteristics);
 
+        //Update newest list
+        var list = iProductRepository.findAll(pageable).toList();
+        if (list.size() > 7) {
+            var firstNewest = list.get(7);
+            firstNewest.setNewest(false);
+            iProductRepository.save(firstNewest);
+        }
+
         //save Product
         iProductRepository.save(product);
-
-        //Update newest list
-        var firstNewest = iProductRepository.findAll(pageable).toList().get(0);
-        firstNewest.setNewest(false);
-        iProductRepository.save(firstNewest);
 
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
@@ -145,26 +148,19 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(result, ProductDto.class));
     }
 
-    public CompletableFuture<List<String>> getNamesByQuery(String query) {
+    /*public CompletableFuture<List<String>> getNamesByQuery(String query) {
         var tmp = iProductRepository.findNameByNameContains(query);
         var list = tmp.stream().map(Product::getName).collect(Collectors.toList());
         return CompletableFuture.completedFuture(list);
+    }*/
+
+    public CompletableFuture<List<ProductDto>> getNewest() {
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findByNewestIsTrueOrderByCreatedAtDesc(), ProductDto.class));
     }
 
 
     public CompletableFuture<List<ProductDto>> getBestSelling() {
+        //TODO: link this with order details
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
-    }
-
-    public CompletableFuture<List<ProductDto>> getNewest() {
-        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findAll(pageable).toList(), ProductDto.class));
-    }
-
-    @Override
-    public CompletableFuture<ProductDto> findById(Long aLong) {
-        var tmp = repository.findById(aLong).get();
-        ProductDto dto = objectMapper.convertToDto(tmp, ProductDto.class);
-
-        return CompletableFuture.completedFuture(dto);
     }
 }

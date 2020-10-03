@@ -11,13 +11,12 @@ import com.SsTore.Dtos.Product.Images.ImageDto;
 import com.SsTore.Dtos.Product.ShippingMethods.ShippingMethodDto;
 import com.SsTore.Dtos.Product.Specifications.SpecificationDto;
 import com.SsTore.Dtos.Product.Tags.TagDto;
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.springBootLibrary.models.BaseDto;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,8 +35,9 @@ public class ProductDto extends BaseDto {
     private String imageCover;
     private boolean newest;
 
-    private DiscountDto discount = new DiscountDto();
-    //private boolean sale = false;
+    private DiscountDto discount;
+    private boolean onSale;
+
     private Long stockQte = 10L;
 
 
@@ -58,7 +58,5 @@ public class ProductDto extends BaseDto {
         return images;
     }
 
-    public Float getPrice() {
-        return salePrice - discount.getPercent() * salePrice;
-    }
+
 }

@@ -109,16 +109,15 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         var tmp = ((IProductService) service).getNewest().get();
         tmp.forEach(prod -> {
             prod.setImageCover(prod.getImages().get(0).getUrl());
-            prod.setNewest(true);
         });
         return tmp;
     }
 
-    @GetMapping(path = "/getNamesByQuery/{query}")
+   /* @GetMapping(path = "/getNamesByQuery/{query}")
     protected List<String> getNamesByQuery(@PathVariable(value = "query") String query) throws ExecutionException, InterruptedException {
         return ((IProductService) service).getNamesByQuery(query).get();
     }
-
+*/
     @GetMapping(path = "/getByQuery/{query}")
     protected List<ProductDto> getByQuery(@PathVariable(value = "query") String query) throws ExecutionException, InterruptedException {
         var tmp = ((IProductService) service).getByQuery(query).get();

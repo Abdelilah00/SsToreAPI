@@ -10,6 +10,6 @@ import java.util.Date;
 @Setter
 public class DiscountDto extends BaseDto {
     private Float percent = 0F;
-    private Date endDate = new Date();
+    private Date endDate;
 }
 

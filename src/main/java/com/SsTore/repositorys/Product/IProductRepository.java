@@ -23,7 +23,9 @@ public interface IProductRepository extends IBaseJpaRepository<Product> {
 
     List<Product> findByNameContains(String query);
 
+    List<Product> findByNewestIsTrueOrderByCreatedAtDesc();
+
     //TODO: return names only
-    List<Product> findNameByNameContains(String query);
+    //List<Product> findNameByNameContains(String query);
 }
 
