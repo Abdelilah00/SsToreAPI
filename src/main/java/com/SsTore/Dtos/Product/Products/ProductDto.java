@@ -16,7 +16,6 @@ import com.springBootLibrary.models.BaseDto;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,7 +37,7 @@ public class ProductDto extends BaseDto {
     private DiscountDto discount;
     private boolean onSale;
 
-    private Long stockQte = 10L;
+    private Long stockQte;
 
 
     private List<ImageDto> images = new ArrayList<>();

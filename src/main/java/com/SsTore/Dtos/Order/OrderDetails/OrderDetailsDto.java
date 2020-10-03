@@ -8,5 +8,5 @@ import lombok.Setter;
 public class OrderDetailsDto {
     private Long productId;
     private Long qte;
-    private Float price;
+    //private Float price;
 }

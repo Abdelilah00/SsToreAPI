@@ -37,7 +37,7 @@ public class OrderService extends BaseCrudServiceImpl<Order, OrderDto, OrderCrea
             var od = new OrderDetails();
             od.getProduct().setId(orderDetail.getProductId());
             od.setQte(orderDetail.getQte());
-            od.setPrice(orderDetail.getPrice());
+            //od.setPrice(orderDetail.getPrice());
             od.setOrder(order);
             return od;
         }).collect(Collectors.toList()));

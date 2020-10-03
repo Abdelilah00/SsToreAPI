@@ -26,5 +26,6 @@ public class OrderCreateDto extends BaseDto {
     private String customerZip;
 
     private List<OrderDetailsDto> orderDetails;
+    //TODO: Add selected characteristics
 }
 

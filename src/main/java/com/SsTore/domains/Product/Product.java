@@ -7,6 +7,7 @@ package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -70,13 +71,12 @@ public class Product extends BaseEntity {
         return discount != null;
     }
 
+    @Formula("(select p.qte - IFNULL(SUM(o.qte), 0) from product p inner join orderdetails o on p.id = o.product_id where p.id = id)")
+    private Long stockQte;
+
+    //TODO: using @Formula
     public Float getPrice() {
         if (getOnSale()) return salePrice - discount.getPercent() * salePrice;
         return salePrice;
     }
-
-    //TODO : Stock Qte @Formula
-    //@Formula("select (p.qte - SUM(o.qte)) stockQte from product p inner join orderdetails o on p.id = o.product_id where p.id=1")
-    //@Transient
-    //private Long stockQte;
 }
