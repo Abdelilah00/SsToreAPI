@@ -8,6 +8,7 @@ package com.SsTore.Dtos.Product.Products;
 import com.SsTore.Dtos.Product.Characteristics.CharacteristicDto;
 import com.SsTore.Dtos.Product.Discounts.DiscountDto;
 import com.SsTore.Dtos.Product.Images.ImageDto;
+import com.SsTore.Dtos.Product.Reviews.ReviewsDto;
 import com.SsTore.Dtos.Product.ShippingMethods.ShippingMethodDto;
 import com.SsTore.Dtos.Product.Specifications.SpecificationDto;
 import com.SsTore.Dtos.Product.Tags.TagDto;
@@ -38,8 +39,10 @@ public class ProductDto extends BaseDto {
     private boolean onSale;
 
     private Long stockQte;
+    private Float startGlobal;
 
 
+    private List<ReviewsDto> reviews = new ArrayList<>();
     private List<ImageDto> images = new ArrayList<>();
     private List<CharacteristicDto> productCharacteristics = new ArrayList<>();
     private List<TagDto> productTags = new ArrayList<>();
@@ -56,6 +59,4 @@ public class ProductDto extends BaseDto {
         }).collect(Collectors.toList());
         return images;
     }
-
-
 }

@@ -5,12 +5,14 @@
 
 package com.configuration.bootstrap;
 
+import com.SsTore.Dtos.Product.Reviews.ReviewsCreateDto;
 import com.SsTore.Dtos.Product.Tags.TagCreateDto;
 import com.SsTore.Dtos.Product.WareHouses.WareHouseCreateDto;
 import com.SsTore.domains.Product.Category;
 import com.SsTore.domains.Product.ShippingMethod;
 import com.SsTore.repositorys.Product.ICategoryRepository;
 import com.SsTore.repositorys.Product.IShppingMethodesRepository;
+import com.SsTore.services.Product.IReviewService;
 import com.SsTore.services.Product.ITagService;
 import com.SsTore.services.Product.IWareHouseService;
 import com.configuration.TenantContext;
@@ -24,7 +26,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class BootStrapData implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
-
     @Autowired
     private ICategoryRepository iCategoryRepository;
     @Autowired
@@ -32,9 +33,13 @@ public class BootStrapData implements CommandLineRunner {
     @Autowired
     private IWareHouseService iWareHouseService;
     @Autowired
+    private IReviewService iReviewService;
+
+    @Autowired
     private IShppingMethodesRepository iShppingMethodesRepository;
     @Autowired
     private IUserRepository iUserRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -49,6 +54,7 @@ public class BootStrapData implements CommandLineRunner {
         iUserRepository.save(user1);
 */
         //////////////////////////////////////////
+
         /*var catA = new Category();
         catA.setName("Category A");
         iCategoryRepository.save(catA);
@@ -107,6 +113,23 @@ public class BootStrapData implements CommandLineRunner {
         //////////////////////////////////////////
         var shippingMethod1 = new ShippingMethod();
         shippingMethod1.setName("DHL");
-        iShppingMethodesRepository.save(shippingMethod1);*/
+        iShppingMethodesRepository.save(shippingMethod1);
+
+
+        // uncomment
+        for (int i = 1; i < 9; i++) {
+            var tmp = new ReviewsCreateDto();
+            tmp.setProductId(1);
+            tmp.setComment("good product i recommended");
+            tmp.setStars(1.0f + (float) Math.random() * 4.0f);
+            iReviewService.create(tmp);
+
+            var tmp2 = new ReviewsCreateDto();
+            tmp2.setProductId(i);
+            tmp2.setComment("good product i recommended");
+            tmp2.setStars(1.0f + (float) Math.random() * 4.0f);
+            iReviewService.create(tmp2);
+        }*/
+
     }
 }

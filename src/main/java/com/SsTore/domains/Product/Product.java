@@ -61,9 +61,7 @@ public class Product extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<ProductIn> productInList = new ArrayList<>();
 
-
-    //TODO : Link this with Accounts
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<Reviews> reviews = new ArrayList<>();
 
 
@@ -73,10 +71,15 @@ public class Product extends BaseEntity {
 
     @Formula("(select p.qte - IFNULL(SUM(o.qte), 0) from product p inner join orderdetails o on p.id = o.product_id where p.id = id)")
     private Long stockQte;
+    @Formula("(select round(sum(r.stars)/count(r.stars),2) from reviews r inner join product p on r.product_id = p.id where p.id = id)")
+    private Float startGlobal;
 
     //TODO: using @Formula
     public Float getPrice() {
-        if (getOnSale()) return salePrice - discount.getPercent() * salePrice;
+        if (getOnSale()) {
+            float price = salePrice - discount.getPercent() * salePrice;
+            return Float.valueOf(String.format("%.2f", price));
+        }
         return salePrice;
     }
 }

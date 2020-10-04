@@ -10,10 +10,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -24,15 +24,16 @@ import javax.persistence.OneToOne;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reviews extends BaseEntity {
+    @Range(min = 0, max = 5)
+    private Float stars;
 
+    private String comment;
 
-    public Long stars;
-
-    public String review;
-
-    public Boolean helpful;
+    //private Boolean helpful;
 
     @ManyToOne
     private Product product;
+
+    //TODO: add customer or account
 
 }

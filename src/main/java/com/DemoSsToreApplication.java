@@ -23,6 +23,7 @@ import java.util.concurrent.Executor;
 @EnableAsync
 @EnableAspectJAutoProxy
 public class DemoSsToreApplication {
+    //TODO: add validators to DTOs and Domains
     public static void main(String[] args) {
         SpringApplication.run(DemoSsToreApplication.class, args);
     }
