@@ -11,6 +11,7 @@ import com.SsTore.Dtos.Product.Products.ProductUpdateDto;
 import com.SsTore.domains.Product.Product;
 import com.SsTore.services.Product.IProductService;
 import com.SsTore.services.utils.Files.IFileService;
+import com.configuration.Exception.UserFriendlyException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springBootLibrary.controllers.BaseCrudController;
 import com.sun.istack.NotNull;
@@ -35,7 +36,7 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
 
     @PostMapping(path = "/withImages")
     public CompletableFuture<ProductDto> withImages(@RequestPart("images") @Valid @NotNull @NotBlank List<MultipartFile> images,
-                                                    @RequestPart("product") @Valid String productInfo) throws IOException {
+                                                    @RequestPart("product") @Valid String productInfo) throws IOException, UserFriendlyException {
         //resize for Cover image
         //iFileService.saveCoverMultipartFile(images.get(0));
 

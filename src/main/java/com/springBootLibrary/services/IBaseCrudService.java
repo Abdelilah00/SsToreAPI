@@ -5,6 +5,7 @@
 
 package com.springBootLibrary.services;
 
+import com.configuration.Exception.UserFriendlyException;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +40,7 @@ public interface IBaseCrudService<TEntity, TDto, TCreateDto, TUpdateDto> {
     TDto getOne(Long aLong) throws InterruptedException;
 
     @Async
-    CompletableFuture<TDto> create(TCreateDto dto);
+    CompletableFuture<TDto> create(TCreateDto dto) throws UserFriendlyException;
 
     @Async
     CompletableFuture<TDto> update(TUpdateDto dto);

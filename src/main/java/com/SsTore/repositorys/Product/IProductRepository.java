@@ -7,6 +7,7 @@ package com.SsTore.repositorys.Product;
 
 import com.SsTore.domains.Product.Product;
 import com.springBootLibrary.repositorys.IBaseJpaRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -27,5 +28,8 @@ public interface IProductRepository extends IBaseJpaRepository<Product> {
 
     //TODO: return names only
     //List<Product> findNameByNameContains(String query);
+
+    @Query("select p from Product p left join OrderDetails od on p.id = od.product.id group by p.id  order by COALESCE(SUM(od.qte),0) desc")
+    List<Product> findBestSelling(Pageable pageable);
 }
 

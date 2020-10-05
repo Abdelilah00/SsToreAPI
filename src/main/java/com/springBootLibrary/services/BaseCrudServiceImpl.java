@@ -5,6 +5,7 @@
 
 package com.springBootLibrary.services;
 
+import com.configuration.Exception.UserFriendlyException;
 import com.springBootLibrary.models.BaseDto;
 import com.springBootLibrary.models.BaseEntity;
 import com.springBootLibrary.repositorys.IBaseJpaRepository;
@@ -57,7 +58,7 @@ public class BaseCrudServiceImpl<TEntity extends BaseEntity,
     }
 
     @Override
-    public CompletableFuture<TDto> create(TCreateDto entity) {
+    public CompletableFuture<TDto> create(TCreateDto entity) throws UserFriendlyException {
         var tmp = objectMapper.convertToEntity(entity);
         return CompletableFuture.completedFuture(objectMapper.convertToDto(repository.save(tmp), dtoCreateClass));
     }

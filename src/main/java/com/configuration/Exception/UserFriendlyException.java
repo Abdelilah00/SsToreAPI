@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @RequiredArgsConstructor
-public class UserFriendlyException extends Throwable {
+public class UserFriendlyException extends Exception {
     private static final long serialVersionUID = 1L;
 
     @NotNull

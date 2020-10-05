@@ -1,5 +1,6 @@
 package com.SsTore.domains.Account;
 
+import com.SsTore.domains.Product.Reviews;
 import com.springBootLibrary.models.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -34,4 +36,6 @@ public class Customer extends BaseEntity {
     private String city;
     private String zip;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "customer")
+    private Reviews reviews;
 }

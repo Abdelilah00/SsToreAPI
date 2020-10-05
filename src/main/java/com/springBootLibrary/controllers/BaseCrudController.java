@@ -36,7 +36,7 @@ public abstract class BaseCrudController<TEntity extends IdEntity, TDto extends 
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    protected TDto create(@Valid @RequestBody TCreateDto dto) throws ExecutionException, InterruptedException {
+    protected TDto create(@Valid @RequestBody TCreateDto dto) throws ExecutionException, InterruptedException, UserFriendlyException {
         return service.create(dto).get();
     }
 

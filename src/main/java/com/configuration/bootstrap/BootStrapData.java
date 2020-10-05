@@ -40,6 +40,8 @@ public class BootStrapData implements CommandLineRunner {
     @Autowired
     private IUserRepository iUserRepository;
 
+    private final boolean first = true;
+    private final boolean start = false;
 
     @Override
     public void run(String... args) throws Exception {
@@ -55,81 +57,83 @@ public class BootStrapData implements CommandLineRunner {
 */
         //////////////////////////////////////////
 
-        /*var catA = new Category();
-        catA.setName("Category A");
-        iCategoryRepository.save(catA);
+        if (first && start) {
+            var catA = new Category();
+            catA.setName("Category A");
+            iCategoryRepository.save(catA);
 
-        var catAA = new Category();
-        catAA.setName("Category AA");
-        catAA.setParent(catA);
-        iCategoryRepository.save(catAA);
+            var catAA = new Category();
+            catAA.setName("Category AA");
+            catAA.setParent(catA);
+            iCategoryRepository.save(catAA);
 
-        var catAB = new Category();
-        catAB.setName("Category AB");
-        catAB.setParent(catA);
-        iCategoryRepository.save(catAB);
+            var catAB = new Category();
+            catAB.setName("Category AB");
+            catAB.setParent(catA);
+            iCategoryRepository.save(catAB);
 
-        var catB = new Category();
-        catB.setName("Category B");
-        iCategoryRepository.save(catB);
+            var catB = new Category();
+            catB.setName("Category B");
+            iCategoryRepository.save(catB);
 
-        var catBA = new Category();
-        catBA.setName("Category BA");
-        catBA.setParent(catB);
-        iCategoryRepository.save(catBA);
+            var catBA = new Category();
+            catBA.setName("Category BA");
+            catBA.setParent(catB);
+            iCategoryRepository.save(catBA);
 
-        var catBB = new Category();
-        catBB.setName("Category BB");
-        catBB.setParent(catB);
-        iCategoryRepository.save(catBB);
-
-
-        //////////////////////////////////////////
-        var tag1 = new TagCreateDto();
-        tag1.setName("Tag A");
-        iTagService.create(tag1);
-
-        var tag2 = new TagCreateDto();
-        tag2.setName("Tag B");
-        iTagService.create(tag2);
-
-        var tag3 = new TagCreateDto();
-        tag3.setName("Tag C");
-        iTagService.create(tag3);
-
-        //////////////////////////////////////////
-        var wHouse1 = new WareHouseCreateDto();
-        wHouse1.setCountry("wHouse 1");
-        iWareHouseService.create(wHouse1);
-
-        var wHouse2 = new WareHouseCreateDto();
-        wHouse2.setCountry("wHouse 2");
-        iWareHouseService.create(wHouse2);
-
-        var wHouse3 = new WareHouseCreateDto();
-        wHouse3.setCountry("wHouse 3");
-        iWareHouseService.create(wHouse3);
-
-        //////////////////////////////////////////
-        var shippingMethod1 = new ShippingMethod();
-        shippingMethod1.setName("DHL");
-        iShppingMethodesRepository.save(shippingMethod1);
+            var catBB = new Category();
+            catBB.setName("Category BB");
+            catBB.setParent(catB);
+            iCategoryRepository.save(catBB);
 
 
-        // uncomment
-        for (int i = 1; i < 9; i++) {
-            var tmp = new ReviewsCreateDto();
-            tmp.setProductId(1);
-            tmp.setComment("good product i recommended");
-            tmp.setStars(1.0f + (float) Math.random() * 4.0f);
-            iReviewService.create(tmp);
+            //////////////////////////////////////////
+            var tag1 = new TagCreateDto();
+            tag1.setName("Tag A");
+            iTagService.create(tag1);
 
-            var tmp2 = new ReviewsCreateDto();
-            tmp2.setProductId(i);
-            tmp2.setComment("good product i recommended");
-            tmp2.setStars(1.0f + (float) Math.random() * 4.0f);
-            iReviewService.create(tmp2);
-        }*/
+            var tag2 = new TagCreateDto();
+            tag2.setName("Tag B");
+            iTagService.create(tag2);
+
+            var tag3 = new TagCreateDto();
+            tag3.setName("Tag C");
+            iTagService.create(tag3);
+
+            //////////////////////////////////////////
+            var wHouse1 = new WareHouseCreateDto();
+            wHouse1.setCountry("wHouse 1");
+            iWareHouseService.create(wHouse1);
+
+            var wHouse2 = new WareHouseCreateDto();
+            wHouse2.setCountry("wHouse 2");
+            iWareHouseService.create(wHouse2);
+
+            var wHouse3 = new WareHouseCreateDto();
+            wHouse3.setCountry("wHouse 3");
+            iWareHouseService.create(wHouse3);
+
+            //////////////////////////////////////////
+            var shippingMethod1 = new ShippingMethod();
+            shippingMethod1.setName("DHL");
+            iShppingMethodesRepository.save(shippingMethod1);
+        }
+        if (!first && start) {
+            for (int i = 1; i < 9; i++) {
+                var tmp = new ReviewsCreateDto();
+                tmp.setProductId(1);
+                tmp.setComment("good product i recommended");
+                tmp.setStars(1.0f + (float) Math.random() * 4.0f);
+                iReviewService.create(tmp);
+
+                var tmp2 = new ReviewsCreateDto();
+                tmp2.setProductId(i);
+                tmp2.setComment("good product i recommended");
+                tmp2.setStars(1.0f + (float) Math.random() * 4.0f);
+                iReviewService.create(tmp2);
+            }
+        }
+
 
     }
 }
