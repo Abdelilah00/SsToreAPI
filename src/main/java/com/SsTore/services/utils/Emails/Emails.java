@@ -1,21 +1,28 @@
 package com.SsTore.services.utils.Emails;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
 import javax.mail.*;
-import javax.mail.internet.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
-public class Emails {
-    //@Value("${gmail.email}")
-    private final String email = "zulaufhollis0@gmail.com";
-    //@Value("${gmail.password}")
-    private final String password = "gOQgXnRlCG";
+public class Emails implements IEmails {
+    @Value("${gmail.email}")
+    private String email;
+    @Value("${gmail.password}")
+    private String password;
 
     //send welcome subs
-    //send wish list changes
+    //send wish list discounts changes
     //send order confirmation
-    //send offers
+    //***send offers
 
     public void sendEmail(String to) throws MessagingException, IOException {
         Properties props = new Properties();
@@ -34,18 +41,19 @@ public class Emails {
 
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
         msg.setSubject("Tutorials point email");
-        msg.setContent("Tutorials point email", "text/html");
+        msg.setContent("Tutorials point email Subject", "text/html");
         msg.setSentDate(new Date());
 
         MimeBodyPart messageBodyPart = new MimeBodyPart();
-        messageBodyPart.setContent("Tutorials point email", "text/html");
+        messageBodyPart.setContent("Tutorials point email From li Chwak sponsored by Google SMTP protocol", "text/html");
 
         Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(messageBodyPart);
-        MimeBodyPart attachPart = new MimeBodyPart();
 
+        MimeBodyPart attachPart = new MimeBodyPart();
         attachPart.attachFile("C:\\Users\\Alexis\\IdeaProjects\\SsToreAPI\\src\\main\\resources\\uploads\\images\\1601727606642_2020-09-07_010219.png");
         multipart.addBodyPart(attachPart);
+
         msg.setContent(multipart);
         Transport.send(msg);
     }

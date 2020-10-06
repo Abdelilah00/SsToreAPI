@@ -16,6 +16,7 @@ import com.SsTore.services.Product.IReviewService;
 import com.SsTore.services.Product.ITagService;
 import com.SsTore.services.Product.IWareHouseService;
 import com.SsTore.services.utils.Emails.Emails;
+import com.SsTore.services.utils.Emails.IEmails;
 import com.configuration.TenantContext;
 import com.configuration.security.repositorys.IUserRepository;
 import org.slf4j.Logger;
@@ -59,9 +60,8 @@ public class BootStrapData implements CommandLineRunner {
         iUserRepository.save(user1);
 */
         //////////////////////////////////////////
-
-        var email = new Emails();
-        email.sendEmail("abdelilah0dehaoui@outlook.fr");
+        var x = new Emails();
+        x.sendEmail("abdelilah0dehaoui@outlook.fr");
 
         if (first && start) {
             var catA = new Category();
