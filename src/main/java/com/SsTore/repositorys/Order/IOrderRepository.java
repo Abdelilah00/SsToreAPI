@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IOrderRepository extends IBaseJpaRepository<Order> {
-    @Query("select (COUNT(o)>0) as ordred from Order o inner join OrderDetails od on o.id= od.order.id where o.customer.id=:customerId and od.product.id=:productId")
-    boolean isAlreadyOrdered(@Param("customerId") Long customerId, @Param("productId") Long productId);
+    @Query("select (COUNT(o)>0) as ordred from Order o inner join OrderDetails od on o.id= od.order.id where o.customer.email=:customerEmail and od.product.id=:productId")
+    boolean isAlreadyOrdered(@Param("customerEmail") String customerEmail, @Param("productId") Long productId);
 }

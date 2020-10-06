@@ -5,6 +5,7 @@
 
 package com.SsTore.repositorys.Product;
 
+import com.SsTore.domains.Account.Customer;
 import com.SsTore.domains.Product.Category;
 import com.springBootLibrary.repositorys.IBaseJpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,3 +22,4 @@ public interface ICategoryRepository extends IBaseJpaRepository<Category> {
 
     List<Category> findByParentIdIsNull();
 }
+

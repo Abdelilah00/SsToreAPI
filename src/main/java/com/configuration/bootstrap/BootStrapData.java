@@ -15,6 +15,7 @@ import com.SsTore.repositorys.Product.IShppingMethodesRepository;
 import com.SsTore.services.Product.IReviewService;
 import com.SsTore.services.Product.ITagService;
 import com.SsTore.services.Product.IWareHouseService;
+import com.SsTore.services.utils.Emails.Emails;
 import com.configuration.TenantContext;
 import com.configuration.security.repositorys.IUserRepository;
 import org.slf4j.Logger;
@@ -22,6 +23,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import javax.validation.constraints.Email;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
@@ -56,6 +59,9 @@ public class BootStrapData implements CommandLineRunner {
         iUserRepository.save(user1);
 */
         //////////////////////////////////////////
+
+        var email = new Emails();
+        email.sendEmail("abdelilah0dehaoui@outlook.fr");
 
         if (first && start) {
             var catA = new Category();

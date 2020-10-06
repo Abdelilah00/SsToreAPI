@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IReviewsRepository extends IBaseJpaRepository<Reviews> {
-    @Query("select (count(r) > 0) as reviewed from Reviews r where r.customer.id=:customerId and r.product.id=:productId ")
-    boolean isAlreadyReviewed(@Param("customerId") Long customerId, @Param("productId") Long productId);
+    @Query("select (count(r) > 0) as reviewed from Reviews r where r.customer.email=:customerEmail and r.product.id=:productId ")
+    boolean isAlreadyReviewed(@Param("customerEmail") String customerEmail, @Param("productId") Long productId);
 }

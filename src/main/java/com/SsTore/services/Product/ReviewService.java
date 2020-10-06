@@ -5,6 +5,7 @@ import com.SsTore.Dtos.Product.Reviews.ReviewsDto;
 import com.SsTore.Dtos.Product.Reviews.ReviewsUpdateDto;
 import com.SsTore.domains.Product.Reviews;
 import com.SsTore.repositorys.Order.IOrderRepository;
+import com.SsTore.repositorys.Product.ICustomerRepository;
 import com.SsTore.repositorys.Product.IReviewsRepository;
 import com.configuration.Exception.UserFriendlyException;
 import com.springBootLibrary.services.BaseCrudServiceImpl;
@@ -23,14 +24,19 @@ public class ReviewService extends BaseCrudServiceImpl<Reviews, ReviewsDto, Revi
     private IOrderRepository iOrderRepository;
     @Autowired
     private IReviewsRepository iReviewsRepository;
+    @Autowired
+    private ICustomerRepository iCustomerRepository;
 
     @Override
+    //TODO: customerId -> customerEmail
     public CompletableFuture<ReviewsDto> create(ReviewsCreateDto entity) throws UserFriendlyException {
-        if (!iOrderRepository.isAlreadyOrdered(entity.getCustomerId(), entity.getProductId()))
+        if (!iOrderRepository.isAlreadyOrdered(entity.getCustomerEmail(), entity.getProductId()))
             throw new UserFriendlyException("order this item first");
-        if (iReviewsRepository.isAlreadyReviewed(entity.getCustomerId(), entity.getProductId()))
+        if (iReviewsRepository.isAlreadyReviewed(entity.getCustomerEmail(), entity.getProductId()))
             throw new UserFriendlyException("you already reviewed this product");
 
-        return super.create(entity);
+        var tmp = objectMapper.convertToEntity(entity);
+        tmp.getCustomer().setId(iCustomerRepository.findByEmail(entity.getCustomerEmail()).getId());
+        return CompletableFuture.completedFuture(objectMapper.convertToDto(repository.save(tmp), ReviewsDto.class));
     }
 }

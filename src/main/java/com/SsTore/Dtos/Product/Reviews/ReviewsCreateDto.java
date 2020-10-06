@@ -11,5 +11,6 @@ public class ReviewsCreateDto extends BaseDto {
     private String comment;
     //private Boolean helpful;
     private long productId;
-    private long customerId;
+    private String customerEmail;
+    private String customerFullName;
 }
