@@ -9,7 +9,7 @@ import com.SsTore.Dtos.Product.Characteristics.CharacteristicDto;
 import com.SsTore.Dtos.Product.Discounts.DiscountDto;
 import com.SsTore.Dtos.Product.Images.ImageDto;
 import com.SsTore.Dtos.Product.Reviews.ReviewsDto;
-import com.SsTore.Dtos.Product.ShippingMethods.ShippingMethodDto;
+import com.SsTore.Dtos.Product.ShippedBy.ShippedByDto;
 import com.SsTore.Dtos.Product.Specifications.SpecificationDto;
 import com.SsTore.Dtos.Product.Tags.TagDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -49,7 +49,7 @@ public class ProductDto extends BaseDto {
 
     //private List<Long> categoriesId = new ArrayList<>();
     //private List<Long> wareHouseId = new ArrayList<>();
-    private List<ShippingMethodDto> productShippedBy = new ArrayList<>();
+    private List<ShippedByDto> productShippedBy = new ArrayList<>();
     private List<SpecificationDto> specifications = new ArrayList<>();
 
     public List<ImageDto> getImages() {

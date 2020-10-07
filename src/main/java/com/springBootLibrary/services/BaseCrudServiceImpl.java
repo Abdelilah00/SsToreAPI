@@ -60,12 +60,12 @@ public class BaseCrudServiceImpl<TEntity extends BaseEntity,
     @Override
     public CompletableFuture<TDto> create(TCreateDto entity) throws UserFriendlyException {
         var tmp = objectMapper.convertToEntity(entity);
-        return CompletableFuture.completedFuture(objectMapper.convertToDto(repository.save(tmp), dtoCreateClass));
+        return CompletableFuture.completedFuture(objectMapper.convertToDto(repository.save(tmp), dtoClass));
     }
 
     @Override
     public CompletableFuture<TDto> update(TUpdateDto entity) {
-        return CompletableFuture.completedFuture(objectMapper.convertToDto(repository.save(objectMapper.convertToEntity(entity)), dtoUpdateClass));
+        return CompletableFuture.completedFuture(objectMapper.convertToDto(repository.save(objectMapper.convertToEntity(entity)), dtoClass));
     }
 
     @Override

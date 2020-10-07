@@ -3,7 +3,7 @@
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.SsTore.Dtos.Order;
+package com.SsTore.Dtos.Order.Orders;
 
 import com.SsTore.Dtos.Order.OrderDetails.OrderDetailsDto;
 import com.springBootLibrary.models.BaseDto;

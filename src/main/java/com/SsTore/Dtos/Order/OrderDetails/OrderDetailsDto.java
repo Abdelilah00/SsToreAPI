@@ -1,6 +1,5 @@
 package com.SsTore.Dtos.Order.OrderDetails;
 
-import com.SsTore.Dtos.Product.Characteristics.CharacteristicDto;
 import lombok.Getter;
 import lombok.Setter;
 

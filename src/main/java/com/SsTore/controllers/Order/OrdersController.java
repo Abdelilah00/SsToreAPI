@@ -6,9 +6,9 @@
 package com.SsTore.controllers.Order;
 
 
-import com.SsTore.Dtos.Order.OrderCreateDto;
-import com.SsTore.Dtos.Order.OrderDto;
-import com.SsTore.Dtos.Order.OrderUpdateDto;
+import com.SsTore.Dtos.Order.Orders.OrderCreateDto;
+import com.SsTore.Dtos.Order.Orders.OrderDto;
+import com.SsTore.Dtos.Order.Orders.OrderUpdateDto;
 import com.SsTore.domains.Order.Order;
 import com.springBootLibrary.controllers.BaseCrudController;
 import org.springframework.web.bind.annotation.RequestMapping;

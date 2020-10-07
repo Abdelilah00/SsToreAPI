@@ -9,14 +9,14 @@ import com.SsTore.Dtos.Product.Reviews.ReviewsCreateDto;
 import com.SsTore.Dtos.Product.Tags.TagCreateDto;
 import com.SsTore.Dtos.Product.WareHouses.WareHouseCreateDto;
 import com.SsTore.domains.Product.Category;
+import com.SsTore.domains.Product.ShippingCountry;
 import com.SsTore.domains.Product.ShippingMethod;
 import com.SsTore.repositorys.Product.ICategoryRepository;
+import com.SsTore.repositorys.Product.IShippingCountryRepository;
 import com.SsTore.repositorys.Product.IShppingMethodesRepository;
 import com.SsTore.services.Product.IReviewService;
 import com.SsTore.services.Product.ITagService;
 import com.SsTore.services.Product.IWareHouseService;
-import com.SsTore.services.utils.Emails.Emails;
-import com.SsTore.services.utils.Emails.IEmails;
 import com.configuration.TenantContext;
 import com.configuration.security.repositorys.IUserRepository;
 import org.slf4j.Logger;
@@ -24,8 +24,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import javax.validation.constraints.Email;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
@@ -43,6 +41,8 @@ public class BootStrapData implements CommandLineRunner {
     private IShppingMethodesRepository iShppingMethodesRepository;
     @Autowired
     private IUserRepository iUserRepository;
+    @Autowired
+    private IShippingCountryRepository iShippingCountryRepository;
 
     private final boolean first = true;
     private final boolean start = false;
@@ -60,8 +60,8 @@ public class BootStrapData implements CommandLineRunner {
         iUserRepository.save(user1);
 */
         //////////////////////////////////////////
-        var x = new Emails();
-        x.sendEmail("abdelilah0dehaoui@outlook.fr");
+        /*var x = new Emails();
+        x.sendEmail("abdelilah0dehaoui@outlook.fr");*/
 
         if (first && start) {
             var catA = new Category();
@@ -123,6 +123,11 @@ public class BootStrapData implements CommandLineRunner {
             var shippingMethod1 = new ShippingMethod();
             shippingMethod1.setName("DHL");
             iShppingMethodesRepository.save(shippingMethod1);
+
+            ////////////////////////////////////////
+            var country = new ShippingCountry();
+            country.setName("Canada");
+            iShippingCountryRepository.save(country);
         }
         if (!first && start) {
             for (int i = 1; i < 9; i++) {

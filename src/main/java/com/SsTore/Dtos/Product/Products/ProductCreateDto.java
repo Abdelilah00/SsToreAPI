@@ -6,9 +6,9 @@
 package com.SsTore.Dtos.Product.Products;
 
 import com.SsTore.Dtos.Product.Characteristics.CharacteristicCreateDto;
-import com.SsTore.Dtos.Product.Characteristics.CharacteristicDto;
+import com.SsTore.Dtos.Product.ShippedBy.ShippedByCreateDto;
+import com.SsTore.Dtos.Product.ShippedBy.ShippedByDto;
 import com.SsTore.Dtos.Product.Specifications.SpecificationCreateDto;
-import com.SsTore.Dtos.Product.Specifications.SpecificationDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.springBootLibrary.models.BaseDto;
 import lombok.Getter;
@@ -33,8 +33,9 @@ public class ProductCreateDto extends BaseDto {
     private List<Long> tagsId = new ArrayList<>();
     private List<Long> categoriesId = new ArrayList<>();
     private List<Long> wareHousesId = new ArrayList<>();
-    private List<Long> shippingMethodsId = new ArrayList<>();
 
     private List<CharacteristicCreateDto> characteristics = new ArrayList<>();
     private List<SpecificationCreateDto> specifications = new ArrayList<>();
+
+    private List<ShippedByCreateDto> shippedBy = new ArrayList<>();
 }

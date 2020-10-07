@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
@@ -36,7 +37,7 @@ public abstract class BaseCrudController<TEntity extends IdEntity, TDto extends 
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    protected TDto create(@Valid @RequestBody TCreateDto dto) throws ExecutionException, InterruptedException, UserFriendlyException {
+    protected TDto create(@Valid @RequestBody TCreateDto dto) throws ExecutionException, InterruptedException, UserFriendlyException, IOException, MessagingException {
         return service.create(dto).get();
     }
 

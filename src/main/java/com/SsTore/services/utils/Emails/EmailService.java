@@ -1,8 +1,7 @@
 package com.SsTore.services.utils.Emails;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -13,7 +12,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
-public class Emails implements IEmails {
+@Service
+public class EmailService implements IEmailService {
     @Value("${gmail.email}")
     private String email;
     @Value("${gmail.password}")
@@ -24,7 +24,7 @@ public class Emails implements IEmails {
     //send order confirmation
     //***send offers
 
-    public void sendEmail(String to) throws MessagingException, IOException {
+    public void sendWelcomeEmail(String to) throws MessagingException, IOException {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -50,9 +50,9 @@ public class Emails implements IEmails {
         Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(messageBodyPart);
 
-        MimeBodyPart attachPart = new MimeBodyPart();
+        /*MimeBodyPart attachPart = new MimeBodyPart();
         attachPart.attachFile("C:\\Users\\Alexis\\IdeaProjects\\SsToreAPI\\src\\main\\resources\\uploads\\images\\1601727606642_2020-09-07_010219.png");
-        multipart.addBodyPart(attachPart);
+        multipart.addBodyPart(attachPart);*/
 
         msg.setContent(multipart);
         Transport.send(msg);

@@ -1,9 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "gmail.email",
-      "type": "java.lang.String",
-      "description": "Description for gmail.email."
-    }
-  ]
-}

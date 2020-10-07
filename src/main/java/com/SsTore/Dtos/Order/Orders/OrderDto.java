@@ -1,4 +1,4 @@
-package com.SsTore.Dtos.Order;
+package com.SsTore.Dtos.Order.Orders;
 
 import com.springBootLibrary.models.BaseDto;
 import lombok.Getter;

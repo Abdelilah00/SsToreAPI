@@ -1,0 +1,65 @@
+{
+  "categoriesId": [
+    2
+  ],
+  "characteristics": [
+    {
+      "name": "taille",
+      "values": [
+        "1",
+        "2",
+        "3"
+      ]
+    },
+    {
+      "name": "color",
+      "values": [
+        "red",
+        "blue",
+        "size"
+      ]
+    }
+  ],
+  "comment": "stay insvisible",
+  "id": 0,
+  "name": "HiBREW expresso coffee machine capsule espresso machine, pod coffee maker Dolce gusto nespresso powder multiple capsule",
+  "overview": "Dose control grinding: Integrated conical burr grinder grinds on demand to deliver the right amount of freshly ground coffee directly into the portafilter for your preferred taste with any roast of bean Precise espresso extraction: Digital temperature control (PID) delivers water at precisely the right temperature, ensuring optimal Espresso extraction Micro foam milk texturing: The steam wand performance allows you to hand texture micro foam milk that enhances flavor and enables creation of latte ar Grind size dial: Simple and intuitive, giving you control over the grind size no matter what type of bean you're grinding Hands free operation: Innovative grinding cradle allows any at home Barista to grind directly into the espresso port filter Bean Hopper Capacity: 1/2 lb.; Water Tank Capacity: 67 oz. Settings: Single or double shots; Adjustable grind amount & manual over ride; Power 1600 Watts; Volts 120 1 Year Limited Product Warranty",
+  "salePrice": 45,
+  "qte": 100,
+  "shippedBy": [
+    {
+      "amount": 50,
+      "shippingCountryId": 1,
+      "shippingMethodId": 1
+    }
+  ],
+  "specifications": [
+    {
+      "name": "color",
+      "value": "red"
+    },
+    {
+      "name": "wieght",
+      "value": "10 Kg"
+    },
+    {
+      "name": "Metale",
+      "value": "Wood"
+    },
+    {
+      "name": "Hieght",
+      "value": "100 cm"
+    },
+    {
+      "name": "Width",
+      "value": "50 cm"
+    }
+  ],
+  "tagsId": [
+    1,
+    3
+  ],
+  "wareHousesId": [
+    1
+  ]
+}

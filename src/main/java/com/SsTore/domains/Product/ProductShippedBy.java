@@ -13,6 +13,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Getter
 @Setter
@@ -25,4 +26,10 @@ public class ProductShippedBy extends BaseEntity {
 
     @ManyToOne
     private ShippingMethod shippingMethod = new ShippingMethod();
+
+    @OneToOne
+    private ShippingCountry shippingCountry = new ShippingCountry();
+
+    private Float amount;
 }
+

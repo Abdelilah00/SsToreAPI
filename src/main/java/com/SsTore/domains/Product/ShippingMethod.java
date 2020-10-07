@@ -25,10 +25,5 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShippingMethod extends BaseEntity {
-
     private String name;
-
-    @OneToMany(mappedBy = "shippingMethod")
-    private List<ProductShippedBy> productShippedBy = new ArrayList<>();
-
 }

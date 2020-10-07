@@ -1,4 +1,4 @@
-package com.SsTore.domains.Account;
+package com.SsTore.domains.Product;
 
 import com.springBootLibrary.models.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -7,16 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import java.util.*;
 
-/**
- *
- */
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Account extends BaseEntity {
-    public String password;
+@Entity
+public class ShippingCountry extends BaseEntity {
+    private String name;
 }

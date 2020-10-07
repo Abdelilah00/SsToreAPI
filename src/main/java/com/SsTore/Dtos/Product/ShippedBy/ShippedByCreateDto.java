@@ -1,4 +1,4 @@
-package com.SsTore.Dtos.Product.ShippingMethods;////////////////////////////////////////////////////////////////////////////////
+package com.SsTore.Dtos.Product.ShippedBy;////////////////////////////////////////////////////////////////////////////////
 // Copyright (c) 2020                                                          /
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
@@ -10,6 +10,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ShippingMethodCreateDto extends BaseDto {
-    private String name;
+public class ShippedByCreateDto extends BaseDto {
+    private Long shippingCountryId;
+    private Long shippingMethodId;
+    private Float amount;
 }

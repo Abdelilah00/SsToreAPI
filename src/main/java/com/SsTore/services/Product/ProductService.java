@@ -69,9 +69,11 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
             return productIn;
         }).collect(Collectors.toList()));
 
-        product.setProductShippedBy(productCreateDto.getShippingMethodsId().stream().map(shipId -> {
+        product.setProductShippedBy(productCreateDto.getShippedBy().stream().map(shipBy -> {
             var productShippedBy = new ProductShippedBy();
-            productShippedBy.getShippingMethod().setId(shipId);
+            productShippedBy.getShippingCountry().setId(shipBy.getShippingCountryId());
+            productShippedBy.getShippingMethod().setId(shipBy.getShippingMethodId());
+            productShippedBy.setAmount(shipBy.getAmount());
             productShippedBy.setProduct(product);
             return productShippedBy;
         }).collect(Collectors.toList()));
