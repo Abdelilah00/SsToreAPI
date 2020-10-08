@@ -5,13 +5,14 @@
 
 package com.configuration.bootstrap;
 
-import com.SsTore.Dtos.Product.Reviews.ReviewsCreateDto;
 import com.SsTore.Dtos.Product.Tags.TagCreateDto;
 import com.SsTore.Dtos.Product.WareHouses.WareHouseCreateDto;
 import com.SsTore.domains.Product.Category;
+import com.SsTore.domains.Product.Reviews;
 import com.SsTore.domains.Product.ShippingCountry;
 import com.SsTore.domains.Product.ShippingMethod;
 import com.SsTore.repositorys.Product.ICategoryRepository;
+import com.SsTore.repositorys.Product.IReviewsRepository;
 import com.SsTore.repositorys.Product.IShippingCountryRepository;
 import com.SsTore.repositorys.Product.IShppingMethodesRepository;
 import com.SsTore.services.Product.IReviewService;
@@ -43,8 +44,9 @@ public class BootStrapData implements CommandLineRunner {
     private IUserRepository iUserRepository;
     @Autowired
     private IShippingCountryRepository iShippingCountryRepository;
-
-    private final boolean first = true;
+    private final boolean first = false;
+    @Autowired
+    private IReviewsRepository iReviewsRepository;
     private final boolean start = false;
 
     @Override
@@ -60,8 +62,7 @@ public class BootStrapData implements CommandLineRunner {
         iUserRepository.save(user1);
 */
         //////////////////////////////////////////
-        /*var x = new Emails();
-        x.sendEmail("abdelilah0dehaoui@outlook.fr");*/
+
 
         if (first && start) {
             var catA = new Category();
@@ -131,17 +132,17 @@ public class BootStrapData implements CommandLineRunner {
         }
         if (!first && start) {
             for (int i = 1; i < 9; i++) {
-                var tmp = new ReviewsCreateDto();
-                tmp.setProductId(1);
+                var tmp = new Reviews();
+                tmp.getProduct().setId(1);
                 tmp.setComment("good product i recommended");
                 tmp.setStars(1.0f + (float) Math.random() * 4.0f);
-                iReviewService.create(tmp);
+                iReviewsRepository.save(tmp);
 
-                var tmp2 = new ReviewsCreateDto();
-                tmp2.setProductId(i);
+                var tmp2 = new Reviews();
+                tmp2.getProduct().setId(i);
                 tmp2.setComment("good product i recommended");
                 tmp2.setStars(1.0f + (float) Math.random() * 4.0f);
-                iReviewService.create(tmp2);
+                iReviewsRepository.save(tmp2);
             }
         }
 

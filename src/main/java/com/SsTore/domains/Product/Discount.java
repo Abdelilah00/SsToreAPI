@@ -13,6 +13,9 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -24,7 +27,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Discount extends BaseEntity {
+    @NotNull
+    @NotEmpty
     private Float percent = 0F;
+
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private Date endDate = new Date();
 
     @OneToOne

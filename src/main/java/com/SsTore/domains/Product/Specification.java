@@ -13,6 +13,9 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -24,7 +27,14 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 public class Specification extends BaseEntity {
 
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private String name;
+
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private String value;
 
     @ManyToOne

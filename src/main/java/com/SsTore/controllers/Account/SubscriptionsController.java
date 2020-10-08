@@ -7,6 +7,7 @@ package com.SsTore.controllers.Account;
 
 
 import com.SsTore.Dtos.Account.Subscriptions.SubscriptionCreateDto;
+import com.SsTore.Dtos.Account.Subscriptions.SubscriptionDto;
 import com.SsTore.Dtos.Account.Subscriptions.SubscriptionUpdateDto;
 import com.SsTore.domains.Account.Subscription;
 import com.SsTore.services.utils.Emails.IEmailService;
@@ -17,11 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.SsTore.Dtos.Account.Subscriptions.SubscriptionDto;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -35,7 +36,13 @@ public class SubscriptionsController extends BaseCrudController<Subscription, Su
     @RequestMapping(method = RequestMethod.POST)
     protected SubscriptionDto create(@Valid @RequestBody SubscriptionCreateDto dto) throws ExecutionException, InterruptedException, UserFriendlyException, IOException, MessagingException {
         var tmp = super.create(dto);
-        iEmailService.sendWelcomeEmail(tmp.getEmail());
+        CompletableFuture.runAsync(() -> {
+            try {
+                iEmailService.sendSubscriptionWelcomeEmail(tmp.getEmail());
+            } catch (MessagingException | IOException e) {
+                e.printStackTrace();
+            }
+        });
         return tmp;
     }
 }

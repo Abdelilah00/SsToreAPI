@@ -122,6 +122,22 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
     }
 
+    @Override
+    public CompletableFuture<List<ProductDto>> findAll() {
+        var products = repository.findAll();
+
+        for (Product product : products) {
+            var overview = product.getOverview();
+            var name = product.getName();
+            if (overview.length() > 80)
+                product.setOverview(overview.substring(0, 80) + "...");
+            if (name.length() > 80)
+                product.setName(name.substring(0, 80) + "...");
+        }
+
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(products, ProductDto.class));
+    }
+
     //TODO: By tags
     //TODO: Make sure Parent Categories didnt have products
     public CompletableFuture<List<ProductDto>> getRelated(Long id) {

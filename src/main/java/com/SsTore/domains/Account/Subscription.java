@@ -10,6 +10,9 @@ import org.hibernate.validator.constraints.UniqueElements;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -19,5 +22,8 @@ import javax.validation.constraints.Email;
 public class Subscription extends BaseEntity {
     @Email
     @Column(unique = true)
+    @NotEmpty
+    @NotBlank
+    @NotNull
     public String email;
 }

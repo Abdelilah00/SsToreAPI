@@ -19,12 +19,144 @@ public class EmailService implements IEmailService {
     @Value("${gmail.password}")
     private String password;
 
-    //send welcome subs
-    //send wish list discounts changes
-    //send order confirmation
-    //***send offers
 
-    public void sendWelcomeEmail(String to) throws MessagingException, IOException {
+    public void sendSubscriptionWelcomeEmail(String to) throws MessagingException, IOException {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(email, password);
+            }
+        });
+        Message msg = new MimeMessage(session);
+        msg.setFrom(new InternetAddress(email, false));
+
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+        msg.setSubject("Tutorials point email");
+        msg.setContent("Tutorials point email Subject", "text/html");
+        msg.setSentDate(new Date());
+
+        MimeBodyPart messageBodyPart = new MimeBodyPart();
+        messageBodyPart.setContent("Tutorials point email From li Chwak sponsored by Google SMTP protocol", "text/html");
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(messageBodyPart);
+
+        /*MimeBodyPart attachPart = new MimeBodyPart();
+        attachPart.attachFile("C:\\Users\\Alexis\\IdeaProjects\\SsToreAPI\\src\\main\\resources\\uploads\\images\\1601727606642_2020-09-07_010219.png");
+        multipart.addBodyPart(attachPart);*/
+
+        msg.setContent(multipart);
+        Transport.send(msg);
+    }
+
+    public void sendAccountWelcomeEmail(String to) throws MessagingException, IOException {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(email, password);
+            }
+        });
+        Message msg = new MimeMessage(session);
+        msg.setFrom(new InternetAddress(email, false));
+
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+        msg.setSubject("Tutorials point email");
+        msg.setContent("Tutorials point email Subject", "text/html");
+        msg.setSentDate(new Date());
+
+        MimeBodyPart messageBodyPart = new MimeBodyPart();
+        messageBodyPart.setContent("Tutorials point email From li Chwak sponsored by Google SMTP protocol", "text/html");
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(messageBodyPart);
+
+        /*MimeBodyPart attachPart = new MimeBodyPart();
+        attachPart.attachFile("C:\\Users\\Alexis\\IdeaProjects\\SsToreAPI\\src\\main\\resources\\uploads\\images\\1601727606642_2020-09-07_010219.png");
+        multipart.addBodyPart(attachPart);*/
+
+        msg.setContent(multipart);
+        Transport.send(msg);
+    }
+
+    public void sendOrderEmail(String to) throws MessagingException, IOException {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(email, password);
+            }
+        });
+        Message msg = new MimeMessage(session);
+        msg.setFrom(new InternetAddress(email, false));
+
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+        msg.setSubject("Tutorials point email");
+        msg.setContent("Tutorials point email Subject", "text/html");
+        msg.setSentDate(new Date());
+
+        MimeBodyPart messageBodyPart = new MimeBodyPart();
+        messageBodyPart.setContent("Tutorials point email From li Chwak sponsored by Google SMTP protocol", "text/html");
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(messageBodyPart);
+
+        /*MimeBodyPart attachPart = new MimeBodyPart();
+        attachPart.attachFile("C:\\Users\\Alexis\\IdeaProjects\\SsToreAPI\\src\\main\\resources\\uploads\\images\\1601727606642_2020-09-07_010219.png");
+        multipart.addBodyPart(attachPart);*/
+
+        msg.setContent(multipart);
+        Transport.send(msg);
+    }
+
+    public void sendWishListEmail(String to) throws MessagingException, IOException {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(email, password);
+            }
+        });
+        Message msg = new MimeMessage(session);
+        msg.setFrom(new InternetAddress(email, false));
+
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+        msg.setSubject("Tutorials point email");
+        msg.setContent("Tutorials point email Subject", "text/html");
+        msg.setSentDate(new Date());
+
+        MimeBodyPart messageBodyPart = new MimeBodyPart();
+        messageBodyPart.setContent("Tutorials point email From li Chwak sponsored by Google SMTP protocol", "text/html");
+
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(messageBodyPart);
+
+        /*MimeBodyPart attachPart = new MimeBodyPart();
+        attachPart.attachFile("C:\\Users\\Alexis\\IdeaProjects\\SsToreAPI\\src\\main\\resources\\uploads\\images\\1601727606642_2020-09-07_010219.png");
+        multipart.addBodyPart(attachPart);*/
+
+        msg.setContent(multipart);
+        Transport.send(msg);
+    }
+
+    public void sendNewestEmail(String to) throws MessagingException, IOException {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");

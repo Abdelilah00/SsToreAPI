@@ -4,5 +4,13 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 public interface IEmailService {
-    void sendWelcomeEmail(String to) throws MessagingException, IOException;
+    void sendSubscriptionWelcomeEmail(String to) throws MessagingException, IOException;
+
+    void sendAccountWelcomeEmail(String to) throws MessagingException, IOException;
+
+    void sendOrderEmail(String to) throws MessagingException, IOException;
+
+    void sendWishListEmail(String to) throws MessagingException, IOException;
+
+    void sendNewestEmail(String to) throws MessagingException, IOException;
 }

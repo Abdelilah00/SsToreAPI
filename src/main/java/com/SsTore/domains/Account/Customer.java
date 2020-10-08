@@ -11,6 +11,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -22,18 +25,41 @@ import javax.persistence.OneToOne;
 @NoArgsConstructor
 public class Customer extends BaseEntity {
 
-    private String email;
-
-    private String phoneNumber;
-
-    private String firstName;
-
-    private String lastName;
-
+    @NotBlank
+    @NotNull
+    @NotEmpty
     public String address;
+    @NotBlank
+    @NotNull
+    @NotEmpty
+    private String email;
+    @NotBlank
+    @NotNull
+    @NotEmpty
+    private String phoneNumber;
+    @NotBlank
+    @NotNull
+    @NotEmpty
+    private String firstName;
+    @NotBlank
+    @NotNull
+    @NotEmpty
+    private String lastName;
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private String country;
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private String state;
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private String city;
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private String zip;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "customer")

@@ -10,6 +10,9 @@ import lombok.*;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,17 +24,25 @@ import java.util.List;
 @NoArgsConstructor
 public class Product extends BaseEntity {
 
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private String name;
 
     private String comment;
 
+    @NotNull
     private Float salePrice = 0.0F;
 
+    @NotNull
     private Long qte = 0L;
 
     private boolean newest = true;
 
     @Column(length = Integer.MAX_VALUE)
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private String overview = "";
 
     //One To Many
