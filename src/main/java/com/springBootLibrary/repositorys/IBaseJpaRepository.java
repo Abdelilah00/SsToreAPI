@@ -18,9 +18,9 @@ import java.util.List;
 public interface IBaseJpaRepository<TEntity extends BaseEntity> extends JpaRepository<TEntity, Serializable> {
 
 
-    @Override
+    /*@Override
     @Query("select e from #{#entityName} e where e.deletedAt is null")
-    List<TEntity> findAll();
+    List<TEntity> findAll();*/
 
     //Look up deleted entities
     @Query("select e from #{#entityName} e where e.deletedAt is not null")

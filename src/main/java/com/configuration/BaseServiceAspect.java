@@ -26,6 +26,7 @@ public class BaseServiceAspect {
     public void aroundExecution(IBaseCrudService service) throws Throwable {
         Session session = entityManager.unwrap(Session.class);
         session.enableFilter("tenantFilter").setParameter("tenantId", TenantContext.getCurrentTenant());
+        session.enableFilter("deleteFilter").setParameter("deletedAt", "is null");
 
     }
 }

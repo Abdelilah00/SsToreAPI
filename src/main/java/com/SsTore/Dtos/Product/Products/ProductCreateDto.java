@@ -25,7 +25,7 @@ public class ProductCreateDto extends BaseDto {
     private String overview;
     private String comment;
     private Float salePrice;
-    private Long qte;
+    private Long initQte;
 
     @JsonIgnoreProperties
     private List<String> images = new ArrayList<>();

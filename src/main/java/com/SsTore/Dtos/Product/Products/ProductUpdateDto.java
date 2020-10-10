@@ -18,5 +18,5 @@ public class ProductUpdateDto extends BaseDto {
 
     private Float price;
 
-    private Long qte;
+    private Long initQte;
 }

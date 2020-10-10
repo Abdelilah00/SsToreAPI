@@ -35,7 +35,7 @@ public class Product extends BaseEntity {
     private Float salePrice = 0.0F;
 
     @NotNull
-    private Long qte = 0L;
+    private Long initQte = 0L;
 
     private boolean newest = true;
 
@@ -80,8 +80,9 @@ public class Product extends BaseEntity {
         return discount != null;
     }
 
-    @Formula("(select p.qte - IFNULL(SUM(o.qte), 0) from product p inner join orderdetails o on p.id = o.product_id where p.id = id)")
+    @Formula("(select p.initQte - IFNULL(SUM(o.qte), 0) from product p inner join orderDetails o on p.id = o.product_id where p.id = id)")
     private Long stockQte;
+
     @Formula("(select round(sum(r.stars)/count(r.stars),2) from reviews r inner join product p on r.product_id = p.id where p.id = id)")
     private Float startGlobal;
 
@@ -92,5 +93,9 @@ public class Product extends BaseEntity {
             return Float.valueOf(String.format("%.2f", price));
         }
         return salePrice;
+    }
+
+    public Long getStockQte() {
+        return stockQte != null ? stockQte : getInitQte();
     }
 }

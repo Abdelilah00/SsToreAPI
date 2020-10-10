@@ -39,6 +39,7 @@ public class ProductDto extends BaseDto {
     private boolean onSale;
 
     private Long stockQte;
+    private Long initQte;
     private Float startGlobal;
 
 
