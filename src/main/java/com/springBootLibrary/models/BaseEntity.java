@@ -27,12 +27,11 @@ import java.time.LocalDateTime;
 )
 
 @FilterDef(
-        name = "deleteFilter",
-        parameters = @ParamDef(name = "deletedAt", type = "LocalDateTime")
+        name = "deleteFilter"
 )
 @Filter(
         name = "deleteFilter",
-        condition = "deletedAt = :deletedAt"
+        condition = "deletedAt is null"
 )
 public abstract class BaseEntity extends IdEntity {
     private long tenantId;

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.constraints.Null;
 
 
 @Aspect
@@ -26,7 +27,6 @@ public class BaseServiceAspect {
     public void aroundExecution(IBaseCrudService service) throws Throwable {
         Session session = entityManager.unwrap(Session.class);
         session.enableFilter("tenantFilter").setParameter("tenantId", TenantContext.getCurrentTenant());
-        session.enableFilter("deleteFilter").setParameter("deletedAt", "is null");
-
+        session.enableFilter("deleteFilter");
     }
 }
