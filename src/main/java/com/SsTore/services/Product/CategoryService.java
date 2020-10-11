@@ -11,6 +11,7 @@ import com.SsTore.Dtos.Product.Categories.CategoryMenuDto;
 import com.SsTore.Dtos.Product.Categories.CategoryUpdateDto;
 import com.SsTore.domains.Product.Category;
 import com.SsTore.repositorys.Product.ICategoryRepository;
+import com.configuration.Exception.UserFriendlyException;
 import com.springBootLibrary.services.BaseCrudServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +24,28 @@ public class CategoryService extends BaseCrudServiceImpl<Category, CategoryDto, 
         super(Category.class, CategoryDto.class, CategoryCreateDto.class, CategoryUpdateDto.class);
     }
 
-    public CompletableFuture<List<CategoryMenuDto>> getCategoryMenu() {
+    public CompletableFuture<List<CategoryMenuDto>> getTree() {
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(((ICategoryRepository) repository).findByParentIdIsNull(), CategoryMenuDto.class));
     }
 
+    @Override
+    public CompletableFuture<List<CategoryDto>> getParents() {
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(((ICategoryRepository) repository).findByParentIdIsNull(), CategoryDto.class));
+    }
+
+    @Override
+    public CompletableFuture<List<CategoryDto>> getChildren(Long parentId) {
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(((ICategoryRepository) repository).findByParentId(parentId), CategoryDto.class));
+    }
+
+    @Override
+    public CompletableFuture<CategoryDto> create(CategoryCreateDto entity) throws UserFriendlyException {
+        var tmp = objectMapper.convertToEntity(entity);
+        var cat = new Category();
+        cat.setId(entity.getParentId());
+
+        tmp.setParent(cat);
+        return CompletableFuture.completedFuture(objectMapper.convertToDto(repository.save(tmp), CategoryDto.class));
+    }
 }
 

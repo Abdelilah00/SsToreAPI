@@ -16,6 +16,10 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public interface ICategoryService extends IBaseCrudService<Category, CategoryDto, CategoryCreateDto, CategoryUpdateDto> {
-    CompletableFuture<List<CategoryMenuDto>> getCategoryMenu();
+    CompletableFuture<List<CategoryMenuDto>> getTree();
+
+    CompletableFuture<List<CategoryDto>> getParents();
+
+    CompletableFuture<List<CategoryDto>> getChildren(Long parentId);
 
 }

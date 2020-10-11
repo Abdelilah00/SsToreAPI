@@ -21,5 +21,7 @@ public interface ICategoryRepository extends IBaseJpaRepository<Category> {
     List<Category> findByProductId(Long productId);
 
     List<Category> findByParentIdIsNull();
+
+    List<Category> findByParentId(Long parentId);
 }
 

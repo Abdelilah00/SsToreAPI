@@ -23,7 +23,14 @@ public class BaseServiceAspect {
     EntityManager entityManager;
 
 
-    @Before("execution(* com.springBootLibrary.services.BaseCrudServiceImpl.*(..)) && target(service)")
+    @Before("execution(* com.SsTore.services.*.*.*(..)) && target(service)")
+    public void beforeExecution(IBaseCrudService service) throws Throwable {
+        Session session = entityManager.unwrap(Session.class);
+        session.enableFilter("tenantFilter").setParameter("tenantId", TenantContext.getCurrentTenant());
+        session.enableFilter("deleteFilter");
+    }
+
+    @Before("execution(* com.springBootLibrary.services.*.*(..)) && target(service)")
     public void aroundExecution(IBaseCrudService service) throws Throwable {
         Session session = entityManager.unwrap(Session.class);
         session.enableFilter("tenantFilter").setParameter("tenantId", TenantContext.getCurrentTenant());

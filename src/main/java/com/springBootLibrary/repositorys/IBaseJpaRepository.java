@@ -28,7 +28,7 @@ public interface IBaseJpaRepository<TEntity extends BaseEntity> extends JpaRepos
 
 
     @Override
-    @Query("update #{#entityName} e set e.deletedAt=current_date where e.id=?1")
+    @Query("update #{#entityName} e set e.deletedAt=current_timestamp where e.id=?1")
     @Modifying
     void deleteById(Serializable serializable);
 

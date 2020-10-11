@@ -10,8 +10,9 @@ import com.SsTore.Dtos.Product.Categories.CategoryDto;
 import com.SsTore.Dtos.Product.Categories.CategoryMenuDto;
 import com.SsTore.Dtos.Product.Categories.CategoryUpdateDto;
 import com.SsTore.domains.Product.Category;
-import com.SsTore.services.Product.CategoryService;
+import com.SsTore.services.Product.ICategoryService;
 import com.springBootLibrary.controllers.BaseCrudController;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,11 +24,19 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping("api/admin/categories")
 public class CategoriesController extends BaseCrudController<Category, CategoryDto, CategoryCreateDto, CategoryUpdateDto> {
 
-    @RequestMapping(path = "/getCategoryMenu", method = RequestMethod.GET)
-    protected List<CategoryMenuDto> getCategoryMenu() throws ExecutionException, InterruptedException {
-        return ((CategoryService) service).getCategoryMenu().get();
+    @RequestMapping(path = "/getTree", method = RequestMethod.GET)
+    protected List<CategoryMenuDto> getTree() throws ExecutionException, InterruptedException {
+        return ((ICategoryService) service).getTree().get();
     }
 
+    @RequestMapping(path = "/getParents", method = RequestMethod.GET)
+    protected List<CategoryDto> getParents() throws ExecutionException, InterruptedException {
+        return ((ICategoryService) service).getParents().get();
+    }
 
+    @RequestMapping(path = "/getChildren/{parentId}", method = RequestMethod.GET)
+    protected List<CategoryDto> getChildren(@PathVariable(value = "parentId") Long parentId) throws ExecutionException, InterruptedException {
+        return ((ICategoryService) service).getChildren(parentId).get();
+    }
 }
 
