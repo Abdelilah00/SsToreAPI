@@ -12,8 +12,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ShippingMethodDto extends BaseDto {
-    private String shippingMethodName;
-    private String shippingCountryName;
-    private Float amount;
+    private String name;
 }
 

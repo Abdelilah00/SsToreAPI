@@ -22,6 +22,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "product")
 public class Product extends BaseEntity {
 
     @NotBlank

@@ -10,6 +10,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "characteristic")
 public class Characteristic extends BaseEntity {
     private String name;
     @OneToMany(mappedBy = "characteristic")

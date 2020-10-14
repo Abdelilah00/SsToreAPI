@@ -19,7 +19,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "`Order`")
+@Table(name = "`order`")
 public class Order extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")

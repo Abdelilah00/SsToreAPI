@@ -13,6 +13,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "wareHouse")
 public class WareHouse extends BaseEntity {
     public String country;
     @OneToMany(mappedBy = "wareHouse")

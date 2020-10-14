@@ -15,3 +15,4 @@ public class EmailsController {
     //get discount of wishList
     //get new Products
 }
+

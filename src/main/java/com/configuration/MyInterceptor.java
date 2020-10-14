@@ -76,14 +76,14 @@ public class MyInterceptor extends EmptyInterceptor {
                     changed = true;
                 }
             }
-            /*//TODO : move on from her
+            //TODO : move on from her
             if ("tenantId".equals(propertyNames[i])) {
                 Object currentCreatedBy = currentState[i];
                 if ((Long) currentCreatedBy == 0) {
                     currentState[i] = TenantContext.getCurrentTenant();
                     changed = true;
                 }
-            }*/
+            }
         }
         return changed;
     }

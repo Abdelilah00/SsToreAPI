@@ -8,7 +8,6 @@ package com.configuration.bootstrap;
 import com.SsTore.Dtos.Product.Tags.TagCreateDto;
 import com.SsTore.Dtos.Product.WareHouses.WareHouseCreateDto;
 import com.SsTore.domains.Product.Category;
-import com.SsTore.domains.Product.Reviews;
 import com.SsTore.domains.Product.ShippingCountry;
 import com.SsTore.domains.Product.ShippingMethod;
 import com.SsTore.repositorys.Product.ICategoryRepository;
@@ -44,10 +43,8 @@ public class BootStrapData implements CommandLineRunner {
     private IUserRepository iUserRepository;
     @Autowired
     private IShippingCountryRepository iShippingCountryRepository;
-    private final boolean first = false;
     @Autowired
     private IReviewsRepository iReviewsRepository;
-    private final boolean start = false;
 
     @Override
     public void run(String... args) throws Exception {
@@ -63,8 +60,9 @@ public class BootStrapData implements CommandLineRunner {
 */
         //////////////////////////////////////////
 
+        boolean start = iCategoryRepository.findAll().size() == 0;
 
-        if (first && start) {
+        if (start) {
             var catA = new Category();
             catA.setName("Category A");
             iCategoryRepository.save(catA);
@@ -130,7 +128,7 @@ public class BootStrapData implements CommandLineRunner {
             country.setName("Canada");
             iShippingCountryRepository.save(country);
         }
-        if (!first && start) {
+  /*      if (!first && start) {
             for (int i = 1; i < 9; i++) {
                 var tmp = new Reviews();
                 tmp.getProduct().setId(1);
@@ -144,7 +142,7 @@ public class BootStrapData implements CommandLineRunner {
                 tmp2.setStars(1.0f + (float) Math.random() * 4.0f);
                 iReviewsRepository.save(tmp2);
             }
-        }
+        }*/
 
 
     }

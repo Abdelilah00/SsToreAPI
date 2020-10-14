@@ -125,8 +125,9 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
     @Override
     public CompletableFuture<List<ProductDto>> findAll() {
         var products = repository.findAll();
+        List<ProductDto> result = objectMapper.convertToDtoList(products, ProductDto.class);
 
-        for (Product product : products) {
+        for (ProductDto product : result) {
             var overview = product.getOverview();
             var name = product.getName();
             if (overview.length() > 80)
@@ -135,7 +136,7 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
                 product.setName(name.substring(0, 80) + "...");
         }
 
-        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(products, ProductDto.class));
+        return CompletableFuture.completedFuture(result);
     }
 
     //TODO: By tags

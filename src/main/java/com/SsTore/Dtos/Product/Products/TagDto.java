@@ -3,7 +3,7 @@
 // developed by Abdelilah Dehaoui GitHub : Abdelilah00                         /
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.SsTore.Dtos.Product.Tags;
+package com.SsTore.Dtos.Product.Products;
 
 import com.springBootLibrary.models.BaseDto;
 import lombok.Getter;
@@ -12,6 +12,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TagDto extends BaseDto {
-    private String Name;
+    private String tagName;
 }
 

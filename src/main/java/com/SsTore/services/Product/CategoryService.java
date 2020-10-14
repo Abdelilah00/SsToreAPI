@@ -41,10 +41,15 @@ public class CategoryService extends BaseCrudServiceImpl<Category, CategoryDto, 
     @Override
     public CompletableFuture<CategoryDto> create(CategoryCreateDto entity) throws UserFriendlyException {
         var tmp = objectMapper.convertToEntity(entity);
-        var cat = new Category();
-        cat.setId(entity.getParentId());
+        try {
+            var cat = new Category();
+            cat.setId(entity.getParentId());
+            tmp.setParent(cat);
+        } catch (Exception ex) {
 
-        tmp.setParent(cat);
+        }
+
+
         return CompletableFuture.completedFuture(objectMapper.convertToDto(repository.save(tmp), CategoryDto.class));
     }
 }

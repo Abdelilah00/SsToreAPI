@@ -1,0 +1,7 @@
+FROM openjdk:latest
+
+ADD target/sstore-api.jar sstore-api.jar
+
+ENTRYPOINT ["java","-jar","sstore-api.jar"]
+
+EXPOSE 8080

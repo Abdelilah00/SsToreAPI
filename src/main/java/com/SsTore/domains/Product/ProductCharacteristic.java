@@ -8,10 +8,7 @@ package com.SsTore.domains.Product;
 import com.springBootLibrary.models.BaseEntity;
 import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +21,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "productcharacteristic")
 public class ProductCharacteristic extends BaseEntity {
 
     @ElementCollection

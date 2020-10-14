@@ -14,6 +14,7 @@ import lombok.Setter;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 @Entity
@@ -21,6 +22,7 @@ import javax.persistence.ManyToOne;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "image")
 public class Image extends BaseEntity {
 
     private String name;
