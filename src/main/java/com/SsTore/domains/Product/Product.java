@@ -81,7 +81,7 @@ public class Product extends BaseEntity {
         return discount != null;
     }
 
-    @Formula("(select p.initQte - IFNULL(SUM(o.qte), 0) from product p inner join orderDetails o on p.id = o.product_id where p.id = id)")
+    @Formula("(select p.initQte - IFNULL(SUM(o.qte), 0) from product p inner join orderdetails o on p.id = o.product_id where p.id = id)")
     private Long stockQte;
 
     @Formula("(select round(sum(r.stars)/count(r.stars),2) from reviews r inner join product p on r.product_id = p.id where p.id = id)")

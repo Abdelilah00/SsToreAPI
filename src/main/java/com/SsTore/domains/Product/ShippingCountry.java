@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "shippingcountry")
+@Table(name = "shipping_country")
 public class ShippingCountry extends BaseEntity {
     @NotBlank
     @NotNull

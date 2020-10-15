@@ -28,7 +28,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "shippingmethod")
+@Table(name = "shipping_method")
 public class ShippingMethod extends BaseEntity {
     @NotBlank
     @NotNull

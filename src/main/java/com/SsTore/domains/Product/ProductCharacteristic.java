@@ -21,7 +21,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "productcharacteristic")
+@Table(name = "product_characteristic")
 public class ProductCharacteristic extends BaseEntity {
 
     @ElementCollection

@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "productcategories")
+@Table(name = "product_categories")
 public class ProductCategories extends BaseEntity {
     @ManyToOne
     private Product product = new Product();

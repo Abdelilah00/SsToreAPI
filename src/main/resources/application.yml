@@ -5,7 +5,8 @@ security:
       expire-length: 300000
 src:
   uploads:
-    imagesDir: C:/uploads/images/
+    #imagesDir: C:/uploads/images/
+    imagesDir: /root/uploads/images/
 paypal:
   mode: sandbox
   client:

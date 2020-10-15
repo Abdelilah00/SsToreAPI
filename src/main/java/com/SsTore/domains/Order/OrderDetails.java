@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "orderdetails")
+@Table(name = "order_details")
 public class OrderDetails extends BaseEntity {
     @NotNull
     @NotEmpty

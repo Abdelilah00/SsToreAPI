@@ -7,6 +7,8 @@ package com.SsTore.services.utils.Files;
 
 import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,14 +18,18 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 
 @Service
 public class FileService implements IFileService {
     @Value("${src.uploads.imagesDir}")
     private String uploadDir;
-    @Value("${src.uploads.imagesOut}")
-    private String uploadDirOut;
+
+    private static final Logger logger = LoggerFactory.getLogger(FileService.class.getName());
+
 
     private static BufferedImage resizeImage(BufferedImage originalImage, int width, int hieght) {
         return Scalr.resize(originalImage, Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_EXACT, width, hieght);
@@ -31,9 +37,13 @@ public class FileService implements IFileService {
 
     public String saveMultipartFile(MultipartFile file) throws IOException {
         //create directory first
-        File directory = new File(uploadDir);
-        if (!directory.exists())
-            directory.mkdirs();
+        try {
+            Path path = Paths.get(uploadDir);
+            Files.createDirectories(path);
+            logger.info("Directory is created!");
+        } catch (IOException e) {
+            logger.info("Failed to create directory!" + e.getMessage());
+        }
 
 
         BufferedImage originalImage = ImageIO.read(file.getInputStream());
@@ -42,6 +52,7 @@ public class FileService implements IFileService {
         var name = date.getTime() + "_" + file.getOriginalFilename();
         var tmp = uploadDir + name;
         ImageIO.write(resizeImageJpg, "png", new File(tmp));
+
         return name;
     }
 

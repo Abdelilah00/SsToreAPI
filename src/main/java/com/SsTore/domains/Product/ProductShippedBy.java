@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "productshippedby")
+@Table(name = "product_shippedby")
 public class ProductShippedBy extends BaseEntity {
     @ManyToOne
     private Product product;
