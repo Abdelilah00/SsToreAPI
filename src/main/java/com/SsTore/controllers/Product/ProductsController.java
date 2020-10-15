@@ -59,9 +59,8 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
     protected List<ProductDto> getAll() throws ExecutionException, InterruptedException {
         var tmp = super.getAll();
         tmp.forEach(prod -> {
-
-            prod.setImageCover(prod.getImages().get(0).getUrl());
-
+            if (prod.getImages().size() > 0)
+                prod.setImageCover(prod.getImages().get(0).getUrl());
         });
         return tmp;
     }
@@ -70,7 +69,8 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
     @Override
     protected ProductDto getById(@PathVariable(value = "id") long id) throws InterruptedException, ExecutionException, IOException {
         var tmp = super.getById(id);
-        tmp.setImageCover(tmp.getImages().get(0).getUrl());
+        if (tmp.getImages().size() > 0)
+            tmp.setImageCover(tmp.getImages().get(0).getUrl());
         return tmp;
     }
 
@@ -79,7 +79,8 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
     protected List<ProductDto> getRelated(@PathVariable(value = "id") Long id) throws ExecutionException, InterruptedException {
         var tmp = ((IProductService) service).getRelated(id).get();
         tmp.forEach(prod -> {
-            prod.setImageCover(prod.getImages().get(0).getUrl());
+            if (prod.getImages().size() > 0)
+                prod.setImageCover(prod.getImages().get(0).getUrl());
             //prod.setSale(true);
         });
         return tmp;
@@ -89,7 +90,8 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
     protected List<ProductDto> getByCategory(@PathVariable(value = "categoryId") Long categoryId) throws ExecutionException, InterruptedException {
         var tmp = ((IProductService) service).getByCategory(categoryId).get();
         tmp.forEach(prod -> {
-            prod.setImageCover(prod.getImages().get(0).getUrl());
+            if (prod.getImages().size() > 0)
+                prod.setImageCover(prod.getImages().get(0).getUrl());
             //prod.setSale(true);
         });
         return tmp;
@@ -99,7 +101,8 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
     protected List<ProductDto> getBestSelling() throws ExecutionException, InterruptedException {
         var tmp = ((IProductService) service).getBestSelling().get();
         tmp.forEach(prod -> {
-            prod.setImageCover(prod.getImages().get(0).getUrl());
+            if (prod.getImages().size() > 0)
+                prod.setImageCover(prod.getImages().get(0).getUrl());
             //prod.setSale(true);
         });
         return tmp;
@@ -109,22 +112,24 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
     protected List<ProductDto> getNewest() throws ExecutionException, InterruptedException {
         var tmp = ((IProductService) service).getNewest().get();
         tmp.forEach(prod -> {
-            prod.setImageCover(prod.getImages().get(0).getUrl());
+            if (prod.getImages().size() > 0)
+                prod.setImageCover(prod.getImages().get(0).getUrl());
         });
         return tmp;
     }
 
-   /* @GetMapping(path = "/getNamesByQuery/{query}")
-    protected List<String> getNamesByQuery(@PathVariable(value = "query") String query) throws ExecutionException, InterruptedException {
-        return ((IProductService) service).getNamesByQuery(query).get();
-    }
-*/
+    /* @GetMapping(path = "/getNamesByQuery/{query}")
+     protected List<String> getNamesByQuery(@PathVariable(value = "query") String query) throws ExecutionException, InterruptedException {
+         return ((IProductService) service).getNamesByQuery(query).get();
+     }
+ */
     @GetMapping(path = "/getByQuery/{query}")
     protected List<ProductDto> getByQuery(@PathVariable(value = "query") String query) throws ExecutionException, InterruptedException {
         var tmp = ((IProductService) service).getByQuery(query).get();
         tmp.forEach(prod -> {
 
-            prod.setImageCover(prod.getImages().get(0).getUrl());
+            if (prod.getImages().size() > 0)
+                prod.setImageCover(prod.getImages().get(0).getUrl());
             //prod.setSale(true);
 
         });
