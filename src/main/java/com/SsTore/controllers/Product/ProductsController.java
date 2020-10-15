@@ -127,7 +127,6 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
     protected List<ProductDto> getByQuery(@PathVariable(value = "query") String query) throws ExecutionException, InterruptedException {
         var tmp = ((IProductService) service).getByQuery(query).get();
         tmp.forEach(prod -> {
-
             if (prod.getImages().size() > 0)
                 prod.setImageCover(prod.getImages().get(0).getUrl());
             //prod.setSale(true);

@@ -35,6 +35,7 @@ public class FileService implements IFileService {
     }
 
     public String saveMultipartFile(MultipartFile file) throws IOException {
+
         File directory = new File(uploadDir);
         if (!directory.exists())
             directory.mkdirs();

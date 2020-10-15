@@ -6,7 +6,7 @@ security:
 src:
   uploads:
     #imagesDir: C:/uploads/images/
-    imagesDir: /root/uploads/images/
+    imagesDir: /uploads/images/
 paypal:
   mode: sandbox
   client:
