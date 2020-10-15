@@ -5,6 +5,7 @@
 
 package com.SsTore.services.utils.Files;
 
+import com.SsTore.controllers.TestsController;
 import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
@@ -15,9 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -36,14 +35,9 @@ public class FileService implements IFileService {
     }
 
     public String saveMultipartFile(MultipartFile file) throws IOException {
-        //create directory first
-        try {
-            Path path = Paths.get(uploadDir);
-            Files.createDirectories(path);
-            logger.info("Directory is created!");
-        } catch (IOException e) {
-            logger.info("Failed to create directory!" + e.getMessage());
-        }
+        File directory = new File(uploadDir);
+        if (!directory.exists())
+            directory.mkdirs();
 
 
         BufferedImage originalImage = ImageIO.read(file.getInputStream());
