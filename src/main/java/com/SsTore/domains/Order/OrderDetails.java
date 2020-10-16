@@ -26,10 +26,9 @@ import javax.validation.constraints.NotNull;
 @Table(name = "order_details")
 public class OrderDetails extends BaseEntity {
     @NotNull
-    @NotEmpty
     public Long qte;
+
     @NotNull
-    @NotEmpty
     public Float price;
 
     //TODO: Value tables
