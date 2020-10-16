@@ -10,6 +10,6 @@ RUN mvn -f /home/app/pom.xml -DskipTests=true clean package
 # Package stage
 #
 FROM openjdk:latest
-ADD /home/app/target/sstore-api.jar sstore-api.jar
+COPY --from=build /home/app/target/sstore-api.jar sstore-api.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","sstore-api.jar"]
