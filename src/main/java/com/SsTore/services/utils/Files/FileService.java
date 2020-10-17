@@ -5,7 +5,6 @@
 
 package com.SsTore.services.utils.Files;
 
-import com.SsTore.controllers.TestsController;
 import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
@@ -15,11 +14,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Date;
 
 @Service
@@ -30,8 +29,19 @@ public class FileService implements IFileService {
     private static final Logger logger = LoggerFactory.getLogger(FileService.class.getName());
 
 
-    private static BufferedImage resizeImage(BufferedImage originalImage, int width, int hieght) {
-        return Scalr.resize(originalImage, Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_EXACT, width, hieght);
+    private static BufferedImage resizeImage(BufferedImage originalImage, int width, int height) {
+        BufferedImage bufferedImage;
+
+        //resize
+        if (originalImage.getWidth() > originalImage.getHeight())
+            bufferedImage = Scalr.resize(originalImage, Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, width, height);
+        else
+            bufferedImage = Scalr.resize(originalImage, Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_HEIGHT, width, height);
+
+        //add corners
+
+        return bufferedImage;
+
     }
 
     public String saveMultipartFile(MultipartFile file) throws IOException {
@@ -40,14 +50,16 @@ public class FileService implements IFileService {
         if (!directory.exists())
             directory.mkdirs();
 
-
+        //resize
         BufferedImage originalImage = ImageIO.read(file.getInputStream());
-        BufferedImage resizeImageJpg = resizeImage(originalImage, 550, 750);
-        Date date = new Date();
-        var name = date.getTime() + "_" + file.getOriginalFilename();
-        var tmp = uploadDir + name;
-        ImageIO.write(resizeImageJpg, "png", new File(tmp));
+        BufferedImage resizeImage = resizeImage(originalImage, 550, 750);
 
+        //generate new name
+        Date date = new Date();
+        var name = date.getTime() + "_" + file.getOriginalFilename() + ".webp";
+        var tmp = uploadDir + name;
+
+        ImageIO.write(resizeImage, "webp", new File(tmp));
         return name;
     }
 
