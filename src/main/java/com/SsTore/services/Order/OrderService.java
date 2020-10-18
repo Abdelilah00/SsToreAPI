@@ -11,6 +11,7 @@ import com.SsTore.Dtos.Order.Orders.OrderUpdateDto;
 import com.SsTore.domains.Order.Order;
 import com.SsTore.domains.Order.OrderDetails;
 import com.SsTore.repositorys.Order.IOrderRepository;
+import com.SsTore.repositorys.Product.IProductCharacteristicRepository;
 import com.SsTore.repositorys.Product.IProductRepository;
 import com.springBootLibrary.services.BaseCrudServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class OrderService extends BaseCrudServiceImpl<Order, OrderDto, OrderCrea
     private IOrderRepository iOrderRepository;
     @Autowired
     private IProductRepository iProductRepository;
+    @Autowired
+    private IProductCharacteristicRepository iProductCharacteristicRepository;
 
 
     public OrderService() {
@@ -35,14 +38,29 @@ public class OrderService extends BaseCrudServiceImpl<Order, OrderDto, OrderCrea
     public CompletableFuture<OrderDto> create(OrderCreateDto orderCreateDto) {
         var order = objectMapper.convertToEntity(orderCreateDto);
 
-        order.setOrderDetails(orderCreateDto.getOrderDetails().stream().map(orderDetail -> {
+        orderCreateDto.getOrderDetails().forEach(orderDetailsDto -> {
+
+        });
+
+        //get PC by selectedPCD and set it to OD
+        var orderDetailsList = orderCreateDto.getOrderDetails().stream().map(orderDetailsDto -> {
             var od = new OrderDetails();
-            od.getProduct().setId(orderDetail.getProductId());
-            od.setQte(orderDetail.getQte());
-            od.setPrice(iProductRepository.findById(orderDetail.getProductId()).get().getPrice());
+            od.getProduct().setId(orderDetailsDto.getProductId());
+            od.setQte(orderDetailsDto.getQte());
+            od.setPrice(iProductRepository.findById(orderDetailsDto.getProductId()).get().getPrice());
+            if (orderDetailsDto.getSelectedCharacteristics() != null)
+                od.setProductCharacteristics(
+                        orderDetailsDto.getSelectedCharacteristics().stream()
+                                .map(selectedCharacteristicsDto ->
+                                        iProductCharacteristicRepository.findByCharacteristicNameAndValueAndProductId(selectedCharacteristicsDto.getName(), selectedCharacteristicsDto.getValue(), orderDetailsDto.getProductId())
+                                ).collect(Collectors.toList()));
+
             od.setOrder(order);
             return od;
-        }).collect(Collectors.toList()));
+        }).collect(Collectors.toList());
+
+        order.setOrderDetails(orderDetailsList);
+
 
         iOrderRepository.save(order);
 

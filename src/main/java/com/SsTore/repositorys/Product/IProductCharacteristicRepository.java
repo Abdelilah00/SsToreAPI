@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IProductCharacteristicRepository extends IBaseJpaRepository<ProductCharacteristic> {
-
+    ProductCharacteristic findByCharacteristicNameAndValueAndProductId(String characteristicName, String value, Long productId);
 }
