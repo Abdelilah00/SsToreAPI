@@ -46,6 +46,7 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         tmp.setImages(images.stream().map(img -> {
             try {
                 return iFileService.saveMultipartFile(img);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

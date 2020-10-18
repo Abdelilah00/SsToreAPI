@@ -5,6 +5,7 @@
 
 package com.SsTore.services.Product;
 
+import com.SsTore.Dtos.Product.Characteristics.CharacteristicDto;
 import com.SsTore.Dtos.Product.Products.ProductCreateDto;
 import com.SsTore.Dtos.Product.Products.ProductDto;
 import com.SsTore.Dtos.Product.Products.ProductUpdateDto;
@@ -97,14 +98,18 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
         //TODO: stream also each value
         var productCharacteristics = new ArrayList<ProductCharacteristic>();
-        for (var c : productCreateDto.getCharacteristics()) {
-            var ch = new Characteristic();
-            ch.setName(c.getName());
-            var productCharacteristic = new ProductCharacteristic();
-            productCharacteristic.setValue(c.getValues());
-            productCharacteristic.setCharacteristic(ch);
-            productCharacteristic.setProduct(product);
-            productCharacteristics.add(productCharacteristic);
+        for (var characteristicCreateDto : productCreateDto.getCharacteristics()) {
+            var characteristic = new Characteristic();
+            characteristic.setName(characteristicCreateDto.getName());
+
+            for (var val : characteristicCreateDto.getValues()) {
+                var productCharacteristic = new ProductCharacteristic();
+                productCharacteristic.setValue(val);
+                productCharacteristic.setCharacteristic(characteristic);
+                productCharacteristic.setProduct(product);
+                productCharacteristics.add(productCharacteristic);
+            }
+
         }
         product.setProductCharacteristics(productCharacteristics);
 
@@ -116,10 +121,37 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
             iProductRepository.save(firstNewest);
         }
 
+        //attache product to video table
+        if (product.getVideo().getLink() != null) {
+            var video = new Video();
+            video.setProduct(product);
+            video.setLink(product.getVideo().getLink());
+            product.setVideo(video);
+        }
+
+
         //save Product
         iProductRepository.save(product);
 
         return CompletableFuture.completedFuture(objectMapper.convertToDto(product, ProductDto.class));
+    }
+
+    @Override
+    public CompletableFuture<ProductDto> findById(Long aLong) {
+        var prod = iProductRepository.findById(aLong).get();
+        ProductDto prodDto = objectMapper.convertToDto(prod, ProductDto.class);
+
+        prodDto.getProductCharacteristics().clear();
+        var y = prod.getProductCharacteristics().stream().collect(Collectors.groupingBy(x -> x.getCharacteristic().getName()));
+
+        for (var entry : y.entrySet()) {
+            var tmp = new CharacteristicDto();
+            tmp.setCharacteristicName(entry.getKey());
+            tmp.setValue(entry.getValue().stream().map(ProductCharacteristic::getValue).collect(Collectors.toList()));
+            prodDto.getProductCharacteristics().add(tmp);
+        }
+
+        return CompletableFuture.completedFuture(prodDto);
     }
 
     @Override

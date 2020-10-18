@@ -35,7 +35,7 @@ public class OrdersController extends BaseCrudController<Order, OrderDto, OrderC
     protected OrderDto create(@Valid @RequestBody OrderCreateDto dto) throws ExecutionException, InterruptedException, UserFriendlyException, IOException, MessagingException {
         //TODO: check with PAYPAL payment
         var tmp = super.create(dto);
-        iEmailService.sendOrderEmail(tmp.getEmailAddresse());
+        iEmailService.sendOrderEmail(tmp.getCustomerEmail());
         return tmp;
     }
 }

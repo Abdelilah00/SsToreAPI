@@ -8,6 +8,7 @@ package com.SsTore.domains.Product;
 import com.springBootLibrary.models.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.Formula;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -46,8 +47,13 @@ public class Product extends BaseEntity {
     @NotEmpty
     private String overview = "";
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "product")
+    private Video video = new Video();
+
     //One To Many
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "product")
+    @Where(clause = "endDate > GETDATE()")
+    //TODO: check if endDate > now date
     private Discount discount;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")

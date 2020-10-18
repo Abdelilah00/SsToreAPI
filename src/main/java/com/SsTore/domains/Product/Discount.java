@@ -30,12 +30,9 @@ import java.util.Date;
 @Table(name = "discount")
 public class Discount extends BaseEntity {
     @NotNull
-    @NotEmpty
     private Float percent = 0F;
 
-    @NotBlank
     @NotNull
-    @NotEmpty
     private Date endDate = new Date();
 
     @OneToOne

@@ -5,12 +5,14 @@
 
 package com.SsTore.domains.Product;
 
+import com.SsTore.domains.Order.OrderDetails;
 import com.springBootLibrary.models.BaseEntity;
 import lombok.*;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
@@ -24,12 +26,12 @@ import java.util.List;
 @Table(name = "product_characteristic")
 public class ProductCharacteristic extends BaseEntity {
 
-    @ElementCollection
-    private List<String> value = new ArrayList<>();
+    private String value;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Product product = new Product();
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Characteristic characteristic = new Characteristic();
+
 }

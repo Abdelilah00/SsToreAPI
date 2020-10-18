@@ -11,6 +11,7 @@ import com.SsTore.Dtos.Order.Orders.OrderUpdateDto;
 import com.SsTore.domains.Order.Order;
 import com.SsTore.domains.Order.OrderDetails;
 import com.SsTore.repositorys.Order.IOrderRepository;
+import com.SsTore.repositorys.Product.IProductRepository;
 import com.springBootLibrary.services.BaseCrudServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ import java.util.stream.Collectors;
 public class OrderService extends BaseCrudServiceImpl<Order, OrderDto, OrderCreateDto, OrderUpdateDto> implements IOrderService {
     @Autowired
     private IOrderRepository iOrderRepository;
+    @Autowired
+    private IProductRepository iProductRepository;
+
 
     public OrderService() {
         super(Order.class, OrderDto.class, OrderCreateDto.class, OrderUpdateDto.class);
@@ -35,12 +39,13 @@ public class OrderService extends BaseCrudServiceImpl<Order, OrderDto, OrderCrea
             var od = new OrderDetails();
             od.getProduct().setId(orderDetail.getProductId());
             od.setQte(orderDetail.getQte());
-            //od.setPrice(orderDetail.getPrice());
+            od.setPrice(iProductRepository.findById(orderDetail.getProductId()).get().getPrice());
             od.setOrder(order);
             return od;
         }).collect(Collectors.toList()));
 
         iOrderRepository.save(order);
+
         return CompletableFuture.completedFuture(objectMapper.convertToDto(order, OrderDto.class));
     }
 }

@@ -7,12 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OrderDto extends BaseDto {
-    private String firstName;
-    private String lastName;
-    private String phone;
-    private String emailAddresse;
-    private String country;
-    private String state;
-    private String city;
-    private String zip;
+    private String customerFirstName;
+    private String customerLastName;
+    private String customerPhoneNumber;
+    private String customerEmail;
+    private String customerAddress;
+    private String customerCity;
+    private String customerZip;
 }

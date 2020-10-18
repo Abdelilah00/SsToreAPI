@@ -1,19 +1,19 @@
 package com.SsTore.domains.Order;
 
 import com.SsTore.domains.Product.Product;
+import com.SsTore.domains.Product.ProductCharacteristic;
 import com.springBootLibrary.models.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -40,4 +40,7 @@ public class OrderDetails extends BaseEntity {
 
     @ManyToOne
     private Order order = new Order();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<ProductCharacteristic> productCharacteristics = new ArrayList<>();
 }

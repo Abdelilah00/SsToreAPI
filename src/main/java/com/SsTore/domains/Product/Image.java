@@ -33,3 +33,4 @@ public class Image extends BaseEntity {
     private Boolean cover = false;
 
 }
+

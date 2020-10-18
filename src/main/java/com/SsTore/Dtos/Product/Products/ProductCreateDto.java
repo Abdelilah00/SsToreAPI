@@ -7,7 +7,6 @@ package com.SsTore.Dtos.Product.Products;
 
 import com.SsTore.Dtos.Product.Characteristics.CharacteristicCreateDto;
 import com.SsTore.Dtos.Product.ShippedBy.ShippedByCreateDto;
-import com.SsTore.Dtos.Product.ShippedBy.ShippedByDto;
 import com.SsTore.Dtos.Product.Specifications.SpecificationCreateDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.springBootLibrary.models.BaseDto;
@@ -26,6 +25,7 @@ public class ProductCreateDto extends BaseDto {
     private String comment;
     private Float salePrice;
     private Long initQte;
+    private String videoLink;
 
     @JsonIgnoreProperties
     private List<String> images = new ArrayList<>();

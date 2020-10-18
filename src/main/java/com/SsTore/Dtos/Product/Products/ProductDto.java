@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 @Setter
 public class ProductDto extends BaseDto {
     @JsonIgnore
-    private final String uploadDirOut = "http://34.65.40.24:8080/images/";
+    private final String uploadDirOut = "http://localhost:8080/images/";
 
     private String name;
     private String overview;
@@ -33,6 +33,7 @@ public class ProductDto extends BaseDto {
     private Float price;
     private Float salePrice;
     private String imageCover;
+    private String videoLink;
     private boolean newest;
 
     private DiscountDto discount;
@@ -40,7 +41,7 @@ public class ProductDto extends BaseDto {
 
     private Long stockQte;
     private Long initQte;
-    private Float startGlobal;
+    private Float starsGlobal;
 
 
     private List<ReviewsDto> reviews = new ArrayList<>();

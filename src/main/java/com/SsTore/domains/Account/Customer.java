@@ -46,14 +46,6 @@ public class Customer extends BaseEntity {
     @NotBlank
     @NotNull
     @NotEmpty
-    private String country;
-    @NotBlank
-    @NotNull
-    @NotEmpty
-    private String state;
-    @NotBlank
-    @NotNull
-    @NotEmpty
     private String city;
     @NotBlank
     @NotNull

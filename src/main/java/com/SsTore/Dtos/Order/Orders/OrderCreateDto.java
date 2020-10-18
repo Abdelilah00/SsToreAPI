@@ -20,8 +20,6 @@ public class OrderCreateDto extends BaseDto {
     private String customerPhoneNumber;
     private String customerEmail;
     private String customerAddress;
-    private String customerCountry;
-    private String customerState;
     private String customerCity;
     private String customerZip;
 
