@@ -1,0 +1,50 @@
+{
+  "categoriesId": [
+    2
+  ],
+  "characteristics": [
+    {
+      "name": "couleur",
+      "values": [
+        "BLanc",
+        "Rouge",
+        "Gris",
+        "Crème"
+      ]
+    }
+  ],
+  "comment": "stay insvisible",
+  "id": 0,
+  "name": "Portefeuille pour femme",
+  "overview": "Portefeuille pour téléphone portable pour femme",
+  "salePrice": 100,
+  "initQte": 100,
+  "shippedBy": [
+    {
+      "amount": 50,
+      "shippingCountryId": 1,
+      "shippingMethodId": 1
+    }
+  ],
+  "specifications": [
+    {
+      "name": "wieght",
+      "value": "100 g"
+    },
+    {
+      "name": "Hieght",
+      "value": "12 cm"
+    },
+    {
+      "name": "Width",
+      "value": "7 cm"
+    }
+  ],
+  "tagsId": [
+    1,
+    3
+  ],
+  "wareHousesId": [
+    1
+  ]
+}
