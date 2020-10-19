@@ -1,6 +1,7 @@
 package com.SsTore.domains.Order;
 
 import com.SsTore.domains.Account.Customer;
+import com.SsTore.domains.Product.ProductCharacteristic;
 import com.springBootLibrary.models.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
