@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class ProductDto extends BaseDto {
 
     @JsonIgnore
-    private String uploadDirOut = "http://35.65.40.24:8080/images/";
+    private String uploadDirOut = "http://34.65.40.24:8080/images/";
 
     private String name;
     private String overview;
