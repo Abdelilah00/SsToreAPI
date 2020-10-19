@@ -44,7 +44,8 @@ public class BaseCrudServiceImpl<TEntity extends BaseEntity,
 
     @Override
     public CompletableFuture<List<TDto>> findAll() {
-        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(repository.findAll(), dtoClass));
+        var x = repository.findAll();
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(x, dtoClass));
     }
 
     @Override

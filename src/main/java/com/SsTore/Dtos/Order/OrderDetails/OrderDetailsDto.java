@@ -13,5 +13,12 @@ public class OrderDetailsDto {
     private Long qte;
     private List<SelectedCharacteristicsDto> selectedCharacteristics;
 
-    //private CharacteristicDto productCharacteristic;
+    private List<GetSelectedCharacteristicsDto> orderDetailsProductCharacteristics;
+}
+
+@Getter
+@Setter
+class GetSelectedCharacteristicsDto {
+    private String productCharacteristicValue;
+    private String productCharacteristicCharacteristicName;
 }
