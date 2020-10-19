@@ -7,6 +7,9 @@ src:
   uploads:
     #imagesDir: C:/uploads/images/
     imagesDir: /uploads/images/
+host:
+  #ip: http://localhost:8080/images/
+  ip: http://35.65.40.24:8080/images/
 paypal:
   mode: sandbox
   client:

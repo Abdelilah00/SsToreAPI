@@ -38,8 +38,6 @@ public class FileService implements IFileService {
         else
             bufferedImage = Scalr.resize(originalImage, Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_HEIGHT, width, height);
 
-        //add corners
-
         return bufferedImage;
 
     }
