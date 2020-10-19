@@ -104,12 +104,12 @@ public class EmailService implements IEmailService {
         msg.setFrom(new InternetAddress(email, false));
 
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-        msg.setSubject("Tutorials point email");
-        msg.setContent("Tutorials point email Subject", "text/html");
+        msg.setSubject("Order Confirmation");
+        msg.setContent("We Will Contact you to confirm your order as soon as possible", "text/html");
         msg.setSentDate(new Date());
 
         MimeBodyPart messageBodyPart = new MimeBodyPart();
-        messageBodyPart.setContent("Tutorials point email From li Chwak sponsored by Google SMTP protocol", "text/html");
+        messageBodyPart.setContent("We Will Contact you to confirm your order as soon as possible SMTP protocol", "text/html");
 
         Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(messageBodyPart);

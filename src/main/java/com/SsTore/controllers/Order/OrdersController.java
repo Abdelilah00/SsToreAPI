@@ -23,6 +23,7 @@ import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 
 @RestController
 @RequestMapping("api/admin/orders")
@@ -36,11 +37,15 @@ public class OrdersController extends BaseCrudController<Order, OrderDto, OrderC
         //TODO: check with PAYPAL payment
         var tmp = super.create(dto);
 
-        try {
-            iEmailService.sendOrderEmail(tmp.getCustomerEmail());
-        } catch (Exception ignored) {
+        Executors.newCachedThreadPool().submit(() -> {
+            try {
+                iEmailService.sendOrderEmail(tmp.getCustomerEmail());
+            } catch (MessagingException | IOException e) {
+                e.printStackTrace();
+            }
+        });
 
-        }
+
         return tmp;
     }
 }

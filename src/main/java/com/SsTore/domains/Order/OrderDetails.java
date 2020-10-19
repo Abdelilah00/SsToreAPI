@@ -41,6 +41,6 @@ public class OrderDetails extends BaseEntity {
     @ManyToOne
     private Order order = new Order();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<ProductCharacteristic> productCharacteristics = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orderDetails")
+    private List<OrderDetailsProductCharacteristics> orderDetailsProductCharacteristics = new ArrayList<>();
 }

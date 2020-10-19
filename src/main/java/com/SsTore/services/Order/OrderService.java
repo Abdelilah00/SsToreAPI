@@ -10,6 +10,7 @@ import com.SsTore.Dtos.Order.Orders.OrderDto;
 import com.SsTore.Dtos.Order.Orders.OrderUpdateDto;
 import com.SsTore.domains.Order.Order;
 import com.SsTore.domains.Order.OrderDetails;
+import com.SsTore.domains.Order.OrderDetailsProductCharacteristics;
 import com.SsTore.repositorys.Order.IOrderRepository;
 import com.SsTore.repositorys.Product.IProductCharacteristicRepository;
 import com.SsTore.repositorys.Product.IProductRepository;
@@ -38,22 +39,22 @@ public class OrderService extends BaseCrudServiceImpl<Order, OrderDto, OrderCrea
     public CompletableFuture<OrderDto> create(OrderCreateDto orderCreateDto) {
         var order = objectMapper.convertToEntity(orderCreateDto);
 
-        orderCreateDto.getOrderDetails().forEach(orderDetailsDto -> {
-
-        });
-
-        //get PC by selectedPCD and set it to OD
+        //get orderDetailsProductCharacteristics by selectedCharacteristics and set it to orderDetails
         var orderDetailsList = orderCreateDto.getOrderDetails().stream().map(orderDetailsDto -> {
             var od = new OrderDetails();
             od.getProduct().setId(orderDetailsDto.getProductId());
             od.setQte(orderDetailsDto.getQte());
             od.setPrice(iProductRepository.findById(orderDetailsDto.getProductId()).get().getPrice());
             if (orderDetailsDto.getSelectedCharacteristics() != null)
-                od.setProductCharacteristics(
-                        orderDetailsDto.getSelectedCharacteristics().stream()
-                                .map(selectedCharacteristicsDto ->
-                                        iProductCharacteristicRepository.findByCharacteristicNameAndValueAndProductId(selectedCharacteristicsDto.getName(), selectedCharacteristicsDto.getValue(), orderDetailsDto.getProductId())
-                                ).collect(Collectors.toList()));
+                od.setOrderDetailsProductCharacteristics(
+                        orderDetailsDto.getSelectedCharacteristics().stream().map(selectedCharacteristicsDto -> {
+                                    var orderDetailsProductCharacteristics = new OrderDetailsProductCharacteristics();
+                                    var tmp = iProductCharacteristicRepository.findByCharacteristicNameAndValueAndProductId(selectedCharacteristicsDto.getName(), selectedCharacteristicsDto.getValue(), orderDetailsDto.getProductId());
+                                    orderDetailsProductCharacteristics.setProductCharacteristic(tmp);
+                                    orderDetailsProductCharacteristics.setOrderDetails(od);
+                                    return orderDetailsProductCharacteristics;
+                                }
+                        ).collect(Collectors.toList()));
 
             od.setOrder(order);
             return od;
