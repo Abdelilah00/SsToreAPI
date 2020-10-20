@@ -13,6 +13,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.security.task.DelegatingSecurityContextAsyncTaskExecutor;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
@@ -23,7 +25,6 @@ import java.util.concurrent.Executor;
 @EnableAsync
 @EnableAspectJAutoProxy
 public class DemoSsToreApplication {
-    //TODO: add validators to DTOs and Domains
     public static void main(String[] args) {
         SpringApplication.run(DemoSsToreApplication.class, args);
     }
@@ -37,6 +38,11 @@ public class DemoSsToreApplication {
         executor.setThreadNamePrefix("AsyncMethodTest-");
         executor.initialize();
         return new DelegatingSecurityContextAsyncTaskExecutor(executor);
+    }
+
+    @Bean
+    public WebClient.Builder getWebClientBuilder() {
+        return WebClient.builder();
     }
 
     @PostConstruct

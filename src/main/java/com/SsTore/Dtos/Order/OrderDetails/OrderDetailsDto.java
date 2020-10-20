@@ -16,9 +16,3 @@ public class OrderDetailsDto {
     private List<GetSelectedCharacteristicsDto> orderDetailsProductCharacteristics;
 }
 
-@Getter
-@Setter
-class GetSelectedCharacteristicsDto {
-    private String productCharacteristicValue;
-    private String productCharacteristicCharacteristicName;
-}

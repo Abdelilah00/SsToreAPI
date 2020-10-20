@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  sstore-mysql:
+    image: mysql
+    container_name: sstore-mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sstore_db
+    networks:
+      sstore-net
+
+  sstore-api:
+    build: ~/SsToreApi
+    container_name: sstore-api
+    ports:
+      - 8080:8080
+    volumes:
+      - ~/container-data:/uploads/
+    networks:
+      sstore-net
+
+  sstore-front:
+    build: ~/SsToreFrontOffice-Angular
+    container_name: sstore-front
+    ports:
+      - 8000:80
+    networks:
+      sstore-net
+
+  networks:
+    sstore-net:
+      driver: bridge
