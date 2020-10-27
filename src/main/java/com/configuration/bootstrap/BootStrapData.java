@@ -64,70 +64,101 @@ public class BootStrapData implements CommandLineRunner {
 
         if (start) {
             var catA = new Category();
-            catA.setName("Category A");
+            catA.setName("Sacs");
             iCategoryRepository.save(catA);
 
             var catAA = new Category();
-            catAA.setName("Category AA");
+            catAA.setName("Portefeuille");
             catAA.setParent(catA);
             iCategoryRepository.save(catAA);
 
-            var catAB = new Category();
-            catAB.setName("Category AB");
-            catAB.setParent(catA);
-            iCategoryRepository.save(catAB);
 
             var catB = new Category();
-            catB.setName("Category B");
+            catB.setName("Maison");
             iCategoryRepository.save(catB);
 
             var catBA = new Category();
-            catBA.setName("Category BA");
+            catBA.setName("Cuisine");
             catBA.setParent(catB);
             iCategoryRepository.save(catBA);
 
             var catBB = new Category();
-            catBB.setName("Category BB");
+            catBB.setName("Gadgets");
             catBB.setParent(catB);
             iCategoryRepository.save(catBB);
 
 
+            var catC = new Category();
+            catC.setName("Voitures");
+            iCategoryRepository.save(catC);
+
+            var catCA = new Category();
+            catCA.setName("Gadgets");
+            catCA.setParent(catC);
+            iCategoryRepository.save(catCA);
+
+
+            var catD = new Category();
+            catD.setName("Voitures");
+            iCategoryRepository.save(catD);
+
+            var catDA = new Category();
+            catDA.setName("Gadgets");
+            catDA.setParent(catD);
+            iCategoryRepository.save(catDA);
+
+
+            var catE = new Category();
+            catE.setName("Electronique");
+            iCategoryRepository.save(catE);
+
+            var catEA = new Category();
+            catEA.setName("Camera");
+            catEA.setParent(catE);
+            iCategoryRepository.save(catEA);
+
+            var catEB = new Category();
+            catEB.setName("GPS");
+            catEB.setParent(catE);
+            iCategoryRepository.save(catEB);
+
+            var catEC = new Category();
+            catEC.setName("GPS");
+            catEC.setParent(catE);
+            iCategoryRepository.save(catEC);
+
+
             //////////////////////////////////////////
             var tag1 = new TagCreateDto();
-            tag1.setName("Tag A");
+            tag1.setName("portable");
             iTagService.create(tag1);
 
             var tag2 = new TagCreateDto();
-            tag2.setName("Tag B");
+            tag2.setName("security");
             iTagService.create(tag2);
 
             var tag3 = new TagCreateDto();
-            tag3.setName("Tag C");
+            tag3.setName("rechargeable");
             iTagService.create(tag3);
 
             //////////////////////////////////////////
             var wHouse1 = new WareHouseCreateDto();
-            wHouse1.setCountry("wHouse 1");
+            wHouse1.setCountry("Morocco");
             iWareHouseService.create(wHouse1);
 
-            var wHouse2 = new WareHouseCreateDto();
-            wHouse2.setCountry("wHouse 2");
-            iWareHouseService.create(wHouse2);
 
-            var wHouse3 = new WareHouseCreateDto();
-            wHouse3.setCountry("wHouse 3");
-            iWareHouseService.create(wHouse3);
 
             //////////////////////////////////////////
             var shippingMethod1 = new ShippingMethod();
-            shippingMethod1.setName("DHL");
+            shippingMethod1.setName("Amana");
             iShppingMethodesRepository.save(shippingMethod1);
 
             ////////////////////////////////////////
             var country = new ShippingCountry();
-            country.setName("Canada");
+            country.setName("Morocco");
             iShippingCountryRepository.save(country);
         }
+
   /*      if (!first && start) {
             for (int i = 1; i < 9; i++) {
                 var tmp = new Reviews();
