@@ -185,8 +185,6 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
     public CompletableFuture<List<ProductDto>> getByCategory(Long categoryId) {
         var category = iCategoryRepository.findById(categoryId).get();
         List<Product> products = category.getParent() == null ? iProductRepository.findByCategoryParentId(category.getId()) : iProductRepository.findByCategoryId(category.getId());
-
-
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(products, ProductDto.class));
     }
 
@@ -204,23 +202,34 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(result, ProductDto.class));
     }
 
-    public CompletableFuture<List<ProductDto>> getByFilter(List<FilterDto> filter) {
+    public CompletableFuture<List<ProductDto>> getByFilter(List<FilterDto> filters) {
+        for (int i = 0; i < filters.size(); i++) {
+            if (filters.get(i).getValues().size() == 0)
+                filters.remove(i);
+        }
+
         StringBuilder query = new StringBuilder("select p from Product p left join Discount d on d.product.id = p.id left join ProductCharacteristic pc on p.id = pc.product.id inner join Characteristic c on pc.characteristic.id = c.id where ");
 
-        for (var fltr : filter) {
-            if (fltr.getName().equals("price")) {
-                query.append("(coalesce(p.salePrice - d.percent * p.salePrice,p.salePrice) between " + fltr.getValues().get(0) + " and " + fltr.getValues().get(1) + ")");
-                if (filter.size() > 1)
-                    query.append(" and (");
-            } else {
-                if (filter.indexOf(fltr) > 1)
-                    query.append(" or ");
-                query.append(" " + fltr.toFilterSQLFormat());
-            }
+        FilterDto priceFilter = filters.stream().filter(filter -> filter.getName().equals("price")).findAny().orElse(null);
+        if (priceFilter != null) {
+            query.append("(coalesce(p.salePrice - d.percent * p.salePrice,p.salePrice) between " + priceFilter.getValues().get(0) + " and " + priceFilter.getValues().get(1) + ")");
+            if (filters.size() > 1)
+                query.append(" and (");
+            filters.remove(priceFilter);
         }
-        query.append(")");
 
-        //price filter
+        //something not okay right here
+        for (var fltr : filters) {
+            query.append(" " + fltr.toFilterSQLFormat());
+            if (filters.indexOf(fltr) < filters.size() - 1)
+                query.append(" or ");
+        }
+
+        if (filters.size() > 1 && priceFilter != null)
+            query.append(")");
+
+
+        //price filters
         var result = entityManager.createQuery(query.toString(), Product.class);
 
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(result.getResultList(), ProductDto.class));
