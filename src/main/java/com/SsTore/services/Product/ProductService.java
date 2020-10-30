@@ -5,10 +5,7 @@
 
 package com.SsTore.services.Product;
 
-import com.SsTore.Dtos.Product.Characteristics.CharacteristicDto;
-import com.SsTore.Dtos.Product.Products.ProductCreateDto;
-import com.SsTore.Dtos.Product.Products.ProductDto;
-import com.SsTore.Dtos.Product.Products.ProductUpdateDto;
+import com.SsTore.Dtos.Product.Products.*;
 import com.SsTore.domains.Product.*;
 import com.SsTore.repositorys.Product.ICategoryRepository;
 import com.SsTore.repositorys.Product.IProductRepository;
@@ -22,6 +19,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +32,9 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
     private static final Logger logger = LoggerFactory.getLogger(TenantContext.class.getName());
     private final Pageable pageable = PageRequest.of(0, 8, Sort.by("createdAt").descending());
     private final Pageable pageableBestSelling = PageRequest.of(0, 8);
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     @Autowired
     private IProductRepository iProductRepository;
@@ -141,13 +143,14 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         var prod = iProductRepository.findById(aLong).get();
         ProductDto prodDto = objectMapper.convertToDto(prod, ProductDto.class);
 
+        //TODO: simplify this using domain Formula
         prodDto.getProductCharacteristics().clear();
         var y = prod.getProductCharacteristics().stream().collect(Collectors.groupingBy(x -> x.getCharacteristic().getName()));
 
         for (var entry : y.entrySet()) {
             var tmp = new CharacteristicDto();
             tmp.setCharacteristicName(entry.getKey());
-            tmp.setValue(entry.getValue().stream().map(ProductCharacteristic::getValue).collect(Collectors.toList()));
+            tmp.setValues(entry.getValue().stream().map(ProductCharacteristic::getValue).collect(Collectors.toList()));
             prodDto.getProductCharacteristics().add(tmp);
         }
 
@@ -194,10 +197,33 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
         querys.forEach(str -> {
             var tmp = iProductRepository.findByNameContains(str);
+            //Exclude exist product
             result.addAll(tmp);
         });
 
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(result, ProductDto.class));
+    }
+
+    public CompletableFuture<List<ProductDto>> getByFilter(List<FilterDto> filter) {
+        StringBuilder query = new StringBuilder("select p from Product p left join Discount d on d.product.id = p.id left join ProductCharacteristic pc on p.id = pc.product.id inner join Characteristic c on pc.characteristic.id = c.id where ");
+
+        for (var fltr : filter) {
+            if (fltr.getName().equals("price")) {
+                query.append("(coalesce(p.salePrice - d.percent * p.salePrice,p.salePrice) between " + fltr.getValues().get(0) + " and " + fltr.getValues().get(1) + ")");
+                if (filter.size() > 1)
+                    query.append(" and (");
+            } else {
+                if (filter.indexOf(fltr) > 1)
+                    query.append(" or ");
+                query.append(" " + fltr.toFilterSQLFormat());
+            }
+        }
+        query.append(")");
+
+        //price filter
+        var result = entityManager.createQuery(query.toString(), Product.class);
+
+        return CompletableFuture.completedFuture(objectMapper.convertToDtoList(result.getResultList(), ProductDto.class));
     }
 
     /*public CompletableFuture<List<String>> getNamesByQuery(String query) {
@@ -210,8 +236,8 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findByNewestIsTrueOrderByCreatedAtDesc(), ProductDto.class));
     }
 
-
     public CompletableFuture<List<ProductDto>> getBestSelling() {
         return CompletableFuture.completedFuture(objectMapper.convertToDtoList(iProductRepository.findBestSelling(pageableBestSelling), ProductDto.class));
     }
 }
+

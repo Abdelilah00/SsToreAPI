@@ -14,6 +14,6 @@ import java.util.List;
 @Getter
 @Setter
 public class CharacteristicDto extends BaseDto {
-    private List<String> value;
-    private String characteristicName;
+    private List<String> values;
+    private String name;
 }

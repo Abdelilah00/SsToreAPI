@@ -5,7 +5,6 @@
 
 package com.SsTore.Dtos.Product.Products;
 
-import com.SsTore.Dtos.Product.Characteristics.CharacteristicDto;
 import com.SsTore.Dtos.Product.Discounts.DiscountDto;
 import com.SsTore.Dtos.Product.Images.ImageDto;
 import com.SsTore.Dtos.Product.Reviews.ReviewsDto;
@@ -26,8 +25,8 @@ import java.util.stream.Collectors;
 public class ProductDto extends BaseDto {
 
     @JsonIgnore
-    private String uploadDirOut = "http://34.65.40.24:8080/images/";
-    //private String uploadDirOut = "http://localhost:8080/images/";
+    //private String uploadDirOut = "http://34.65.40.24:8080/images/";
+    private String uploadDirOut = "http://localhost:8080/images/";
 
     private String name;
     private String overview;
@@ -62,5 +61,9 @@ public class ProductDto extends BaseDto {
             return image;
         }).collect(Collectors.toList());
         return images;
+    }
+
+    public String getImageCover() {
+        return getImages().size() > 0 ? images.get(0).getUrl() : null;
     }
 }

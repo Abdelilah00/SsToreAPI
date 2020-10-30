@@ -5,6 +5,7 @@
 
 package com.SsTore.controllers.Product;
 
+import com.SsTore.Dtos.Product.Products.FilterDto;
 import com.SsTore.Dtos.Product.Products.ProductCreateDto;
 import com.SsTore.Dtos.Product.Products.ProductDto;
 import com.SsTore.Dtos.Product.Products.ProductUpdateDto;
@@ -56,7 +57,7 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         return service.create(tmp);
     }
 
-    @Override
+/*    @Override
     protected List<ProductDto> getAll() throws ExecutionException, InterruptedException {
         var tmp = super.getAll();
         tmp.forEach(prod -> {
@@ -73,49 +74,49 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
         if (tmp.getImages().size() > 0)
             tmp.setImageCover(tmp.getImages().get(0).getUrl());
         return tmp;
-    }
+    }*/
 
     //TODO:getByCategory-size(6-24)
     @GetMapping(path = "/getRelated/{id}")
     protected List<ProductDto> getRelated(@PathVariable(value = "id") Long id) throws ExecutionException, InterruptedException {
         var tmp = ((IProductService) service).getRelated(id).get();
-        tmp.forEach(prod -> {
+       /* tmp.forEach(prod -> {
             if (prod.getImages().size() > 0)
                 prod.setImageCover(prod.getImages().get(0).getUrl());
             //prod.setSale(true);
-        });
+        });*/
         return tmp;
     }
 
     @GetMapping(path = "/getByCategory/{categoryId}")
     protected List<ProductDto> getByCategory(@PathVariable(value = "categoryId") Long categoryId) throws ExecutionException, InterruptedException {
         var tmp = ((IProductService) service).getByCategory(categoryId).get();
-        tmp.forEach(prod -> {
+       /* tmp.forEach(prod -> {
             if (prod.getImages().size() > 0)
                 prod.setImageCover(prod.getImages().get(0).getUrl());
             //prod.setSale(true);
-        });
+        });*/
         return tmp;
     }
 
     @GetMapping(path = "/getBestSelling")
     protected List<ProductDto> getBestSelling() throws ExecutionException, InterruptedException {
         var tmp = ((IProductService) service).getBestSelling().get();
-        tmp.forEach(prod -> {
+        /*tmp.forEach(prod -> {
             if (prod.getImages().size() > 0)
                 prod.setImageCover(prod.getImages().get(0).getUrl());
             //prod.setSale(true);
-        });
+        });*/
         return tmp;
     }
 
     @GetMapping(path = "/getNewest")
     protected List<ProductDto> getNewest() throws ExecutionException, InterruptedException {
         var tmp = ((IProductService) service).getNewest().get();
-        tmp.forEach(prod -> {
+       /* tmp.forEach(prod -> {
             if (prod.getImages().size() > 0)
                 prod.setImageCover(prod.getImages().get(0).getUrl());
-        });
+        });*/
         return tmp;
     }
 
@@ -127,12 +128,18 @@ public class ProductsController extends BaseCrudController<Product, ProductDto, 
     @GetMapping(path = "/getByQuery/{query}")
     protected List<ProductDto> getByQuery(@PathVariable(value = "query") String query) throws ExecutionException, InterruptedException {
         var tmp = ((IProductService) service).getByQuery(query).get();
-        tmp.forEach(prod -> {
+      /*  tmp.forEach(prod -> {
             if (prod.getImages().size() > 0)
                 prod.setImageCover(prod.getImages().get(0).getUrl());
             //prod.setSale(true);
 
-        });
+        });*/
+        return tmp;
+    }
+
+    @PostMapping(path = "/getByFilter")
+    protected List<ProductDto> getByFilter(@RequestBody List<FilterDto> filterDto) throws ExecutionException, InterruptedException {
+        var tmp = ((IProductService) service).getByFilter(filterDto).get();
         return tmp;
     }
 }

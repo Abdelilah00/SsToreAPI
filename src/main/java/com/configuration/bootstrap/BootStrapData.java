@@ -97,17 +97,6 @@ public class BootStrapData implements CommandLineRunner {
             catCA.setParent(catC);
             iCategoryRepository.save(catCA);
 
-
-            var catD = new Category();
-            catD.setName("Voitures");
-            iCategoryRepository.save(catD);
-
-            var catDA = new Category();
-            catDA.setName("Gadgets");
-            catDA.setParent(catD);
-            iCategoryRepository.save(catDA);
-
-
             var catE = new Category();
             catE.setName("Electronique");
             iCategoryRepository.save(catE);
@@ -123,7 +112,7 @@ public class BootStrapData implements CommandLineRunner {
             iCategoryRepository.save(catEB);
 
             var catEC = new Category();
-            catEC.setName("GPS");
+            catEC.setName("Autre");
             catEC.setParent(catE);
             iCategoryRepository.save(catEC);
 

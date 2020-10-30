@@ -31,5 +31,7 @@ public interface IProductRepository extends IBaseJpaRepository<Product> {
 
     @Query("select p from Product p left join OrderDetails od on p.id = od.product.id group by p.id  order by COALESCE(SUM(od.qte),0) desc")
     List<Product> findBestSelling(Pageable pageable);
+
+
 }
 
