@@ -5,7 +5,11 @@
 
 package com.SsTore.services.Product;
 
-import com.SsTore.Dtos.Product.Products.*;
+import com.SsTore.Dtos.Product.Characteristics.CharacteristicDto;
+import com.SsTore.Dtos.Product.Products.FilterDto;
+import com.SsTore.Dtos.Product.Products.ProductCreateDto;
+import com.SsTore.Dtos.Product.Products.ProductDto;
+import com.SsTore.Dtos.Product.Products.ProductUpdateDto;
 import com.SsTore.domains.Product.*;
 import com.SsTore.repositorys.Product.ICategoryRepository;
 import com.SsTore.repositorys.Product.IProductRepository;
@@ -149,7 +153,7 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
         for (var entry : y.entrySet()) {
             var tmp = new CharacteristicDto();
-            tmp.setCharacteristicName(entry.getKey());
+            tmp.setName(entry.getKey());
             tmp.setValues(entry.getValue().stream().map(ProductCharacteristic::getValue).collect(Collectors.toList()));
             prodDto.getProductCharacteristics().add(tmp);
         }
@@ -190,11 +194,12 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
     //search by sub string
     public CompletableFuture<List<ProductDto>> getByQuery(String query) {
+        //search by sub query (name)
         List<String> querys = Arrays.asList(query.split("\\s+"));
         List<Product> result = new ArrayList<>();
 
         querys.forEach(str -> {
-            var tmp = iProductRepository.findByNameContains(str);
+            var tmp = iProductRepository.findDistinctByNameContains(str);
             //Exclude exist product
             result.addAll(tmp);
         });
@@ -203,12 +208,10 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
     }
 
     public CompletableFuture<List<ProductDto>> getByFilter(List<FilterDto> filters) {
-        for (int i = 0; i < filters.size(); i++) {
-            if (filters.get(i).getValues().size() == 0)
-                filters.remove(i);
-        }
 
-        StringBuilder query = new StringBuilder("select p from Product p left join Discount d on d.product.id = p.id left join ProductCharacteristic pc on p.id = pc.product.id inner join Characteristic c on pc.characteristic.id = c.id where ");
+        filters = filters.stream().filter(filter -> !filter.getValues().isEmpty()).collect(Collectors.toList());
+
+        StringBuilder query = new StringBuilder("select distinct p from Product p left join Discount d on d.product.id = p.id left join ProductCharacteristic pc on p.id = pc.product.id left join Characteristic c on pc.characteristic.id = c.id where ");
 
         FilterDto priceFilter = filters.stream().filter(filter -> filter.getName().equals("price")).findAny().orElse(null);
         if (priceFilter != null) {
@@ -225,9 +228,8 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
                 query.append(" or ");
         }
 
-        if (filters.size() > 1 && priceFilter != null)
+        if (priceFilter != null && filters.size() > 0)
             query.append(")");
-
 
         //price filters
         var result = entityManager.createQuery(query.toString(), Product.class);

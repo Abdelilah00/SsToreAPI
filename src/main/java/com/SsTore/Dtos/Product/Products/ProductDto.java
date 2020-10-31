@@ -5,6 +5,7 @@
 
 package com.SsTore.Dtos.Product.Products;
 
+import com.SsTore.Dtos.Product.Characteristics.CharacteristicDto;
 import com.SsTore.Dtos.Product.Discounts.DiscountDto;
 import com.SsTore.Dtos.Product.Images.ImageDto;
 import com.SsTore.Dtos.Product.Reviews.ReviewsDto;
