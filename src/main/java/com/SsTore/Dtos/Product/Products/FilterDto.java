@@ -21,6 +21,7 @@ public class FilterDto {
 
     public String toFilterSQLFormat() {
         var tmp = getValues().toString();
-        return "( c.name = '" + getName() + "' and pc.value " + getInterval() + " (" + tmp.substring(1, tmp.length() - 1) + ") )";
+
+        return "( c.name = '" + getName() + "' and pc.value " + getInterval() + " (" + tmp.substring(1, tmp.length() - 1) + "))";
     }
 }

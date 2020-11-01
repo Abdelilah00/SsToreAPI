@@ -209,26 +209,37 @@ public class ProductService extends BaseCrudServiceImpl<Product, ProductDto, Pro
 
     public CompletableFuture<List<ProductDto>> getByFilter(List<FilterDto> filters) {
 
-        filters = filters.stream().filter(filter -> !filter.getValues().isEmpty()).collect(Collectors.toList());
+        filters = filters.stream().filter(filter -> filter.getValues() != null && !filter.getValues().isEmpty()).collect(Collectors.toList());
+        StringBuilder query = new StringBuilder("select distinct p from Product p join p.productCategories pcat " +
+                "left join p.discount d left join p.productCharacteristics pc left join pc.characteristic c where ");
 
-        StringBuilder query = new StringBuilder("select distinct p from Product p left join Discount d on d.product.id = p.id left join ProductCharacteristic pc on p.id = pc.product.id left join Characteristic c on pc.characteristic.id = c.id where ");
+        FilterDto categoryFilter = filters.stream().filter(filter -> filter.getName().equals("category")).findAny().orElse(null);
 
-        FilterDto priceFilter = filters.stream().filter(filter -> filter.getName().equals("price")).findAny().orElse(null);
-        if (priceFilter != null) {
-            query.append("(coalesce(p.salePrice - d.percent * p.salePrice,p.salePrice) between " + priceFilter.getValues().get(0) + " and " + priceFilter.getValues().get(1) + ")");
-            if (filters.size() > 1)
-                query.append(" and (");
-            filters.remove(priceFilter);
+        if (categoryFilter != null) {
+            query.append("( pcat.category.parent.name=" + categoryFilter.getValues().get(0) + " )");
+            filters.remove(categoryFilter);
+            if (!filters.isEmpty())
+                query.append(" and ");
         }
 
-        //something not okay right here
+        //price filter
+        FilterDto priceFilter = filters.stream().filter(filter -> filter.getName().equals("price")).findAny().orElse(null);
+        if (priceFilter != null) {
+            query.append("( coalesce(p.salePrice - d.percent * p.salePrice,p.salePrice) between " + priceFilter.getValues().get(0) + " and " + priceFilter.getValues().get(1) + " )");
+
+            filters.remove(priceFilter);
+            if (!filters.isEmpty())
+                query.append(" and (");
+        }
+
+        //characteristics filter
         for (var fltr : filters) {
             query.append(" " + fltr.toFilterSQLFormat());
             if (filters.indexOf(fltr) < filters.size() - 1)
                 query.append(" or ");
         }
 
-        if (priceFilter != null && filters.size() > 0)
+        if (priceFilter != null && !filters.isEmpty())
             query.append(")");
 
         //price filters

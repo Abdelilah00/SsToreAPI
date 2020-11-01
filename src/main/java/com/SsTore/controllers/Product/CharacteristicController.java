@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/admin/characteristics")
 public class CharacteristicController extends BaseCrudController<Characteristic, CharacteristicDto, CharacteristicCreateDto, CharacteristicDto> {
-
+    //getByCategory
 }
